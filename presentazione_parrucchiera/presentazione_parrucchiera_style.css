@@ -1,0 +1,292 @@
+/* Stile base del corpo */
+body {
+    font-family: 'Poppins', sans-serif; /* Coerente con index.html */
+    margin: 0;
+    padding: 0;
+    background-color: #f9fafb; /* neutral-lightest */
+    color: #374151; /* neutral-dark */
+    line-height: 1.6;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #1f2937; /* neutral-darker */
+    color: #fff;
+    padding: 1rem 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-brand {
+    color: #a78bfa; /* primary-light */
+    text-decoration: none;
+    font-size: 1.8em;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+}
+
+.logo-img {
+    height: 40px;
+    margin-right: 10px;
+    filter: drop-shadow(0px 0px 3px rgba(167, 139, 250, 0.7)); /* Ombra leggera viola */
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-link-back {
+    color: #e5e7eb; /* neutral-light */
+    text-decoration: none;
+    font-size: 1em;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.nav-link-back:hover {
+    background-color: #8b5cf6; /* primary */
+    color: #fff;
+}
+
+/* Contenitore principale */
+.main-container {
+    padding: 20px 0;
+}
+
+/* Sezione Intro */
+.intro-section {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-bottom: 30px;
+}
+
+.intro-section h1 {
+    font-size: 2.8em;
+    color: #8b5cf6; /* primary */
+    margin-bottom: 10px;
+    font-family: 'Roboto Slab', serif;
+}
+
+.title-icon {
+    margin-right: 10px;
+    color: #7c3aed; /* primary-dark */
+}
+
+.intro-section .subtitle {
+    font-size: 1.3em;
+    color: #6b7280; /* neutral */
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Sezione Features */
+.app-features-section {
+    padding: 30px 0;
+    background-color: transparent; /* Lo sfondo del body si vedrà */
+}
+
+.app-features-section h2 {
+    text-align: center;
+    font-size: 2.2em;
+    color: #7c3aed; /* primary-dark */
+    margin-bottom: 40px;
+    font-family: 'Roboto Slab', serif;
+}
+
+.feature-block {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px;
+    padding: 25px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.07);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    gap: 25px;
+}
+
+.feature-block:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(139, 92, 246, 0.15); /* Ombra viola tenue al hover */
+}
+
+.feature-block-reverse {
+    flex-direction: row-reverse;
+}
+
+.feature-image {
+    flex: 1;
+    text-align: center;
+    max-width: 50%;
+}
+
+.feature-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.feature-description {
+    flex: 1;
+    padding-left: 20px; /* Default per LTR */
+}
+.feature-block-reverse .feature-description {
+    padding-left: 0;
+    padding-right: 20px; /* Per quando l'immagine è a destra */
+}
+
+
+.feature-description h3 {
+    font-size: 1.8em;
+    color: #8b5cf6; /* primary */
+    margin-bottom: 15px;
+}
+
+.card-icon {
+    margin-right: 8px;
+    color: #10b981; /* secondary */
+}
+
+.feature-description p {
+    font-size: 1.05em;
+    color: #4b5563; /* Grigio scuro per testo */
+    line-height: 1.7;
+}
+
+.image-gallery {
+    display: flex;
+    gap: 15px; /* Spazio tra le immagini */
+    margin-top: 15px; /* Spazio sopra la galleria */
+    flex-wrap: wrap; /* Permette alle immagini di andare a capo se non c'è spazio */
+}
+
+.gallery-image-container {
+    flex: 1 1 calc(50% - 15px); /* Due immagini per riga, con spazio */
+    max-width: calc(50% - 15px);
+    text-align: center;
+}
+
+.gallery-image-container img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 6px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.08);
+}
+
+.gallery-image-container p {
+    font-size: 0.9em;
+    color: #6b7280; /* neutral */
+    margin-top: 8px;
+    font-style: italic;
+}
+
+
+/* Sezione Tech Stack */
+.tech-stack-section {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    margin-top: 30px;
+}
+
+.tech-stack-section h2 {
+    font-size: 2.2em;
+    color: #7c3aed; /* primary-dark */
+    margin-bottom: 30px;
+    font-family: 'Roboto Slab', serif;
+}
+
+.tech-stack-section ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.tech-stack-section li {
+    font-size: 1.1em;
+    color: #374151; /* neutral-dark */
+    background-color: #f3f4f6; /* neutral-lighter */
+    padding: 10px 20px;
+    border-radius: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    display: flex;
+    align-items: center;
+}
+
+.tech-stack-section li:hover {
+    transform: translateY(-3px);
+    background-color: #e5e7eb; /* neutral-light */
+}
+
+.tech-stack-section li i {
+    margin-right: 10px;
+    color: #8b5cf6; /* primary */
+    font-size: 1.3em;
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 25px 0;
+    background-color: #1f2937; /* neutral-darker */
+    color: #e5e7eb; /* neutral-light */
+    margin-top: 40px;
+}
+
+.footer-link {
+    color: #a78bfa; /* primary-light */
+    text-decoration: none;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .feature-block, .feature-block-reverse {
+        flex-direction: column;
+    }
+    .feature-image, .feature-description {
+        max-width: 100%;
+        padding-left: 0; /* Reset padding per mobile */
+        padding-right: 0; /* Reset padding per mobile */
+    }
+    .feature-description {
+        margin-top: 20px;
+    }
+    .intro-section h1 {
+        font-size: 2.2em;
+    }
+    .intro-section .subtitle {
+        font-size: 1.1em;
+    }
+    .app-features-section h2, .tech-stack-section h2 {
+        font-size: 1.8em;
+    }
+    .gallery-image-container {
+        flex: 1 1 100%; /* Una immagine per riga su mobile */
+        max-width: 100%;
+    }
+}

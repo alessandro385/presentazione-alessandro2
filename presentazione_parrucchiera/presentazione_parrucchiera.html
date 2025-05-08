@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Presentazione Gestionale Parrucchiera</title>
+    <link rel="stylesheet" href="presentazione_parrucchiera_style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container">
+            <a href="../index.html#progetti" class="navbar-brand">
+                <!-- Potremmo usare un'icona generica se non c'è un logo -->
+                <i class="fas fa-cut logo-img" style="font-size: 30px; filter: none;"></i>
+                Gestionale Parrucchiera
+            </a>
+            <nav>
+                <a href="../index.html#progetti" class="nav-link-back">Torna ai Progetti</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="main-container container">
+        <section class="intro-section">
+            <h1><i class="fas fa-cut title-icon"></i>Gestionale Parrucchiera</h1>
+            <p class="subtitle">Una soluzione intuitiva per la gestione completa di clienti, servizi e appuntamenti del tuo salone.</p>
+        </section>
+
+        <section class="app-features-section">
+            <h2>Esplora le Funzionalità</h2>
+
+            <div class="feature-block">
+                <div class="feature-image">
+                    <img src="../assets/gestionale_parrucchiera/Home_page.png" alt="Dashboard principale dell'applicazione gestionale parrucchiera">
+                </div>
+                <div class="feature-description">
+                    <h3><i class="fas fa-home card-icon"></i>Homepage e Navigazione</h3>
+                    <p>La schermata principale "Salon Manager" offre un accesso rapido e intuitivo alle sezioni fondamentali dell'applicazione: Gestione Clienti, Gestione Servizi e Gestione Appuntamenti. Include anche una funzione di Logout per la sicurezza.</p>
+                </div>
+            </div>
+
+            <div class="feature-block feature-block-reverse">
+                <div class="feature-image">
+                    <img src="../assets/gestionale_parrucchiera/Gestione_clienti.png" alt="Gestione Clienti">
+                </div>
+                <div class="feature-description">
+                    <h3><i class="fas fa-users card-icon"></i>Gestione Anagrafica Clienti</h3>
+                    <p>Visualizza, cerca, aggiungi e modifica i dati dei tuoi clienti. La tabella include informazioni chiave come nome, cognome, email e telefono, con opzioni per la gestione di ogni singolo record.</p>
+                    <div class="image-gallery">
+                        <div class="gallery-image-container">
+                            <img src="../assets/gestionale_parrucchiera/new_client.png" alt="Aggiunta Nuovo Cliente">
+                            <p>Modulo di inserimento per nuovi clienti.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-block">
+                <div class="feature-image">
+                    <img src="../assets/gestionale_parrucchiera/Gestione_servizi.png" alt="Gestione Servizi">
+                </div>
+                <div class="feature-description">
+                    <h3><i class="fas fa-cut card-icon"></i>Gestione dei Servizi Offerti</h3>
+                    <p>Definisci e organizza i servizi del tuo salone. Ogni servizio può avere un nome, una descrizione, un prezzo e una durata. Anche qui è possibile aggiungere, modificare ed eliminare servizi, oltre a cercarli rapidamente.</p>
+                    <div class="image-gallery">
+                        <div class="gallery-image-container">
+                             <img src="../assets/gestionale_parrucchiera/new_service.png" alt="Aggiunta Nuovo Servizio">
+                             <p>Modulo per l'inserimento di nuovi servizi.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="feature-block feature-block-reverse">
+                <div class="feature-image">
+                    <img src="../assets/gestionale_parrucchiera/pagina_appuntamenti.png" alt="Gestione Appuntamenti">
+                </div>
+                <div class="feature-description">
+                    <h3><i class="fas fa-calendar-alt card-icon"></i>Agenda Appuntamenti Chiara</h3>
+                    <p>Un calendario interattivo per visualizzare e gestire tutti gli appuntamenti. Offre viste giornaliere, settimanali e mensili, facilitando l'organizzazione del lavoro e la pianificazione degli impegni. È possibile aggiungere nuovi appuntamenti direttamente dal calendario.</p>
+                </div>
+            </div>
+            
+        </section>
+        
+        <section class="tech-stack-section">
+            <h2>Tecnologie Utilizzate</h2>
+            <ul>
+                <li><i class="fab fa-python"></i> Python (Backend)</li>
+                <li><i class="fab fa-node-js"></i> Node.js (Frontend)</li>
+                <li><i class="fas fa-database"></i> JSON (Database)</li>
+                <li><i class="fab fa-html5"></i> HTML5</li>
+                <li><i class="fab fa-css3-alt"></i> CSS3</li>
+                <li><i class="fas fa-network-wired"></i> REST API per la comunicazione frontend-backend</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2024 Alessandro Barresi. <a href="../index.html#progetti" class="footer-link">Torna al Portfolio</a></p>
+    </footer>
+</body>
+</html>

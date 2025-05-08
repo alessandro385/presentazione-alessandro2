@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+
+# Build artifacts
+dist/
+build/
+
+# Cache folders
+.cache/
+
+# Large archives
+*.7z
+*.zip
+*.rar
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Specific project folders to ignore
+gestionale_chef_service/ 
