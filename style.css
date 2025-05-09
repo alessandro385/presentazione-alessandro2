@@ -1,3 +1,15 @@
+/* 
+Questo file è stato svuotato.
+Gli stili specifici dei temi si trovano ora nella cartella /themes/
+- themes/theme-modern.css (contiene gli stili originali)
+- themes/theme-minimalist.css (contiene stili per un tema alternativo)
+
+Il file CSS attivo viene caricato dinamicamente da script.js in base alla selezione dell'utente.
+Se fossero necessari stili globali VERAMENTE indipendenti da qualsiasi tema 
+(molto raro quando si usa un approccio a temi completi), potrebbero essere inseriti qui,
+ma è generalmente preferibile mantenere tutta la logica di styling all'interno dei file tema.
+*/
+
 /* Stili per il link attivo nella navbar */
 .active-nav-link {
     /* Esempio: usa i colori definiti in Tailwind config se possibile,
