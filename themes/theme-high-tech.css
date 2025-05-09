@@ -224,11 +224,12 @@ body.theme-high-tech {
 }
 
 .theme-high-tech .hero-section img {
-    border: 3px solid #00bfff;
-    box-shadow: 0 0 25px rgba(0, 191, 255, 0.6);
+    border: 4px solid #00bfff; /* Aumentato spessore bordo */
+    box-shadow: 0 0 30px rgba(0, 191, 255, 0.7); /* Ombra leggermente più pronunciata */
     border-radius: 50%;
-    padding: 5px; /* Spazio tra immagine e bordo */
+    padding: 8px; /* Aumentato padding interno */
     background-color: rgba(10,15,31,0.5);
+    /* Le dimensioni w- h- verranno gestite da HTML per maggior controllo responsivo */
 }
 
 /* Pulsanti Hero High-Tech */
@@ -707,3 +708,497 @@ body.theme-high-tech {
 }
 
 /* ----- Fine Sezione Esperienza e Formazione High-Tech ----- */ 
+
+/* ----- Tech Constellation Styling ----- */
+.theme-high-tech .tech-constellation-container {
+    width: 100%;
+    max-width: 800px; /* O la larghezza che preferisci */
+    margin: 2rem auto; /* Spazio sopra/sotto e centrato */
+    height: 400px; /* Altezza del contenitore, aggiustala in base al layout delle icone */
+    position: relative;
+    /* perspective: 1000px; /* Per effetti 3D se li usiamo */
+    /* border: 1px solid rgba(0,191,255,0.1); /* Debug border */
+    /* Inizialmente nascosto, animato da .title-is-visible se usi quella classe sul container */
+    opacity: 0; 
+    transform: translateY(40px);
+    transition: opacity 0.8s 0.5s ease-out, transform 0.8s 0.5s ease-out; /* Delay per apparire dopo la hero */
+}
+
+.theme-high-tech .tech-constellation-container.title-is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.theme-high-tech .constellation-icon {
+    position: absolute;
+    width: 50px; /* Dimensione base icone, puoi variare */
+    height: 50px;
+    opacity: 0;
+    transform: scale(0.5);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, filter 0.3s ease;
+    filter: drop-shadow(0 0 8px rgba(0,191,255,0)); /* Inizio senza bagliore forte */
+    animation: pulseIcon 3s infinite ease-in-out;
+}
+
+/* Animazione di pulsazione per le icone */
+@keyframes pulseIcon {
+    0%, 100% {
+        filter: drop-shadow(0 0 8px rgba(0,191,255,0.6));
+        transform: scale(1);
+    }
+    50% {
+        filter: drop-shadow(0 0 12px rgba(0,191,255,0.9));
+        transform: scale(1.05);
+    }
+}
+
+.theme-high-tech .tech-constellation-container.title-is-visible .constellation-icon {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.theme-high-tech .constellation-icon:hover {
+    filter: drop-shadow(0 0 15px rgba(255,255,255,0.8)) drop-shadow(0 0 20px #00bfff) !important;
+    transform: scale(1.15) !important; /* Assicura che l'hover sovrascriva pulse */
+    z-index: 10; /* Porta l'icona in primo piano al hover */
+}
+
+/* Posizionamento specifico delle icone (ESEMPIO - da aggiustare!) */
+/* Questi valori sono indicativi e andranno sistemati con precisione */
+.theme-high-tech .icon-python    { top: 10%; left: 15%; animation-delay: 0.2s, 0.2s; } /* animation-delay per entrata e per pulseIcon */
+.theme-high-tech .icon-js        { top: 30%; left: 40%; animation-delay: 0.4s, 0.4s; }
+.theme-high-tech .icon-cpp       { top: 10%; left: 65%; animation-delay: 0.6s, 0.6s; }
+.theme-high-tech .icon-sql       { top: 60%; left: 10%; animation-delay: 0.8s, 0.8s; }
+.theme-high-tech .icon-html      { top: 70%; left: 50%; animation-delay: 1.0s, 1.0s; }
+.theme-high-tech .icon-css       { top: 60%; left: 80%; animation-delay: 1.2s, 1.2s; }
+
+/* Stile e animazione per le linee di connessione */
+.theme-high-tech .constellation-line {
+    position: absolute;
+    background-color: rgba(0, 191, 255, 0.5); /* Ciano semitrasparente */
+    height: 2px; /* Spessore linea */
+    border-radius: 1px;
+    opacity: 0;
+    transform-origin: left center; /* Per animazione width da sinistra */
+    transition: opacity 0.5s ease-out, width 0.8s ease-out; 
+    box-shadow: 0 0 5px rgba(0,191,255,0.3);
+    width: 0; /* Inizia con larghezza 0 per animare il "disegno" */
+    z-index: -1; /* Dietro le icone */
+}
+
+.theme-high-tech .tech-constellation-container.title-is-visible .constellation-line {
+    opacity: 0.6; /* O l'opacità desiderata */
+    /* La width sarà impostata inline da JS o con classi specifiche se la calcoliamo manualmente */
+}
+
+/* ESEMPIO di come posizionare e dimensionare una linea (da fare per tutte) */
+/* Questo è il punto più complesso e richiede calcoli o trial-and-error */
+/* Supponiamo di connettere Python (10% T, 15% L) a JS (30% T, 40% L) */
+/* Dobbiamo calcolare la distanza e l'angolo */
+.theme-high-tech .line-py-js {
+    top: calc(10% + 25px); /* Metà altezza icona python */
+    left: calc(15% + 25px); /* Metà larghezza icona python */
+    /* width: XXpx; // Questa andrà calcolata */
+    /* transform: rotate(YYdeg); // Questa andrà calcolata */
+    transition-delay: 0.8s, 0.8s; /* Ritardo per opacity e width */
+}
+
+/* Esempio: se la linea .line-py-js è visibile e vogliamo che si disegni */
+.theme-high-tech .tech-constellation-container.title-is-visible .line-py-js {
+   /* width: 150px; /* Esempio di larghezza - DA CALCOLARE */ 
+}
+
+/* TODO: Aggiungere stili specifici per ogni .constellation-line (top, left, width, transform: rotate) */
+/* Per un effetto "flusso" sulle linee (più avanzato): */
+/*
+@keyframes flowLine {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+.theme-high-tech .constellation-line {
+    background-image: linear-gradient(to right, rgba(0,191,255,0), rgba(0,191,255,0.8), rgba(0,191,255,0));
+    background-size: 200% 100%;
+    animation: flowLine 2s linear infinite;
+}
+*/
+
+/* ----- Fine Tech Constellation Styling ----- */ 
+
+/* ----- Stili per Icone Tecnologiche nella Hero Section ----- */
+.theme-high-tech .hero-tech-icons-container {
+    position: absolute;
+    inset: 0;
+    max-width: 1200px; /* Aumentato MOLTO per dare più spazio all'esagono */
+    height: 800px;  /* Aumentato MOLTO per dare più spazio all'esagono */
+    margin: auto;
+    z-index: 5;
+    pointer-events: none; /* Le icone non devono essere cliccabili o interferire */
+    transition: opacity 0.8s 1s ease-out; /* Transizione per la comparsa del contenitore, dopo le animazioni hero principali */
+}
+
+.theme-high-tech .hero-section.hero-icons-active .hero-tech-icons-container {
+    opacity: 0.7; /* Rende visibile il contenitore quando la hero è attiva */
+}
+
+.theme-high-tech .hero-tech-icon {
+    position: absolute;
+    width: 70px; /* Icone Ingrandite */
+    height: 70px; /* Icone Ingrandite */
+    opacity: 0;
+    transform: scale(0.3) rotate(-90deg);
+    filter: drop-shadow(0 0 6px rgba(0,191,255,0.4));
+    transition: opacity 0.6s ease-out, transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease-out; /* Transizione più reattiva per transform */
+}
+
+/* Animazione di entrata per le icone della hero */
+@keyframes heroIconEnterAnimation {
+    0% {
+        opacity: 0;
+        transform: scale(0.3) rotate(-90deg) translateY(30px);
+    }
+    70% {
+        opacity: 1;
+        transform: scale(1.1) rotate(10deg) translateY(0px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) rotate(0deg) translateY(0px);
+    }
+}
+
+/* Applica l'animazione quando il container è visibile e con delay scaglionati */
+.theme-high-tech .hero-section.hero-icons-active .hero-tech-icon {
+    animation-name: heroIconEnterAnimation;
+    animation-duration: 0.8s;
+    animation-fill-mode: forwards;
+    animation-timing-function: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-high-tech .hero-section.hero-icons-active .hero-tech-icon:hover {
+    transform: scale(1.2) rotate(0deg) translateY(-12px); /* Sollevamento più marcato, rotazione neutra */
+    filter: drop-shadow(0 0 20px rgba(0, 191, 255, 1)); /* Bagliore molto più intenso */
+    z-index: 6; 
+    pointer-events: auto; 
+}
+
+/* Posizionamento specifico delle icone per formare un esagono nella Hero */
+/* Container: max-width: 1200px; height: 800px; Icone: 70px (offset -35px) */
+
+/* Riferimento: Allineare Python e HTML5 con il centro verticale della foto profilo */
+
+/* Coppia Superiore: Più in alto delle centrali, larghe */
+.theme-high-tech .icon-cpp-hero   { top: calc(35% - 100px - 35px); left: calc(50% - 280px - 35px); animation-delay: 1.2s; }
+.theme-high-tech .icon-js-hero    { top: calc(35% - 100px - 35px); left: calc(50% + 280px - 35px); animation-delay: 1.4s; }
+
+/* Coppia Centrale: Allineata con il centro verticale dell'immagine profilo. */
+/* Questo richiede un valore di top più piccolo (più vicino alla parte alta del container) */
+.theme-high-tech .icon-python-hero { top: calc(35% - 0px - 35px);  left: calc(50% - 360px - 35px); animation-delay: 1.6s; } 
+.theme-high-tech .icon-html-hero  { top: calc(35% - 0px - 35px);  left: calc(50% + 360px - 35px); animation-delay: 1.8s; }
+
+/* Coppia Inferiore: Più in basso delle centrali, larghe */
+.theme-high-tech .icon-sql-hero   { top: calc(35% + 100px - 35px); left: calc(50% - 280px - 35px); animation-delay: 2.0s; }
+.theme-high-tech .icon-css-hero   { top: calc(35% + 100px - 35px); left: calc(50% + 280px - 35px); animation-delay: 2.2s; }
+
+/* ----- Animazioni Generali High-Tech ----- */
+@keyframes fadeInSlideUp {
+    from { opacity: 0; transform: translateY(40px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.theme-high-tech .fade-in-section {
+    opacity: 0; /* Inizia nascosto */
+    animation: fadeInSlideUp 0.8s 0.2s ease-out forwards;
+}
+
+/* ----- Sezione Hero High-Tech ----- */
+.theme-high-tech .hero-section {
+    background: linear-gradient(135deg, #0a0f1f 0%, #141c33 50%, #0a0f1f 100%);
+    border: none;
+    box-shadow: none;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden; /* Per contenere eventuali effetti di sfondo */
+}
+
+.theme-high-tech .hero-section h1 {
+    font-size: 4rem; /* Più grande */
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(0, 191, 255, 0.8), 0 0 5px rgba(255,255,255,0.5);
+}
+
+.theme-high-tech .hero-section .text-primary-light { /* Sottotitolo Alessandro Barresi */
+    color: #00bfff !important; 
+    text-shadow: 0 0 10px #00bfff;
+}
+
+.theme-high-tech .hero-section p {
+    color: #a0a8b8; /* Grigio più chiaro per il paragrafo */
+    font-size: 1.25rem;
+}
+
+.theme-high-tech .hero-section img {
+    border: 4px solid #00bfff; /* Aumentato spessore bordo */
+    box-shadow: 0 0 30px rgba(0, 191, 255, 0.7); /* Ombra leggermente più pronunciata */
+    border-radius: 50%;
+    padding: 8px; /* Aumentato padding interno */
+    background-color: rgba(10,15,31,0.5);
+    /* Le dimensioni w- h- verranno gestite da HTML per maggior controllo responsivo */
+}
+
+/* Pulsanti Hero High-Tech */
+.theme-high-tech .hero-section .bg-primary,
+.theme-high-tech .hero-section .border-secondary {
+    border-radius: 4px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 0.8rem 1.8rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.theme-high-tech .hero-section .bg-primary {
+    background-color: #00bfff;
+    color: #0a0f1f;
+    border: 1px solid #00bfff;
+}
+.theme-high-tech .hero-section .bg-primary:hover {
+    background-color: #00a0dd;
+    box-shadow: 0 0 15px #00bfff;
+    color: #ffffff;
+}
+
+.theme-high-tech .hero-section .border-secondary {
+    background-color: transparent;
+    color: #00bfff;
+    border: 1px solid #00bfff;
+}
+.theme-high-tech .hero-section .border-secondary:hover {
+    background-color: #00bfff;
+    color: #0a0f1f;
+    box-shadow: 0 0 15px #00bfff;
+}
+
+/* Aggiungiamo un effetto hover con pseudo-elemento */
+.theme-high-tech .hero-section .bg-primary::before,
+.theme-high-tech .hero-section .border-secondary::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    transition: width 0.4s ease, height 0.4s ease;
+    z-index: -1;
+}
+.theme-high-tech .hero-section .bg-primary:hover::before,
+.theme-high-tech .hero-section .border-secondary:hover::before {
+    width: 250%; 
+    height: 250%;
+}
+
+/* Esempio di animazione per il testo "Sviluppatore..." */
+.theme-high-tech .hero-section .animated-subtitle {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: .10em solid #00bfff; /* Cursore tipo macchina da scrivere */
+    animation: typing 3s steps(30, end) 1s 1 normal both,
+               blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: #00bfff; }
+}
+
+/* Potremmo aggiungere font specifici via @font-face o Google Fonts se non sono standard */
+/* @import url('https://fonts.googleapis.com/css2?family=Aldrich&family=Orbitron:wght@400;700&display=swap'); */
+/* Nota: l'import in CSS è meno performante del link nel <head>. Se usiamo Google Fonts, meglio metterli in index.html */
+
+/* ----- Sezione Progetti High-Tech ----- */
+.theme-high-tech .progetti-section {
+    /* Herda stili da .main-content-section, ma possiamo sovrascrivere se necessario */
+    /* Esempio: padding specifico se diverso */
+    padding: 2rem 1.5rem;
+}
+
+.theme-high-tech .progetti-section h2 {
+    /* Stile già definito per h2 generici, ma possiamo specializzare */
+    font-size: 2.5rem; /* Leggermente più grande per la sezione progetti */
+    margin-bottom: 3rem;
+}
+
+.theme-high-tech .progetto-card {
+    background-color: rgba(15, 22, 46, 0.85); /* Blu scuro traslucido, più scuro di .main-content-section */
+    border: 1px solid rgba(0, 191, 255, 0.3); /* Bordo ciano */
+    border-radius: 8px; 
+    overflow: hidden; /* Per contenere effetti interni */
+    opacity: 0;
+    transform: translateY(50px) scale(0.95);
+    transition: opacity 0.6s ease-out, 
+                transform 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+                box-shadow 0.4s ease, 
+                border-color 0.4s ease;
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2), 0 0 10px rgba(0, 191, 255, 0.1);
+    display: flex;
+    flex-direction: column; /* Assicura che contenuto e immagine si impilino correttamente */
+}
+
+.theme-high-tech .progetto-card.card-is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+
+.theme-high-tech .progetto-card.card-is-visible:hover {
+    transform: translateY(-10px) scale(1.03); 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.3), 0 0 30px rgba(0, 191, 255, 0.4);
+    border-color: rgba(0, 191, 255, 0.7);
+}
+
+.theme-high-tech .progetto-card-immagine-container {
+    height: 200px; /* Altezza fissa per uniformità */
+    overflow: hidden;
+    position: relative; /* Per overlay */
+    background-color: rgba(10, 15, 31, 0.5); /* Sfondo se immagine non copre */
+}
+
+.theme-high-tech .progetto-card-immagine {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* o cover, a seconda del risultato desiderato per le immagini */
+    transition: transform 0.5s ease-out, filter 0.3s ease;
+    padding: 0.5rem; /* Piccolo padding per non far toccare i bordi */
+}
+
+.theme-high-tech .progetto-card:hover .progetto-card-immagine {
+    transform: scale(1.1); /* Leggero zoom dell'immagine al hover sulla card */
+}
+
+.theme-high-tech .progetto-card-immagine-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(10, 15, 31, 0.8) 0%, rgba(10, 15, 31, 0.2) 60%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* Potremmo aggiungere qui un'icona o testo */
+}
+
+.theme-high-tech .progetto-card:hover .progetto-card-immagine-overlay {
+    opacity: 1;
+}
+
+.theme-high-tech .progetto-card-contenuto {
+    padding: 1.5rem;
+    flex-grow: 1; /* Fa sì che questa parte occupi lo spazio rimanente */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Spinge le azioni in basso se c'è spazio */
+}
+
+.theme-high-tech .progetto-card-titolo {
+    font-size: 1.5rem; /* Dimensione per titoli card */
+    color: #e0e8f7; /* Colore già definito per h3, ma confermiamo */
+    margin-bottom: 0.75rem;
+    font-family: 'Aldrich', 'Orbitron', sans-serif;
+    text-shadow: 0 0 6px rgba(0, 191, 255, 0.6);
+}
+
+.theme-high-tech .progetto-card-descrizione {
+    font-size: 0.9rem;
+    color: #a0a8b8; /* Grigio chiaro per descrizione */
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    flex-grow: 1; /* Permette alla descrizione di espandersi */
+}
+
+.theme-high-tech .progetto-card-tecnologie {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.theme-high-tech .tech-tag {
+    background-color: rgba(0, 191, 255, 0.1); /* Sfondo ciano molto trasparente */
+    color: #00bfff; /* Testo ciano */
+    padding: 0.3rem 0.7rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid rgba(0, 191, 255, 0.3);
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.theme-high-tech .tech-tag:hover {
+    background-color: rgba(0, 191, 255, 0.3);
+    color: #ffffff;
+    box-shadow: 0 0 8px rgba(0, 191, 255, 0.5);
+}
+
+.theme-high-tech .progetto-card-azioni {
+    display: flex;
+    flex-wrap: wrap; /* Permette ai pulsanti di andare a capo su schermi piccoli se necessario */
+    gap: 0.75rem; /* Spazio tra i pulsanti */
+    margin-top: auto; /* Spinge in basso se la descrizione non riempie tutto */
+}
+
+.theme-high-tech .pulsante-progetto {
+    padding: 0.6rem 1.2rem;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    display: inline-block;
+    text-align: center;
+}
+
+.theme-high-tech .pulsante-progetto.primary {
+    background-color: #00bfff;
+    color: #0a0f1f; /* Testo scuro su sfondo ciano */
+    border-color: #00bfff;
+}
+
+.theme-high-tech .pulsante-progetto.primary:hover {
+    background-color: #00a0dd; /* Ciano più scuro */
+    color: #ffffff;
+    box-shadow: 0 0 12px rgba(0, 191, 255, 0.7);
+    transform: translateY(-2px);
+}
+
+.theme-high-tech .pulsante-progetto.secondary {
+    background-color: transparent;
+    color: #00bfff;
+    border-color: #00bfff;
+}
+
+.theme-high-tech .pulsante-progetto.secondary:hover {
+    background-color: rgba(0, 191, 255, 0.15);
+    color: #ffffff;
+    border-color: #00a0dd;
+    box-shadow: 0 0 10px rgba(0, 191, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+/* ----- Fine Sezione Progetti High-Tech ----- */ 
