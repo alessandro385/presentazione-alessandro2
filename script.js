@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 2. Aggiorna l'attributo data-* sul main e la classe sul body
         mainElement.dataset.currentTheme = themeName;
-        bodyElement.classList.remove('theme-modern', 'theme-minimalist', 'theme-high-tech'); // Rimuovi temi precedenti, INCLUSO high-tech
+        bodyElement.classList.remove('theme-modern', 'theme-minimalist', 'theme-high-tech', 'theme-matrix'); // Rimuovi temi precedenti, INCLUSO matrix
         bodyElement.classList.add(`theme-${themeName}`); // Aggiungi tema corrente
 
         // 3. Aggiorna lo stato visivo dei pulsanti di selezione tema
@@ -115,6 +115,13 @@ document.addEventListener("DOMContentLoaded", () => {
             // 6. Re-inizializza componenti/funzioni che dipendono dal DOM aggiornato
             initializePageComponents(); // Funzione helper per raggruppare le reinizializzazioni
 
+            // Gestione specifica per il tema Matrix (Digital Rain)
+            if (themeName === 'matrix') {
+                setupMatrixRain();
+            } else {
+                clearMatrixRain(); // Pulisce il canvas se si passa ad un altro tema
+            }
+
         } catch (error) {
             console.error(`Errore durante il fetch o parsing del contenuto del tema ${themeName}:`, error);
         }
@@ -148,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         themeDropdownMenuDesktop.classList.add('hidden');
                     }
                     // Chiudi menu mobile se il click proviene da lì e il menu mobile è aperto
-                    if (mobileMenu && event.currentTarget.closest('#mobile-theme-selector')) {
+                    if (mobileMenu && event.currentTarget.closest('#mobile-menu')) {
                         mobileMenu.classList.add('hidden');
                         // Ripristina icona burger se necessario
                         if (mobileMenuButton) {
@@ -168,8 +175,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let initialTheme = 'modern'; // Tema di default
         try {
             const savedTheme = localStorage.getItem('selectedUserProfileTheme');
-            // Valida i temi salvati includendo 'high-tech'
-            if (savedTheme && (savedTheme === 'modern' || savedTheme === 'minimalist' || savedTheme === 'high-tech')) { 
+            // Valida i temi salvati includendo 'matrix'
+            if (savedTheme && (savedTheme === 'modern' || savedTheme === 'minimalist' || savedTheme === 'high-tech' || savedTheme === 'matrix')) { 
                 initialTheme = savedTheme;
             }
         } catch (e) {
@@ -181,10 +188,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // --- Gestione Menu Mobile --- 
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
+    const mobileThemeSelector = document.getElementById('mobile-theme-selector'); // Seleziono anche il contenitore dei temi mobile
 
-    if (mobileMenuButton && mobileMenu) {
+    if (mobileMenuButton && mobileMenu && mobileThemeSelector) { // Controllo che esista anche mobileThemeSelector
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
+            mobileThemeSelector.classList.toggle('hidden'); // Mostra/nascondi anche il selettore temi
             const icon = mobileMenuButton.querySelector('svg path');
             if (mobileMenu.classList.contains('hidden')) {
                 icon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7'); 
@@ -200,12 +209,26 @@ document.addEventListener("DOMContentLoaded", () => {
         mobileNavLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.add('hidden');
+                if (mobileThemeSelector) mobileThemeSelector.classList.add('hidden'); // Nascondi anche il selettore temi
                 if (mobileMenuButton) {
                     const icon = mobileMenuButton.querySelector('svg path');
                     icon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
                 }
             });
         });
+    }
+
+    // La logica per chiudere il menu quando si seleziona un tema da mobile è già gestita
+    // nell'event listener di themeSelectButtons, che ora chiude #mobile-menu.
+    // Dobbiamo solo assicurarci che #mobileThemeSelector venga nascosto anche lì.
+    // Questa modifica è stata fatta nel precedente step dentro applyTheme, verificando event.currentTarget.closest('#mobile-menu')
+    // e chiudendo mobileMenu. Ora, siccome mobileThemeSelector è visualizzato insieme a mobileMenu,
+    // quando mobileMenu viene nascosto (da applyTheme o dal click su un nav link), anche mobileThemeSelector dovrebbe sparire
+    // se la sua visibilità è legata a quella di mobileMenu tramite il toggle comune.
+
+    // Assicuriamoci che il selettore temi mobile sia nascosto all'inizio
+    if (mobileThemeSelector) {
+        mobileThemeSelector.classList.add('hidden');
     }
 
     // --- Funzioni da richiamare dopo il caricamento del contenuto del tema ---
@@ -244,6 +267,26 @@ document.addEventListener("DOMContentLoaded", () => {
         // Per i titoli delle sezioni (se hanno la classe .section-title-anim)
         activeObservers.push(createIntersectionObserver('.section-title-anim', 0.2, "0px 0px -60px 0px", 'title-is-visible'));
         
+        // Observer per attivare le icone nella Hero Section
+        // Seleziona la hero section e aggiunge una classe quando è visibile
+        const heroSectionElement = document.querySelector('.hero-section');
+        if (heroSectionElement) {
+            const heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('hero-icons-active');
+                        // Potrebbe essere utile disconnettere l'observer se l'animazione deve avvenire solo una volta
+                        // heroObserver.unobserve(entry.target);
+                    } else {
+                        // Opzionale: rimuovi la classe se vuoi che l'animazione si ripeta ogni volta
+                        // entry.target.classList.remove('hero-icons-active'); 
+                    }
+                });
+            }, { threshold: 0.5, rootMargin: "0px" }); // Attiva quando il 50% della hero è visibile
+            heroObserver.observe(heroSectionElement);
+            activeObservers.push(heroObserver); 
+        }
+
         // Per le card competenze (se non usano già .fade-in-section e necessitano di animazione diversa)
         // Se le card competenze sono già dentro un .fade-in-section, potrebbero non aver bisogno di un observer dedicato
         // unless they have a more complex staggered animation.
@@ -294,8 +337,68 @@ document.addEventListener("DOMContentLoaded", () => {
     loadInitialTheme(); 
 
     window.addEventListener('resize', () => {
+        const headerElement = document.querySelector('header'); // Recupera headerElement qui
         if (headerElement) headerHeight = headerElement.offsetHeight;
-        offset = headerHeight + 20;
+        offset = headerHeight + 20; // headerHeight sarà 0 se headerElement non è trovato, gestendo il caso
         updateActiveLink();
     });
+
+    // --- Funzione per Digital Rain (Tema Matrix) ---
+    let matrixRainInterval = null;
+    function setupMatrixRain() {
+        const canvas = document.getElementById('matrix-rain-hero');
+        if (!canvas) return;
+
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight; // O l'altezza della hero section se preferisci
+
+        const letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍｦｲｸｺｿﾁﾄﾉﾌﾔﾖﾙﾚﾛﾝ';
+        const fontSize = 14;
+        const columns = Math.floor(canvas.width / fontSize);
+        const drops = Array(columns).fill(1);
+
+        function drawMatrix() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.04)'; // Sfondo leggermente trasparente per effetto scia
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00FF41'; // Colore caratteri Matrix
+            ctx.font = `${fontSize}px Courier New`;
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = letters[Math.floor(Math.random() * letters.length)];
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0; // Resetta la goccia casualmente per un effetto più vario
+                }
+                drops[i]++;
+            }
+        }
+
+        if (matrixRainInterval) clearInterval(matrixRainInterval);
+        matrixRainInterval = setInterval(drawMatrix, 40); // Aumentato intervallo per fluidità
+
+        // Riadatta il canvas al resize della finestra
+        window.addEventListener('resize', () => {
+            if (document.body.classList.contains('theme-matrix')) {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight; // O altezza hero section
+                // Bisogna ricalcolare columns e resettare drops se si vuole che sia perfetto al resize
+                // Per ora, semplice ridimensionamento.
+            }
+        });
+    }
+
+    function clearMatrixRain() {
+        if (matrixRainInterval) {
+            clearInterval(matrixRainInterval);
+            matrixRainInterval = null;
+        }
+        const canvas = document.getElementById('matrix-rain-hero');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+    }
 });
