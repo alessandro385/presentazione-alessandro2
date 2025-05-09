@@ -1,35 +1,260 @@
 document.addEventListener("DOMContentLoaded", () => {
-    // Qui possiamo aggiungere codice JavaScript in futuro
     console.log("Pagina di presentazione caricata e script.js eseguito.");
 
-    // --- Gestione Menu Mobile ---
+    // --- Selezione Elementi per Switch Tema ---
+    const themeStylesheet = document.getElementById('theme-stylesheet');
+    const mainElement = document.querySelector('main'); 
+    const bodyElement = document.body; 
+
+    const themeDropdownButtonDesktop = document.getElementById('theme-dropdown-button-desktop');
+    const themeDropdownMenuDesktop = document.getElementById('theme-dropdown-menu-desktop');
+    // Seleziona tutti i pulsanti/link per cambiare tema, sia desktop che mobile
+    const themeSelectButtons = document.querySelectorAll('a[data-theme]');
+
+    // --- Funzione Utility per Intersection Observer ---
+    function createIntersectionObserver(targetSelector, threshold = 0.1, rootMargin = "0px 0px -50px 0px", visibleClass = "is-visible") {
+        if ('IntersectionObserver' in window) {
+            const elementsToObserve = document.querySelectorAll(targetSelector);
+            if (elementsToObserve.length === 0) return null; // Nessun elemento da osservare
+
+            const observer = new IntersectionObserver((entries, obs) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add(visibleClass);
+                        // Opzionale: smettere di osservare dopo la prima volta per performance
+                        // Potremmo volerlo per animazioni che avvengono una sola volta.
+                        // obs.unobserve(entry.target);
+                    } else {
+                        // Opzionale: rimuovere la classe se esce dal viewport, per animazioni ripetute
+                        // Questo è utile se l'animazione deve ripartire ogni volta che l'elemento rientra
+                        // entry.target.classList.remove(visibleClass);
+                    }
+                });
+            }, { threshold: threshold, rootMargin: rootMargin });
+
+            elementsToObserve.forEach(element => {
+                observer.observe(element);
+            });
+            return observer; 
+        } else {
+            // Fallback per browser senza IntersectionObserver: rende tutto subito visibile
+            document.querySelectorAll(targetSelector).forEach(element => {
+                element.classList.add(visibleClass);
+            });
+            return null;
+        }
+    }
+
+    // --- Funzioni di supporto per il tema ---
+    function updateActiveThemeVisuals(themeName) {
+        themeSelectButtons.forEach(btn => {
+            if (btn.dataset.theme === themeName) {
+                btn.classList.add('active-theme-option'); // Es. per dare uno stile al tema attivo nel dropdown
+                // Potresti aggiungere stili specifici qui, es. btn.style.fontWeight = 'bold';
+            } else {
+                btn.classList.remove('active-theme-option');
+                // btn.style.fontWeight = 'normal';
+            }
+        });
+    }
+
+    // --- Funzione per Applicare il Tema e Caricare Contenuto --- 
+    async function applyTheme(themeName) {
+        if (!themeStylesheet || !mainElement || !bodyElement) {
+            console.error('Elementi DOM necessari per lo switch del tema non trovati.');
+            return;
+        }
+
+        console.log(`Applicazione tema: ${themeName}`);
+
+        // 1. Cambia il foglio di stile CSS
+        themeStylesheet.setAttribute('href', `themes/theme-${themeName}.css`);
+
+        // 2. Aggiorna l'attributo data-* sul main e la classe sul body
+        mainElement.dataset.currentTheme = themeName;
+        bodyElement.classList.remove('theme-modern', 'theme-minimalist', 'theme-high-tech'); // Rimuovi temi precedenti, INCLUSO high-tech
+        bodyElement.classList.add(`theme-${themeName}`); // Aggiungi tema corrente
+
+        // 3. Aggiorna lo stato visivo dei pulsanti di selezione tema
+        updateActiveThemeVisuals(themeName);
+
+        // 4. Salva il tema selezionato nel localStorage
+        try {
+            localStorage.setItem('selectedUserProfileTheme', themeName);
+        } catch (e) {
+            console.warn('LocalStorage non disponibile o errore durante il salvataggio del tema:', e);
+        }
+
+        // 5. Carica dinamicamente il contenuto HTML per il tema
+        try {
+            const response = await fetch(`themes/${themeName}-content.html`);
+            if (!response.ok) {
+                console.error(`Errore nel caricare il contenuto del tema ${themeName}: ${response.statusText}`);
+                // Potresti caricare un contenuto di fallback o mostrare un errore
+                return;
+            }
+            const themeHtmlContent = await response.text();
+            const parser = new DOMParser();
+            const themeDoc = parser.parseFromString(themeHtmlContent, 'text/html');
+            
+            const themedSections = themeDoc.querySelectorAll('[data-theme-section-id]');
+            themedSections.forEach(themedSection => {
+                const sectionId = themedSection.dataset.themeSectionId;
+                const targetSectionElement = document.getElementById(sectionId);
+                if (targetSectionElement) {
+                    // Rimuovi vecchie classi di visibilità prima di aggiornare innerHTML
+                    targetSectionElement.querySelectorAll('.is-visible, .card-is-visible, .icon-is-visible, .entry-is-visible, .title-is-visible, .fade-in-visible').forEach(el => {
+                        el.classList.remove('is-visible', 'card-is-visible', 'icon-is-visible', 'entry-is-visible', 'title-is-visible', 'fade-in-visible');
+                    });
+                    targetSectionElement.innerHTML = themedSection.innerHTML;
+                } else {
+                    console.warn(`Elemento target con ID '${sectionId}' non trovato nel DOM principale.`);
+                }
+            });
+
+            // 6. Re-inizializza componenti/funzioni che dipendono dal DOM aggiornato
+            initializePageComponents(); // Funzione helper per raggruppare le reinizializzazioni
+
+        } catch (error) {
+            console.error(`Errore durante il fetch o parsing del contenuto del tema ${themeName}:`, error);
+        }
+        console.log(`Tema ${themeName} applicato e contenuto caricato.`);
+    }
+
+    // --- Gestione Dropdown Tema Desktop ---
+    if (themeDropdownButtonDesktop && themeDropdownMenuDesktop) {
+        themeDropdownButtonDesktop.addEventListener('click', (event) => {
+            event.stopPropagation(); // Impedisce al click di raggiungere document e chiudere subito il menu
+            themeDropdownMenuDesktop.classList.toggle('hidden');
+        });
+
+        document.addEventListener('click', (event) => {
+            if (!themeDropdownMenuDesktop.contains(event.target) && !themeDropdownButtonDesktop.contains(event.target)) {
+                themeDropdownMenuDesktop.classList.add('hidden');
+            }
+        });
+    }
+
+    // --- Event Listener per i Pulsanti/Link di Selezione Tema (Desktop e Mobile) ---
+    if (themeSelectButtons.length > 0) {
+        themeSelectButtons.forEach(button => {
+            button.addEventListener('click', (event) => {
+                event.preventDefault(); // Previene il comportamento di default del link
+                const selectedTheme = event.currentTarget.dataset.theme;
+                if (selectedTheme) {
+                    applyTheme(selectedTheme);
+                    // Chiudi dropdown desktop se aperto
+                    if (themeDropdownMenuDesktop) {
+                        themeDropdownMenuDesktop.classList.add('hidden');
+                    }
+                    // Chiudi menu mobile se il click proviene da lì e il menu mobile è aperto
+                    if (mobileMenu && event.currentTarget.closest('#mobile-theme-selector')) {
+                        mobileMenu.classList.add('hidden');
+                        // Ripristina icona burger se necessario
+                        if (mobileMenuButton) {
+                            const icon = mobileMenuButton.querySelector('svg path');
+                            icon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+                        }
+                    }
+                }
+            });
+        });
+    } else {
+        console.warn('Nessun pulsante per lo switch del tema trovato con [data-theme].');
+    }
+
+    // --- Carica Tema Iniziale (da localStorage o default) ---
+    function loadInitialTheme() {
+        let initialTheme = 'modern'; // Tema di default
+        try {
+            const savedTheme = localStorage.getItem('selectedUserProfileTheme');
+            // Valida i temi salvati includendo 'high-tech'
+            if (savedTheme && (savedTheme === 'modern' || savedTheme === 'minimalist' || savedTheme === 'high-tech')) { 
+                initialTheme = savedTheme;
+            }
+        } catch (e) {
+            console.warn('LocalStorage non disponibile o errore durante il recupero del tema:', e);
+        }
+        applyTheme(initialTheme); // Applica il tema iniziale e carica il contenuto
+    }
+
+    // --- Gestione Menu Mobile --- 
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
 
     if (mobileMenuButton && mobileMenu) {
         mobileMenuButton.addEventListener('click', () => {
             mobileMenu.classList.toggle('hidden');
-            // Cambia l'icona del burger menu (opzionale)
             const icon = mobileMenuButton.querySelector('svg path');
             if (mobileMenu.classList.contains('hidden')) {
-                icon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7'); // Icona burger
+                icon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7'); 
             } else {
-                icon.setAttribute('d', 'M6 18L18 6M6 6l12 12'); // Icona X (chiusura)
+                icon.setAttribute('d', 'M6 18L18 6M6 6l12 12'); 
             }
         });
     }
+    
+    // Chiudi il menu mobile principale quando si clicca su un link di navigazione interno al menu
+    if (mobileMenu) {
+        const mobileNavLinks = mobileMenu.querySelectorAll('ul a[href^="#"]');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+                if (mobileMenuButton) {
+                    const icon = mobileMenuButton.querySelector('svg path');
+                    icon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
+                }
+            });
+        });
+    }
 
-    // --- Highlighting Link Navbar Attivo ---
-    const navLinksDesktop = document.querySelectorAll('header nav ul.hidden.md\\:flex a[href^="#"]'); // Link Desktop
-    const navLinksMobile = document.querySelectorAll('#mobile-menu ul a[href^="#"]'); // Link Mobile
-    const allNavLinks = [...navLinksDesktop, ...navLinksMobile]; // Combina i link
+    // --- Funzioni da richiamare dopo il caricamento del contenuto del tema ---
+    let sections, allNavLinks, headerHeight, offset;
+    // Array per tenere traccia degli observer attivi e disconnetterli se necessario
+    let activeObservers = []; 
 
-    const sections = document.querySelectorAll('main section[id]');
-    const headerElement = document.querySelector('header');
-    const headerHeight = headerElement ? headerElement.offsetHeight : 0;
-    const offset = headerHeight + 20; // 20px di offset aggiuntivo
+    function initializePageComponents() {
+        // Disconnetti observer precedenti se esistono
+        activeObservers.forEach(obs => obs && obs.disconnect());
+        activeObservers = [];
+
+        const navLinksDesktop = document.querySelectorAll('header nav ul.hidden.md\\:flex a[href^="#"]');
+        const navLinksMobile = document.querySelectorAll('#mobile-menu ul a[href^="#"]');
+        allNavLinks = [...navLinksDesktop, ...navLinksMobile];
+        sections = document.querySelectorAll('main section[id]');
+        const headerElement = document.querySelector('header');
+        headerHeight = headerElement ? headerElement.offsetHeight : 0;
+        offset = headerHeight + 20;
+
+        updateActiveLink(); // Chiamata immediata per impostare lo stato iniziale
+
+        // Setup Intersection Observers per le animazioni
+        // Manteniamo fade-in-section per le sezioni principali che usano questa classe per un fade generico
+        activeObservers.push(createIntersectionObserver('.fade-in-section', 0.1, "0px 0px -50px 0px", 'fade-in-visible'));
+        
+        // Per le card dei progetti
+        activeObservers.push(createIntersectionObserver('.progetto-card', 0.1, "0px 0px -80px 0px", 'card-is-visible'));
+        
+        // Per le icone tech nella sezione competenze
+        activeObservers.push(createIntersectionObserver('.tech-icon', 0.3, "0px 0px -50px 0px", 'icon-is-visible')); 
+        
+        // Per gli elementi della timeline nella sezione esperienza e formazione
+        activeObservers.push(createIntersectionObserver('.timeline-hightech-entry', 0.15, "0px 0px -70px 0px", 'entry-is-visible'));
+        
+        // Per i titoli delle sezioni (se hanno la classe .section-title-anim)
+        activeObservers.push(createIntersectionObserver('.section-title-anim', 0.2, "0px 0px -60px 0px", 'title-is-visible'));
+        
+        // Per le card competenze (se non usano già .fade-in-section e necessitano di animazione diversa)
+        // Se le card competenze sono già dentro un .fade-in-section, potrebbero non aver bisogno di un observer dedicato
+        // unless they have a more complex staggered animation.
+        // Per ora, assumiamo che .cosa-faccio-section .p-6 (le card competenze originali) potrebbero animarsi.
+        // Se hanno già .fade-in-section come genitore, questo potrebbe essere ridondante o per affinare.
+        // activeObservers.push(createIntersectionObserver('.theme-high-tech .cosa-faccio-section .p-6', 0.1, "0px 0px -60px 0px", 'competenza-card-is-visible'));
+    }
 
     function updateActiveLink() {
+        if (!sections || sections.length === 0) return; // Nessuna sezione da controllare
+
         let currentSectionId = '';
         const scrollPosition = window.scrollY;
 
@@ -44,83 +269,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
         allNavLinks.forEach(link => {
             link.classList.remove('active-nav-link');
-            // Applica lo stile anche se il link nel menu mobile è visibile
             if (link.getAttribute('href') === `#${currentSectionId}`) {
                 link.classList.add('active-nav-link');
             }
         });
 
-        // Gestione del caso in cui nessuna sezione è attiva (es. in cima o in fondo)
         const isActiveLinkPresent = allNavLinks.some(link => link.classList.contains('active-nav-link'));
-        if (!isActiveLinkPresent && allNavLinks.length > 0) {
+        if (!isActiveLinkPresent && allNavLinks.length > 0 && sections.length > 0) {
             if (scrollPosition < sections[0].offsetTop - offset) {
-                // Se sopra la prima sezione, o il primo link è per #hero, attivalo
-                 if (allNavLinks[0].getAttribute('href') === '#hero') {
+                if (allNavLinks[0].getAttribute('href') === '#hero') {
                     allNavLinks[0].classList.add('active-nav-link');
                 }
-            } else if (scrollPosition + window.innerHeight >= document.body.offsetHeight - 20) { // Vicino al fondo della pagina
-                // Attiva l'ultimo link se siamo in fondo
-                 const lastNavLink = allNavLinks[allNavLinks.length -1];
-                 if(lastNavLink) lastNavLink.classList.add('active-nav-link');
+            } else if (scrollPosition + window.innerHeight >= document.body.offsetHeight - 20) { 
+                const lastNavLink = allNavLinks.find(link => link.getAttribute('href') === `#${sections[sections.length - 1].id}`);
+                if(lastNavLink) lastNavLink.classList.add('active-nav-link');
             }
         }
     }
 
-    // --- Effetto Fade-in per le sezioni allo scroll ---
-    const fadeInSections = document.querySelectorAll('.fade-in-section');
-
-    if ('IntersectionObserver' in window) {
-        const sectionObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('fade-in-visible');
-                    observer.unobserve(entry.target); // Non osservare più una volta animato
-                }
-            });
-        }, { rootMargin: "0px 0px -50px 0px" }); // Attiva un po' prima che la sezione sia completamente visibile
-
-        fadeInSections.forEach(section => {
-            sectionObserver.observe(section);
-        });
-    } else {
-        // Fallback per browser più vecchi (rende tutto visibile subito)
-        fadeInSections.forEach(section => {
-            section.classList.add('fade-in-visible');
-        });
-    }
-
-    // Ascolta lo scroll e il caricamento per l'highlighting dei link
+    // Ascolta lo scroll per l'highlighting dei link
     window.addEventListener('scroll', updateActiveLink);
-    window.addEventListener('load', () => {
-        updateActiveLink();
-        // Assicura che le sezioni visibili al caricamento siano già "fade-in"
-        // Questo è particolarmente utile se si ricarica la pagina a metà scroll
-        fadeInSections.forEach(section => {
-            const rect = section.getBoundingClientRect();
-            if (rect.top < window.innerHeight && rect.bottom >=0 && !section.classList.contains('fade-in-visible')) {
-                section.classList.add('fade-in-visible');
-                // Idealmente, se IntersectionObserver è supportato, non dovremmo fare nulla qui
-                // perché l'observer dovrebbe gestirlo. Ma per sicurezza:
-                if ('IntersectionObserver' in window) {
-                    const obs = new IntersectionObserver(e => { if(e[0].isIntersecting) e[0].target.classList.add('fade-in-visible'); obs.unobserve(e[0].target);}, { rootMargin: "0px 0px -50px 0px" });
-                    obs.observe(section);
-                }
-            }
-        });
-    });
+    
+    // Caricamento iniziale del tema e dei componenti
+    loadInitialTheme(); 
 
-    // Chiudi il menu mobile quando si clicca su un link
-    if (mobileMenu) {
-        const mobileNavLinks = mobileMenu.querySelectorAll('a[href^="#"]');
-        mobileNavLinks.forEach(link => {
-            link.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                // Ripristina l'icona del burger
-                 if (mobileMenuButton) {
-                    const icon = mobileMenuButton.querySelector('svg path');
-                    icon.setAttribute('d', 'M4 6h16M4 12h16m-7 6h7');
-                }
-            });
-        });
-    }
-}); 
+    window.addEventListener('resize', () => {
+        if (headerElement) headerHeight = headerElement.offsetHeight;
+        offset = headerHeight + 20;
+        updateActiveLink();
+    });
+});
