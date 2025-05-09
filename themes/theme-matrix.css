@@ -206,6 +206,38 @@ body.theme-matrix {
     background-color: rgba(0,5,0,0.6);
 }
 
+/* Stili aggiuntivi per mobile nella Hero Section del Tema Matrix */
+@media (max-width: 767px) { /* Per schermi più piccoli del breakpoint 'md' di Tailwind */
+    .theme-matrix .hero-section .container h1 {
+        font-size: 2.5rem; /* Riduci dimensione font per h1 */
+        letter-spacing: 0.5px; /* Riduci letter spacing */
+        word-break: break-word; /* Permetti a capo per parole lunghe */
+        line-height: 1.2;
+    }
+    .theme-matrix .hero-section .container h1 .block {
+        line-height: 1.2; /* Assicura che anche i block interni abbiano line-height */
+    }
+    .theme-matrix .hero-section .container p.text-xl { /* Targettiamo il paragrafo specifico */
+        font-size: 1.125rem; /* Riduci dimensione font per il paragrafo (era text-xl) */
+        letter-spacing: 0.5px; /* Riduci letter spacing */
+        word-break: break-word; /* Permetti a capo */
+        line-height: 1.5;
+    }
+    .theme-matrix .hero-section .container {
+        padding-left: 1rem; /* Riduci padding laterale del container */
+        padding-right: 1rem;
+    }
+
+    .theme-matrix .dos-font {
+        letter-spacing: 0.02em; /* Riduci letter-spacing per .dos-font su mobile */
+    }
+
+    .theme-matrix .matrix-button {
+        padding: 0.7rem 1.5rem; /* Riduci padding dei bottoni */
+        font-size: 0.9rem; /* Riduci font-size dei bottoni */
+    }
+}
+
 .theme-matrix .matrix-button {
     border-radius: 0;
     font-weight: normal;
