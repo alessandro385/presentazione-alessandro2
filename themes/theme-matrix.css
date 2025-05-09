@@ -1,0 +1,503 @@
+/* Stili per il Tema Matrix */
+
+body.theme-matrix {
+    background-color: #000000;
+    color: #00FF41; /* Verde Matrix classico */
+    font-family: 'Consolas', 'Menlo', 'Courier New', Courier, monospace; /* Font monospaziati più moderni se disponibili */
+    line-height: 1.7;
+    text-shadow: 0 0 3px rgba(0,255,65,0.3), 0 0 5px rgba(0,255,65,0.2); /* Ombra più sottile */
+    overflow-x: hidden;
+}
+
+.dos-font {
+    font-family: 'Perfect DOS VGA', 'Courier New', Courier, monospace; /* Font specifico se importato, fallback */
+    letter-spacing: 0.05em;
+}
+
+/* Importa un font DOS (esempio, da aggiungere a index.html se si vuole usare) */
+/* @font-face {
+    font-family: 'Perfect DOS VGA';
+    src: url('path/to/perfect-dos-vga.woff2') format('woff2'),
+         url('path/to/perfect-dos-vga.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+} */
+
+/* ----- Tipografia Base Matrix ----- */
+.theme-matrix h1, 
+.theme-matrix h2, 
+.theme-matrix h3, 
+.theme-matrix h4 {
+    color: #00FF41;
+    text-shadow: 0 0 5px rgba(0, 255, 65, 0.7), 0 0 10px rgba(0, 255, 65, 0.5);
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+.theme-matrix .section-title { /* Classe per i titoli principali delle sezioni */
+    font-size: 2.25rem; /* text-4xl */
+    border-left: 3px solid #00FF41;
+    padding-left: 1.5rem;
+    margin-bottom: 2.5rem;
+    text-transform: uppercase;
+    position: relative; /* Per il cursore lampeggiante */
+}
+
+/* Cursore lampeggiante per i titoli di sezione */
+.theme-matrix .section-title::after {
+    content: '_';
+    font-weight: bold;
+    animation: blink-cursor 1s step-end infinite;
+    position: absolute;
+    right: -0.7em; /* Aggiusta per posizionamento corretto */
+    top: 50%;
+    transform: translateY(-50%);
+    color: #00FF41;
+}
+
+@keyframes blink-cursor {
+    from, to { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.theme-matrix a {
+    color: #39FF14;
+    text-decoration: none;
+    transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+.theme-matrix a:hover, .theme-matrix .matrix-link:hover {
+    color: #FFFFFF;
+    text-shadow: 0 0 12px #FFFFFF, 0 0 8px #39FF14;
+}
+
+.theme-matrix .matrix-link {
+     color: #50FA7B; /* Verde più brillante per link specifici */
+}
+
+.theme-matrix strong {
+    color: #90EE90; /* Verde chiaro per evidenziazioni */
+    font-weight: normal;
+}
+
+.theme-matrix .matrix-text-block {
+    line-height: 1.8;
+    text-align: justify;
+    text-shadow: 0 0 2px rgba(0,255,65,0.2);
+}
+
+.theme-matrix .matrix-text-highlight {
+    color: #8AFF8A; /* Un verde leggermente più chiaro per i titoli interni o date */
+}
+
+.theme-matrix .matrix-quote {
+    color: #00FF41;
+    border-left: 2px solid #00FF41;
+    padding-left: 1em;
+    font-style: normal;
+    letter-spacing: 1px;
+}
+
+/* ----- Navbar Matrix ----- */
+.theme-matrix header {
+    background-color: rgba(0, 0, 0, 0.85); /* Più scuro */
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+    border-bottom: 1px solid rgba(0, 255, 65, 0.4);
+    box-shadow: 0 2px 15px rgba(0, 255, 65, 0.15);
+    font-family: 'Consolas', 'Menlo', monospace; /* Font più tecnico per navbar */
+}
+
+.theme-matrix header a,
+.theme-matrix header button {
+    color: #00D030; /* Verde leggermente meno saturo per leggibilità */
+    text-shadow: none;
+    transition: color 0.2s ease, transform 0.2s ease, text-shadow 0.2s ease;
+    letter-spacing: 0.5px;
+}
+
+.theme-matrix header a:hover,
+.theme-matrix header button:hover {
+    color: #FFFFFF;
+    text-shadow: 0 0 6px #00FF41;
+    transform: translateY(-1px);
+}
+
+.theme-matrix header .text-primary-light { /* Logo/Nome */
+    color: #39FF14 !important;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+.theme-matrix .active-nav-link {
+    color: #FFFFFF !important;
+    border-bottom: 2px solid #00FF41;
+    padding-bottom: 4px;
+    text-shadow: 0 0 8px #00FF41;
+}
+
+.theme-matrix #theme-dropdown-menu-desktop,
+.theme-matrix #mobile-theme-selector {
+    background-color: rgba(0, 10, 0, 0.95);
+    border: 1px solid rgba(0, 255, 65, 0.5);
+    border-radius: 0;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.theme-matrix #theme-dropdown-menu-desktop a,
+.theme-matrix #mobile-theme-selector a {
+    color: #00D030;
+    padding: 0.6rem 1rem;
+}
+
+.theme-matrix #theme-dropdown-menu-desktop a:hover,
+.theme-matrix #mobile-theme-selector a:hover {
+    background-color: rgba(0, 255, 65, 0.15);
+    color: #FFFFFF;
+}
+
+.theme-matrix .active-theme-option {
+    background-color: rgba(0, 255, 65, 0.25) !important;
+    color: #FFFFFF !important;
+    font-weight: normal;
+}
+
+/* ----- Sezioni Generali Matrix ----- */
+.theme-matrix .main-content-section {
+    background-color: rgba(0, 0, 0, 0.75); /* Sfondo sezione più scuro e meno trasparente */
+    border: 1px solid rgba(0, 255, 65, 0.3);
+    box-shadow: 0 0 15px rgba(0,255,65,0.1), inset 0 0 10px rgba(0,50,0,0.3);
+    border-radius: 0;
+    margin-bottom: 3rem !important;
+    padding: 2rem 1.5rem;
+}
+
+/* ----- Hero Section Matrix ----- */
+.theme-matrix .hero-section {
+    background-color: #000000;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none; box-shadow: none;
+    position: relative; /* Necessario per il canvas */
+}
+
+.theme-matrix #matrix-rain-hero {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    opacity: 0.3; /* Opacità della pioggia */
+}
+
+.theme-matrix .hero-section h1 .text-primary-light {
+    color: #50FA7B !important; /* Verde brillante per nome unità */
+    text-shadow: 0 0 8px #50FA7B;
+}
+
+.theme-matrix .hero-section img {
+    border: 3px solid #00FF41;
+    box-shadow: 0 0 20px #00FF41, 0 0 35px rgba(0,255,65,0.5);
+    border-radius: 50%;
+    padding: 6px;
+    background-color: rgba(0,5,0,0.6);
+}
+
+.theme-matrix .matrix-button {
+    border-radius: 0;
+    font-weight: normal;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 0.8rem 2rem;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 0 5px rgba(0,255,65,0.2);
+    font-family: 'Consolas', 'Menlo', monospace;
+    cursor: pointer; /* Cursore a puntatore */
+}
+
+.theme-matrix .matrix-button.primary-button {
+    background-color: #00FF41;
+    color: #000000;
+    border: 1px solid #00FF41;
+}
+.theme-matrix .matrix-button.primary-button:hover {
+    background-color: #33FF66;
+    box-shadow: 0 0 15px #00FF41, 0 0 5px #33FF66;
+    color: #000000;
+    transform: translateY(-2px) scale(1.02);
+}
+
+.theme-matrix .matrix-button.secondary-button {
+    background-color: transparent;
+    color: #00FF41;
+    border: 1px solid #00FF41;
+}
+.theme-matrix .matrix-button.secondary-button:hover {
+    background-color: rgba(0, 255, 65, 0.1);
+    color: #FFFFFF;
+    border-color: #33FF66;
+    box-shadow: 0 0 12px #00FF41;
+    transform: translateY(-2px) scale(1.02);
+}
+
+.theme-matrix .matrix-scroll-down a svg {
+    color: rgba(0,255,65,0.5);
+    transition: color 0.3s, transform 0.3s;
+}
+.theme-matrix .matrix-scroll-down a:hover svg {
+    color: #FFFFFF;
+    transform: scale(1.1);
+}
+
+/* Card Progetti Matrix */
+.theme-matrix .matrix-grid {
+    /* Se necessario, per le card progetto e competenze */
+}
+
+.theme-matrix .progetto-card {
+    background-color: rgba(0, 10, 0, 0.85);
+    border: 1px solid rgba(0, 255, 65, 0.35);
+    border-radius: 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5), 
+                inset 0 0 8px rgba(0,255,65,0.15), /* Ombra interna più marcata */
+                inset 0 0 0 1px rgba(0,255,65,0.1); /* Sottile linea interna */
+    padding: 1.25rem;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.theme-matrix .progetto-card:hover {
+    border-color: #39FF14;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.6), 0 0 15px rgba(0,255,65,0.3);
+}
+
+.theme-matrix .progetto-card-immagine-container {
+    height: 180px;
+    background-color: #050505;
+    margin-bottom: 1rem;
+    border: 1px solid rgba(0,255,65,0.2);
+    display: flex; /* Per centrare l'immagine */
+    align-items: center;
+    justify-content: center;
+}
+.theme-matrix .progetto-card-immagine {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    padding: 0.5rem;
+    filter: grayscale(30%) brightness(0.9) contrast(1.1); /* Leggero effetto sull'immagine */
+}
+
+.theme-matrix .progetto-card-titolo {
+    color: #50FA7B; /* Verde brillante per i titoli */
+    letter-spacing: 1px;
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.theme-matrix .progetto-card-descrizione {
+    color: #B0FFB0; /* Verde più pallido per descrizioni */
+    font-size: 0.85rem;
+    line-height: 1.6;
+    flex-grow: 1;
+    margin-bottom: 1rem;
+}
+
+.theme-matrix .progetto-card-tecnologie {
+    margin-bottom: 1.25rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+}
+
+.theme-matrix .tech-tag {
+    background-color: rgba(0, 255, 65, 0.08);
+    color: #00D030;
+    border: 1px solid rgba(0, 255, 65, 0.25);
+    border-radius: 0;
+    font-size: 0.65rem;
+    padding: 0.25rem 0.6rem;
+    letter-spacing: 0.5px;
+    font-family: 'Consolas', monospace;
+}
+.theme-matrix .tech-tag:hover {
+    background-color: rgba(0, 255, 65, 0.2);
+    color: #FFFFFF;
+    border-color: #39FF14;
+}
+
+.theme-matrix .progetto-card-azioni {
+    margin-top: auto; /* Spinge in basso */
+}
+
+
+/* Tech Icons (sezione competenze) */
+.theme-matrix .tech-icons-container {
+    border-bottom: 1px dashed rgba(0,255,65,0.2);
+    padding-bottom: 2rem;
+}
+.theme-matrix .tech-icon {
+    filter: grayscale(50%) brightness(1.5) drop-shadow(0 0 5px #00FF41) drop-shadow(0 0 10px #00FF41);
+    transition: filter 0.3s, transform 0.3s;
+    opacity: 0; /* Gestito da JS */
+}
+.theme-matrix .tech-icon.icon-is-visible {
+    opacity: 0.7;
+}
+.theme-matrix .tech-icon:hover {
+    filter: grayscale(0%) brightness(1.2) drop-shadow(0 0 10px #50FA7B) drop-shadow(0 0 20px #50FA7B);
+    transform: scale(1.1) translateY(-3px);
+    opacity: 1;
+}
+
+/* Card Competenze Matrix */
+.theme-matrix .competence-card {
+    background-color: rgba(0,0,0,0.7);
+    border: 1px solid rgba(0,255,65,0.3);
+    border-radius: 0;
+    padding: 1.25rem;
+    box-shadow: inset 0 0 8px rgba(0,255,65,0.2), /* Ombra interna più marcata */
+                inset 0 0 0 1px rgba(0,255,65,0.1); /* Sottile linea interna */
+    transition: background-color 0.3s, border-color 0.3s, box-shadow 0.3s;
+}
+.theme-matrix .competence-card:hover {
+    background-color: rgba(0,15,0,0.8);
+    border-color: #39FF14;
+    box-shadow: inset 0 0 10px rgba(0,255,65,0.3), 
+                inset 0 0 0 1px rgba(57,255,20,0.2), 
+                0 0 10px rgba(0,255,65,0.2); /* Leggera ombra esterna all'hover */
+}
+
+.theme-matrix .competence-card .matrix-icon {
+    font-family: 'Courier New', monospace;
+    color: #00FF41;
+    font-size: 1.1rem;
+    margin-right: 0.5em;
+    text-shadow: 0 0 4px #00FF41;
+}
+
+.theme-matrix .competence-card h3 {
+    color: #50FA7B;
+    font-size: 1.25rem;
+    letter-spacing: 0.5px;
+}
+
+/* Timeline Matrix */
+.theme-matrix .timeline-matrix {
+    position: relative;
+    padding: 2rem 0;
+}
+.theme-matrix .timeline-matrix-line {
+    position: absolute;
+    left: 20px; /* Mobile */
+    top: 0; bottom: 0; width: 1px;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0,255,65,0.6) 15%, rgba(0,255,65,0.6) 85%, transparent 100%);
+    box-shadow: 0 0 5px rgba(0,255,65,0.3);
+}
+.theme-matrix .timeline-matrix-header {
+    display: flex; align-items: center; margin-bottom: 2.5rem; padding-left: 50px; position: relative;
+}
+.theme-matrix .timeline-matrix-header-icon {
+    width: 36px; height: 36px; border-radius: 0; background-color: #00FF41; color: #000;
+    display: flex; align-items: center; justify-content: center; position: absolute; left: 0px;
+    top: 50%; transform: translate(0, -50%) translateX(-calc(50% - 0.5px));
+    border: 1px solid #000; box-shadow: 0 0 10px #00FF41;
+    font-size: 0.8rem;
+}
+.theme-matrix .timeline-matrix-header-icon.alt { background-color: #50FA7B; }
+.theme-matrix .timeline-matrix-header-title {
+    font-size: 1.6rem; color: #39FF14; padding-left: 15px; text-transform: uppercase;
+}
+.theme-matrix .timeline-matrix-header-title.alt { color: #8AFF8A; }
+
+.theme-matrix .timeline-matrix-entry {
+    position: relative; margin-bottom: 2rem; padding-left: 50px;
+    opacity: 0; transform: translateX(-20px); /* Per animazioni JS */
+}
+.theme-matrix .timeline-matrix-entry.entry-is-visible { opacity: 1; transform: translateX(0); }
+
+.theme-matrix .timeline-matrix-dot {
+    width: 10px; height: 10px; border-radius: 0; background-color: transparent; 
+    border: 2px solid #00FF41; /* Cambiato in solo bordo */
+    box-shadow: 0 0 8px #00FF41, 0 0 12px #00FF41 inset; /* Effetto glow interno ed esterno */
+    position: absolute; left: 20px; top: 8px; transform: translateX(-50%);
+    animation: pulse-dot 1.5s infinite ease-in-out;
+}
+.theme-matrix .timeline-matrix-dot.alt {
+    border-color: #50FA7B; 
+    box-shadow: 0 0 8px #50FA7B, 0 0 12px #50FA7B inset;
+}
+
+@keyframes pulse-dot {
+    0%, 100% { box-shadow: 0 0 6px #00FF41, 0 0 10px #00FF41 inset; opacity: 0.7; }
+    50% { box-shadow: 0 0 12px #00FF41, 0 0 18px #00FF41 inset; opacity: 1; }
+}
+
+.theme-matrix .timeline-matrix-content-card {
+    background-color: rgba(0, 10, 0, 0.8);
+    border: 1px solid rgba(0, 255, 65, 0.2);
+    border-radius: 0; padding: 1.25rem; margin-left: 15px;
+    box-shadow: inset 0 0 3px rgba(0,255,65,0.1);
+}
+.theme-matrix .timeline-matrix-content-card.alt { border-color: rgba(80,250,123,0.25); }
+
+.theme-matrix .timeline-matrix-content-card h4 {
+    color: #39FF14; font-size: 1.15rem; margin-bottom: 0.3rem;
+}
+.theme-matrix .timeline-matrix-content-card.alt h4 { color: #8AFF8A; }
+
+.theme-matrix .timeline-matrix-content-card ul {
+    padding-left: 1rem; margin-top: 0.5rem;
+}
+.theme-matrix .timeline-matrix-content-card ul li::marker {
+    color: #00FF41;
+    content: ">";
+}
+
+@media (min-width: 768px) { /* md breakpoint */
+    .theme-matrix .timeline-matrix-line { left: 50%; transform: translateX(-50%); }
+    .theme-matrix .timeline-matrix-header { justify-content: center; padding-left: 0; margin-bottom: 3rem; }
+    .theme-matrix .timeline-matrix-header-icon { left: 50%; transform: translateX(-50%) translateY(-50%); }
+    .theme-matrix .timeline-matrix-header-title { padding-left: 0; margin-top: 50px; text-align: center; width: 100%;}
+    .theme-matrix .timeline-matrix-entry { padding-left: 0; width: calc(50% - 25px); margin-bottom: 2.5rem; }
+    .theme-matrix .timeline-matrix-entry.left { margin-right: auto; text-align: right; }
+    .theme-matrix .timeline-matrix-entry.left .timeline-matrix-content-card { margin-left: 0; margin-right: 30px; text-align: left; }
+    .theme-matrix .timeline-matrix-entry.left .timeline-matrix-dot { left: auto; right: -5px; transform: translateX(50%); }
+    .theme-matrix .timeline-matrix-entry.right { margin-left: auto; text-align: left; }
+    .theme-matrix .timeline-matrix-entry.right .timeline-matrix-content-card { margin-left: 30px; }
+    .theme-matrix .timeline-matrix-entry.right .timeline-matrix-dot { left: -5px; transform: translateX(-50%); }
+}
+
+.theme-matrix .lang-tag {
+    background-color: rgba(0,255,65,0.1);
+    color: #50FA7B;
+    padding: 0.2em 0.5em;
+    border: 1px solid rgba(0,255,65,0.3);
+    margin: 0 0.2em;
+    font-size: 0.8em;
+    letter-spacing: 0.5px;
+}
+
+/* Stili per i placeholder SVG nelle card competenze se diversi da quelli di tech-icon */
+.theme-matrix .cosa-faccio-section svg { /* SVG dentro le card competenze */
+    color: #00FF41; 
+    filter: drop-shadow(0 0 3px #00FF41);
+    width: 1.5rem; /* w-6 */
+    height: 1.5rem; /* h-6 */
+    margin-right: 0.75rem; /* mr-3 */
+}
+
+/* ----- Contatti Matrix ----- */
+.theme-matrix .matrix-contact-list li {
+    margin-bottom: 0.75rem;
+}
+.theme-matrix .matrix-contact-list strong {
+    display: inline-block;
+    min-width: 200px; /* Allinea i : */
+    text-align: right;
+    margin-right: 10px;
+    color: #00FF41;
+} 
