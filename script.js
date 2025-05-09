@@ -1,6 +1,11 @@
 document.addEventListener("DOMContentLoaded", () => {
     console.log("Pagina di presentazione caricata e script.js eseguito.");
 
+    // --- Variabili globali per lo stato originale della navbar ---
+    let originalDesktopNavLinksLi = [];
+    let desktopThemeSelectorLiGlobal = null;
+    let originalMobileNavLinksLi = [];
+
     // --- Selezione Elementi per Switch Tema ---
     const themeStylesheet = document.getElementById('theme-stylesheet');
     const mainElement = document.querySelector('main'); 
@@ -10,6 +15,20 @@ document.addEventListener("DOMContentLoaded", () => {
     const themeDropdownMenuDesktop = document.getElementById('theme-dropdown-menu-desktop');
     // Seleziona tutti i pulsanti/link per cambiare tema, sia desktop che mobile
     const themeSelectButtons = document.querySelectorAll('a[data-theme]');
+
+    // --- Popolamento stato iniziale Navbar ---
+    const navDesktopUlInitial = document.querySelector('header nav ul.hidden.md\\:flex');
+    if (navDesktopUlInitial) {
+        const allLiDesktop = Array.from(navDesktopUlInitial.children);
+        originalDesktopNavLinksLi = allLiDesktop.filter(li => li.querySelector('a[href^="#"]'));
+        desktopThemeSelectorLiGlobal = allLiDesktop.find(li => li.querySelector('#theme-dropdown-button-desktop'));
+    }
+
+    const navMobileUlInitial = document.querySelector('#mobile-menu ul');
+    if (navMobileUlInitial) {
+        originalMobileNavLinksLi = Array.from(navMobileUlInitial.children).filter(li => li.querySelector('a[href^="#"]'));
+    }
+    // --- Fine Popolamento stato iniziale Navbar ---
 
     // --- Funzione Utility per Intersection Observer ---
     function createIntersectionObserver(targetSelector, threshold = 0.1, rootMargin = "0px 0px -50px 0px", visibleClass = "is-visible") {
@@ -98,6 +117,16 @@ document.addEventListener("DOMContentLoaded", () => {
             const themeDoc = parser.parseFromString(themeHtmlContent, 'text/html');
             
             const themedSections = themeDoc.querySelectorAll('[data-theme-section-id]');
+            const sectionOrderFromTheme = Array.from(themedSections).map(s => s.dataset.themeSectionId);
+
+            // --- Riordino Navbar ---
+            const navDesktopUl = document.querySelector('header nav ul.hidden.md\\:flex');
+            const navMobileUl = document.querySelector('#mobile-menu ul');
+
+            updateNavbarOrder(navDesktopUl, originalDesktopNavLinksLi, sectionOrderFromTheme, desktopThemeSelectorLiGlobal);
+            updateNavbarOrder(navMobileUl, originalMobileNavLinksLi, sectionOrderFromTheme);
+            // --- Fine Riordino Navbar ---
+
             themedSections.forEach(themedSection => {
                 const sectionId = themedSection.dataset.themeSectionId;
                 const targetSectionElement = document.getElementById(sectionId);
@@ -113,7 +142,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
 
             // 6. Re-inizializza componenti/funzioni che dipendono dal DOM aggiornato
-            initializePageComponents(); // Funzione helper per raggruppare le reinizializzazioni
+            initializePageComponents(); 
 
             // Gestione specifica per il tema Matrix (Digital Rain)
             if (themeName === 'matrix') {
@@ -407,4 +436,49 @@ document.addEventListener("DOMContentLoaded", () => {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
         }
     }
+
+    // --- Funzione per Riordinare Elementi Navbar ---
+    function updateNavbarOrder(navUl, originalLinkItems, sectionOrder, specialLiElement = null) {
+        if (!navUl) return;
+
+        const itemsToShow = [];
+        if (originalLinkItems && sectionOrder) {
+            sectionOrder.forEach(sectionId => {
+                const navItemLi = originalLinkItems.find(li => {
+                    const link = li.querySelector('a');
+                    return link && link.getAttribute('href') === `#${sectionId}`;
+                });
+                if (navItemLi) {
+                    itemsToShow.push(navItemLi.cloneNode(true)); // Clona i link di navigazione
+                }
+            });
+        }
+
+        // Stacca lo specialLiElement (es. dropdown tema desktop) se è figlio di navUl
+        let detachedSpecialLi = null;
+        if (specialLiElement && specialLiElement.parentElement === navUl) {
+            detachedSpecialLi = specialLiElement; // Non clonare, usa l'originale
+            navUl.removeChild(specialLiElement);
+        }
+
+        // Svuota la navbar attuale dagli altri figli (vecchi link di navigazione)
+        while (navUl.firstChild) {
+            navUl.removeChild(navUl.firstChild);
+        }
+
+        // Aggiungi gli item link riordinati
+        itemsToShow.forEach(item => {
+            navUl.appendChild(item);
+        });
+
+        // Ri-aggiungi lo specialLiElement (originale, non clonato) se esisteva
+        if (detachedSpecialLi) {
+            navUl.appendChild(detachedSpecialLi);
+        } else if (specialLiElement && !itemsToShow.some(i => i.isEqualNode(specialLiElement))) { 
+            // Fallback se non era figlio ma deve essere aggiunto (e non è già tra gli itemsToShow)
+            // Questo caso è meno probabile con la logica attuale di detachedSpecialLi
+            navUl.appendChild(specialLiElement);
+        }
+    }
+    // --- Fine Funzione Riordino Navbar ---
 });
