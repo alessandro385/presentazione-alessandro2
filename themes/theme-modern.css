@@ -1,0 +1,54 @@
+/* Stili per il link attivo nella navbar */
+.active-nav-link {
+    color: #A855F7; /* primary.light da tailwind.config.js */
+    font-weight: bold;
+}
+
+/* Stili per l'effetto fade-in delle sezioni */
+.fade-in-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-in-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Eventuali stili specifici per il tema MODERNO che non sono classi Tailwind */
+
+/* Esempio: se volessimo che solo nel tema moderno i titoli delle sezioni avessero un bordo inferiore */
+/* .theme-modern-specific .section-title {
+    border-bottom: 2px solid #8b5cf6; 
+    padding-bottom: 0.5rem;
+} */
+
+/* Se ci sono altre classi custom usate specificamente per il tema moderno,
+   vanno definite qui. Per la maggior parte, ci si affiderà alle classi 
+   utility di Tailwind e alle classi di sezione come .theme-modern-hero, 
+   .theme-modern-chi-sono, ecc., che saranno usate da Tailwind nell'HTML. 
+   Questo file serve più per override o aggiunte molto specifiche non gestibili
+   direttamente con le classi applicate nell'HTML del tema moderno. */
+
+/* Ripristino degli stili che erano stati commentati, se sono specifici per il tema moderno e non gestiti da Tailwind */
+
+/*
+    Effetto ombra sulla navbar allo scroll (Mantenuto per ora, Tailwind ha classi per shadow)
+    Potremmo volerlo fare con JS aggiungendo classi Tailwind come 'shadow-lg'
+    .navbar-scrolled {
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        Questo è ora gestito direttamente con classi Tailwind nell'HTML (es. shadow-md)
+        Se vogliamo un effetto più pronunciato allo scroll, possiamo usare JS per aggiungere una classe shadow più forte
+    }
+*/
+
+/* Assicuriamoci che il body per il tema moderno abbia classi di base se non già coperte da Tailwind nell'HTML */
+body.theme-modern {
+    /* font-family: sans-serif; (già gestito da Tailwind con font-sans) */
+    /* line-height: 1.6; (Tailwind usa leading-relaxed, etc.) */
+    /* margin: 0; (Tailwind normalizza) */
+    /* padding: 0; (Tailwind normalizza) */
+    /* background-color: #f4f4f4; (bg-neutral-lighter nell'HTML) */
+    /* color: #333; (text-neutral-dark nell'HTML) */
+} 
