@@ -154,9 +154,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (themeDropdownMenuDesktop) {
                         themeDropdownMenuDesktop.classList.add('hidden');
                     }
-                    // Chiudi menu mobile se il click proviene da lì e il menu mobile è aperto
-                    if (mobileMenu && event.currentTarget.closest('#mobile-menu')) {
-                        mobileMenu.classList.add('hidden');
+                    // Chiudi menu mobile e selettore temi mobile se il click proviene da un pulsante tema
+                    // all'interno di #mobile-theme-selector e i menu sono effettivamente aperti.
+                    if (event.currentTarget.closest('#mobile-theme-selector')) {
+                        if (mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                            mobileMenu.classList.add('hidden');
+                        }
+                        if (mobileThemeSelector && !mobileThemeSelector.classList.contains('hidden')) {
+                            mobileThemeSelector.classList.add('hidden');
+                        }
                         // Ripristina icona burger se necessario
                         if (mobileMenuButton) {
                             const icon = mobileMenuButton.querySelector('svg path');
