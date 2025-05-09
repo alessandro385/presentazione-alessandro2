@@ -6,7 +6,8 @@
     <title>Alessandro Barresi - Sviluppatore Web App & Data Analyst</title>
     <!-- Includo Tailwind CSS via CDN -->
     <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-    <link rel="stylesheet" href="style.css"> <!-- Manteniamo per eventuali stili custom minimi -->
+    <!-- Il link CSS ora punta a un tema specifico e ha un ID -->
+    <link id="theme-stylesheet" rel="stylesheet" href="themes/theme-modern.css">
     <script>
         // Configurazione base di Tailwind (opzionale, ma utile per personalizzazioni)
         tailwind.config = {
@@ -63,6 +64,8 @@
       <link rel="preconnect" href="https://fonts.googleapis.com">
       <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
       <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+      <!-- Font per il tema High-Tech -->
+      <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
 </head>
 <body class="bg-neutral-lighter font-sans text-neutral-dark antialiased selection:bg-primary selection:text-white">
 
@@ -77,6 +80,17 @@
                 <li><a href="#esperienza" class="nav-link text-base font-medium hover:text-primary-light transition-colors duration-300">Esperienza</a></li>
                 <li><a href="#progetti" class="nav-link text-base font-medium hover:text-primary-light transition-colors duration-300">Progetti</a></li>
                 <li><a href="#contatti" class="nav-link text-base font-medium hover:text-primary-light transition-colors duration-300">Contatti</a></li>
+                <li class="relative">
+                    <button id="theme-dropdown-button-desktop" class="nav-link text-base font-medium hover:text-primary-light transition-colors duration-300 flex items-center">
+                        Seleziona Stile
+                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                    </button>
+                    <ul id="theme-dropdown-menu-desktop" class="absolute hidden right-0 mt-2 w-48 bg-neutral-darker rounded-md shadow-lg py-1 z-[60]">
+                        <li><a href="#" data-theme="modern" class="theme-select-button block px-4 py-2 text-sm text-neutral-light hover:bg-neutral-dark hover:text-primary-light">Moderno</a></li>
+                        <li><a href="#" data-theme="minimalist" class="theme-select-button block px-4 py-2 text-sm text-neutral-light hover:bg-neutral-dark hover:text-primary-light">Minimalista</a></li>
+                        <li><a href="#" data-theme="high-tech" class="theme-select-button block px-4 py-2 text-sm text-neutral-light hover:bg-neutral-dark hover:text-primary-light">High-Tech</a></li>
+                    </ul>
+                </li>
             </ul>
             <div class="md:hidden">
                 <button id="mobile-menu-button" class="text-white focus:outline-none p-2">
@@ -94,12 +108,18 @@
                  <li><a href="#contatti" class="block nav-link px-3 py-2 rounded-md text-base font-medium hover:bg-neutral-dark hover:text-primary-light transition-all duration-300">Contatti</a></li>
              </ul>
          </div>
+         <div id="mobile-theme-selector" class="md:hidden bg-neutral-darker/95 backdrop-blur-md px-4 pb-4 space-y-2 border-t border-neutral-dark">
+            <p class="text-sm font-medium text-primary-light pt-2">Seleziona Stile:</p>
+            <a href="#" data-theme="modern" class="theme-select-button block px-3 py-2 rounded-md text-base font-medium hover:bg-neutral-dark hover:text-primary-light transition-all duration-300">Moderno</a>
+            <a href="#" data-theme="minimalist" class="theme-select-button block px-3 py-2 rounded-md text-base font-medium hover:bg-neutral-dark hover:text-primary-light transition-all duration-300">Minimalista</a>
+            <a href="#" data-theme="high-tech" class="theme-select-button block px-3 py-2 rounded-md text-base font-medium hover:bg-neutral-dark hover:text-primary-light transition-all duration-300">High-Tech</a>
+        </div>
     </header>
 
-    <main class="overflow-x-hidden">
+    <main class="overflow-x-hidden" data-current-theme="modern">
 
         <!-- Sezione Hero -->
-        <section id="hero" class="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-neutral-darkest via-neutral-darker to-primary-dark text-white overflow-hidden pt-20 pb-10">
+        <section id="hero" class="main-content-section hero-section theme-modern-hero relative min-h-screen flex items-center justify-center bg-gradient-to-br from-neutral-darkest via-neutral-darker to-primary-dark text-white overflow-hidden pt-20 pb-10">
             <div class="absolute inset-0 opacity-10">
                 <!-- Pattern SVG di sfondo molto sottile -->
                 <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="hero-pattern" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="scale(2) rotate(45)"><path d="M20 0L0 20L20 40L40 20Z"  fill="rgba(255,255,255,0.05)"></path></pattern></defs><rect width="100%" height="100%" fill="url(#hero-pattern)"></rect></svg>
@@ -130,7 +150,7 @@
         </section>
 
         <!-- Sezione Chi Sono -->
-        <section id="chi-sono" class="mb-16 p-8 bg-white rounded-lg shadow-lg fade-in-section">
+        <section id="chi-sono" class="main-content-section chi-sono-section theme-modern-chi-sono mb-16 p-8 bg-white rounded-lg shadow-lg fade-in-section">
             <h2 class="text-3xl font-bold text-primary-dark mb-6 text-center md:text-left">Chi Sono</h2>
             <div class="md:flex md:space-x-8">
                 <div class="md:w-2/3 text-lg leading-relaxed">
@@ -153,7 +173,7 @@
         </section>
 
         <!-- Sezione Progetti -->
-        <section id="progetti" class="mb-16 p-8 bg-white rounded-lg shadow-xl fade-in-section">
+        <section id="progetti" class="main-content-section progetti-section theme-modern-progetti mb-16 p-8 bg-white rounded-lg shadow-xl fade-in-section">
             <h2 class="text-3xl font-bold text-primary-dark mb-10 text-center">I Miei Progetti</h2>
             <p class="text-lg text-center text-neutral mb-6 max-w-2xl mx-auto">Una selezione di progetti che dimostrano le mie capacità nello sviluppo di applicazioni e nell'analisi dati.</p>
             <p class="text-center italic text-neutral-dark mb-12">Nota: Alcuni progetti sviluppati in ambito lavorativo potrebbero non essere pubblicamente accessibili.</p>
@@ -263,7 +283,7 @@
         </section>
 
         <!-- Sezione Cosa Faccio / Specializzazioni -->
-        <section id="cosa-faccio" class="mb-16 p-8 bg-gradient-to-r from-neutral-dark to-gray-700 text-white rounded-lg shadow-xl fade-in-section">
+        <section id="cosa-faccio" class="main-content-section cosa-faccio-section theme-modern-cosa-faccio mb-16 p-8 bg-gradient-to-r from-neutral-dark to-gray-700 text-white rounded-lg shadow-xl fade-in-section">
             <h2 class="text-3xl font-bold text-primary-light mb-10 text-center">Competenze Chiave</h2>
              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
@@ -318,7 +338,7 @@
         </section>
 
         <!-- Sezione Esperienza e Formazione -->
-        <section id="esperienza" class="mb-16 py-16 px-4 sm:px-6 lg:px-8 bg-neutral-lightest rounded-lg shadow-xl fade-in-section overflow-hidden">
+        <section id="esperienza" class="main-content-section esperienza-section theme-modern-esperienza mb-16 py-16 px-4 sm:px-6 lg:px-8 bg-neutral-lightest rounded-lg shadow-xl fade-in-section overflow-hidden">
             <h2 class="text-3xl md:text-4xl font-bold font-serif text-primary-dark mb-12 text-center">Percorso Professionale e Formativo</h2>
             
             <div class="relative max-w-4xl mx-auto">
@@ -473,7 +493,7 @@
         </section>
 
         <!-- Sezione Contatti -->
-        <section id="contatti" class="p-8 bg-neutral-dark text-neutral-light rounded-lg shadow-lg fade-in-section">
+        <section id="contatti" class="main-content-section contatti-section theme-modern-contatti p-8 bg-neutral-dark text-neutral-light rounded-lg shadow-lg fade-in-section">
             <h2 class="text-3xl font-bold text-primary-light mb-6 text-center">Mettiamoci in Contatto</h2>
             <p class="text-lg text-center mb-8 max-w-2xl mx-auto">Sono sempre aperto a nuove opportunità, collaborazioni o semplicemente a una chiacchierata. Non esitare a contattarmi!</p>
             <ul class="text-center space-y-4">
