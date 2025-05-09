@@ -5,7 +5,7 @@
     </div>
     <div class="container mx-auto px-6 text-center z-10">
         <div class="max-w-3xl mx-auto">
-            <img src="assets/io.png" alt="Foto Profilo Alessandro Barresi" class="w-40 h-40 md:w-48 md:h-48 rounded-full mx-auto mb-8 border-4 animate-subtle-bob hover:animate-none transition-transform duration-300 transform hover:scale-105">
+            <img src="assets/io.png" alt="Foto Profilo Alessandro Barresi" class="w-48 h-48 md:w-56 md:h-56 rounded-full mx-auto mb-8 border-4 animate-subtle-bob hover:animate-none transition-transform duration-300 transform hover:scale-105">
             <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold font-serif mb-4 animate-fade-in-up" style="animation-delay: 0.2s;">
                 <span class="block">Ciao, sono</span>
                 <span class="block text-primary-light mt-2">Alessandro Barresi</span>
@@ -21,11 +21,40 @@
             </div>
         </div>
     </div>
+    <div class="absolute inset-0 hero-tech-icons-container opacity-0"> <!-- Contenitore per le icone tech della hero -->
+        <!-- Icone SVG Posizionate Assolutamente per la Hero -->
+        <img src="assets/tech_icons/python.svg" alt="Python Logo" class="hero-tech-icon icon-python-hero">
+        <img src="assets/tech_icons/javascript.svg" alt="JavaScript Logo" class="hero-tech-icon icon-js-hero">
+        <img src="assets/tech_icons/cpp.svg" alt="C++ Logo" class="hero-tech-icon icon-cpp-hero">
+        <img src="assets/tech_icons/sql.svg" alt="SQL Logo" class="hero-tech-icon icon-sql-hero">
+        <img src="assets/tech_icons/html5.svg" alt="HTML5 Logo" class="hero-tech-icon icon-html-hero">
+        <img src="assets/tech_icons/css3.svg" alt="CSS3 Logo" class="hero-tech-icon icon-css-hero">
+    </div>
     <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
         <a href="#chi-sono" aria-label="Scorri verso Chi Sono">
             <svg class="w-8 h-8 text-white/70 hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
         </a>
     </div>
+</div>
+
+<!-- Tech Constellation Section -->
+<div class="tech-constellation-container section-title-anim"> <!-- Aggiunta section-title-anim per l'observer -->
+    <!-- Icone SVG Posizionate Assolutamente -->
+    <img src="assets/tech_icons/python.svg" alt="Python Logo" class="constellation-icon icon-python">
+    <img src="assets/tech_icons/javascript.svg" alt="JavaScript Logo" class="constellation-icon icon-js">
+    <img src="assets/tech_icons/cpp.svg" alt="C++ Logo" class="constellation-icon icon-cpp">
+    <img src="assets/tech_icons/sql.svg" alt="SQL Logo" class="constellation-icon icon-sql">
+    <img src="assets/tech_icons/html5.svg" alt="HTML5 Logo" class="constellation-icon icon-html">
+    <img src="assets/tech_icons/css3.svg" alt="CSS3 Logo" class="constellation-icon icon-css">
+
+    <!-- Linee di Connessione (esempio base, da posizionare con CSS) -->
+    <div class="constellation-line line-py-js"></div>
+    <div class="constellation-line line-js-html"></div>
+    <div class="constellation-line line-html-css"></div>
+    <div class="constellation-line line-css-sql"></div>
+    <div class="constellation-line line-sql-cpp"></div>
+    <div class="constellation-line line-cpp-py"></div> 
+    <!-- Potremmo aggiungere più linee per una rete più complessa -->
 </div>
 
 <div data-theme-section-id="chi-sono">
@@ -198,7 +227,7 @@
         </div>
          <div class="p-6 rounded-lg transition-shadow duration-300 transform hover:-translate-y-1">
             <div class="flex items-center mb-4">
-                <svg class="w-8 h-8 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" /></svg>
+                <svg class="w-8 h-8 mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2h2v4l.586-.586z" /></svg>
                 <h3 class="text-xl font-semibold">Problem Solving & Team Working</h3>
             </div>
             <p class="text-sm">Capacità di analizzare problemi complessi e collaborare efficacemente per trovare soluzioni ottimali.</p>
