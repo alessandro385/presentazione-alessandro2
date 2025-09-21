@@ -91,7 +91,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // 2. Aggiorna l'attributo data-* sul main e la classe sul body
         mainElement.dataset.currentTheme = themeName;
-        bodyElement.classList.remove('theme-modern', 'theme-minimalist', 'theme-high-tech', 'theme-matrix'); // Rimuovi temi precedenti, INCLUSO matrix
+        bodyElement.classList.remove('theme-modern', 'theme-high-tech', 'theme-matrix'); // Rimuovi temi precedenti
         bodyElement.classList.add(`theme-${themeName}`); // Aggiungi tema corrente
 
         // 3. Aggiorna lo stato visivo dei pulsanti di selezione tema
@@ -210,8 +210,8 @@ document.addEventListener("DOMContentLoaded", () => {
         let initialTheme = 'modern'; // Tema di default
         try {
             const savedTheme = localStorage.getItem('selectedUserProfileTheme');
-            // Valida i temi salvati includendo 'matrix'
-            if (savedTheme && (savedTheme === 'modern' || savedTheme === 'minimalist' || savedTheme === 'high-tech' || savedTheme === 'matrix')) { 
+            // Valida i temi salvati
+            if (savedTheme && (savedTheme === 'modern' || savedTheme === 'high-tech' || savedTheme === 'matrix')) { 
                 initialTheme = savedTheme;
             }
         } catch (e) {

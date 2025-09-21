@@ -8,6 +8,115 @@ body.theme-high-tech {
     overflow-x: hidden; /* Prevenire scroll orizzontale da animazioni */
 }
 
+/* ----- Media Query per Mobile ----- */
+@media (max-width: 767px) {
+    body.theme-high-tech {
+        line-height: 1.6;
+    }
+
+    .theme-high-tech h1, 
+    .theme-high-tech h2, 
+    .theme-high-tech h3, 
+    .theme-high-tech h4 {
+        text-shadow: 0 0 3px rgba(0, 191, 255, 0.4);
+    }
+
+    .theme-high-tech .hero-section h1 {
+        font-size: 2.5rem; /* Riduci dimensione per mobile */
+    }
+
+    .theme-high-tech .hero-section p {
+        font-size: 1rem; /* Riduci dimensione per mobile */
+    }
+
+    .theme-high-tech .main-content-section {
+        padding: 1.5rem; /* Riduci padding su mobile */
+        margin-bottom: 2rem !important;
+    }
+
+    .theme-high-tech h2 {
+        font-size: 1.75rem;
+        padding-left: 0.75rem;
+    }
+
+    .theme-high-tech .progetto-card-immagine-container {
+        height: 160px; /* Riduci altezza immagine card */
+    }
+
+    .theme-high-tech .progetto-card-titolo {
+        font-size: 1.25rem;
+    }
+    
+    .theme-high-tech .progetto-card-descrizione {
+        font-size: 0.85rem;
+    }
+    
+    .theme-high-tech .pulsante-progetto {
+        width: 100%; /* Pulsanti a tutta larghezza su mobile */
+    }
+
+    .theme-high-tech .progetto-card-azioni {
+        flex-direction: column;
+    }
+
+    /* Ottimizzazione icone Hero per Mobile */
+    .theme-high-tech .hero-tech-icons-container {
+        max-width: 100%;
+        height: auto;
+        position: absolute;
+        top: 60%; /* Posiziona il container più in basso */
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+        padding: 0 1rem;
+    }
+
+    .theme-high-tech .hero-tech-icon {
+        position: relative;
+        width: 40px; /* Icone più piccole */
+        height: 40px;
+        top: auto !important;
+        left: auto !important;
+        animation-delay: 0s !important; /* Rimuovi delay per farle apparire insieme */
+    }
+    
+    /* Nascondi la costellazione su mobile per semplicità e performance */
+    .theme-high-tech .tech-constellation-container {
+        display: none;
+    }
+    
+    /* Adatta la timeline per mobile (già gestita in parte, ma assicuriamoci) */
+    .theme-high-tech .timeline-hightech-line {
+        left: 10px; /* Sposta leggermente la linea */
+    }
+    
+    .theme-high-tech .timeline-hightech-header,
+    .theme-high-tech .timeline-hightech-entry {
+        padding-left: 35px; /* Riduci lo spazio a sinistra */
+    }
+    
+    .theme-high-tech .timeline-hightech-dot {
+        left: 10px;
+    }
+    
+    .theme-high-tech .timeline-hightech-header-icon {
+        width: 30px;
+        height: 30px;
+        left: 0px;
+        transform: translate(0, -50%) translateX(-calc(50% - 2px));
+    }
+    
+    .theme-high-tech .timeline-hightech-header-title {
+        font-size: 1.5rem;
+    }
+}
+
+
 /* ----- Tipografia Base High-Tech ----- */
 .theme-high-tech h1, 
 .theme-high-tech h2, 
