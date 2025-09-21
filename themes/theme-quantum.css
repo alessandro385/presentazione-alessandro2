@@ -94,7 +94,9 @@ body.theme-quantum::before {
 .theme-quantum .hero-text-content .text-gradient {
     background: linear-gradient(90deg, #58A6FF, #A371F7, #F778BA);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
 }
 .theme-quantum .hero-text-content p {
     color: var(--quantum-text-secondary);
