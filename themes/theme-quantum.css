@@ -5,15 +5,15 @@
 
 /* ----- VARIABILI CSS ----- */
 :root {
-    --q4-bg: #03040B;
-    --q4-bg-transparent: rgba(3, 4, 11, 0.5);
-    --q4-panel-bg: linear-gradient(145deg, rgba(20, 22, 41, 0.6), rgba(30, 32, 61, 0.6));
-    --q4-border-color: rgba(128, 147, 255, 0.2);
-    --q4-text-primary: #D4D8F0;
-    --q4-text-secondary: #8a94c5; /* Schiarito per più contrasto */
-    --q4-accent-primary: #8093FF;
-    --q4-accent-secondary: #9A77FF;
-    --q4-glow: rgba(128, 147, 255, 0.5);
+    --q4-bg: #0A0C1F; /* Blu notte più profondo */
+    --q4-bg-transparent: rgba(10, 12, 31, 0.5);
+    --q4-panel-bg: linear-gradient(145deg, rgba(15, 18, 41, 0.7), rgba(25, 28, 61, 0.7));
+    --q4-border-color: rgba(173, 187, 255, 0.2);
+    --q4-text-primary: #E1E7FF;
+    --q4-text-secondary: #9fa8da; /* Tonalità più fredda e chiara */
+    --q4-accent-primary: #A7B5FF; /* Ciano/Blu più luminoso */
+    --q4-accent-secondary: #C397FF; /* Viola più vibrante */
+    --q4-glow: rgba(173, 187, 255, 0.4);
 }
 
 /* ----- STILI GLOBALI ----- */
@@ -127,8 +127,10 @@ body.theme-quantum {
     margin: 0 auto;
     background: var(--q4-panel-bg);
     border: 1px solid var(--q4-border-color);
-    border-radius: 12px;
-    padding: 2rem;
+    border-radius: 16px; /* Coerenza con header */
+    padding: 2.5rem; /* Coerenza con header */
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
     color: var(--q4-text-secondary);
 }
 .theme-quantum .chi-sono-v4-content strong { color: var(--q4-text-primary); }
@@ -163,13 +165,14 @@ body.theme-quantum {
 .theme-quantum .project-card-v4 {
     background: var(--q4-panel-bg);
     border: 1px solid var(--q4-border-color);
-    border-radius: 12px;
+    border-radius: 16px; /* Aumentato per coerenza */
     overflow: hidden;
     transition: transform 0.3s, box-shadow 0.3s;
+    backdrop-filter: blur(10px);
 }
 .theme-quantum .project-card-v4:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 20px var(--q4-glow);
+    transform: translateY(-8px); /* Più evidente */
+    box-shadow: 0 0 25px var(--q4-glow);
 }
 .theme-quantum .project-card-v4 img { width: 100%; height: 200px; object-fit: cover; }
 .theme-quantum .project-card-v4-content { padding: 1.5rem; }
@@ -215,14 +218,14 @@ body.theme-quantum {
     height: 22px;
     border-radius: 50%;
     background: var(--q4-bg);
-    border: 2px solid var(--q4-accent-primary);
-    box-shadow: 0 0 10px var(--q4-glow);
+    border: 2px solid var(--q4-accent-secondary); /* Viola per distinguere */
+    box-shadow: 0 0 10px var(--q4-accent-secondary);
 }
 .theme-quantum .timeline-v4-content {
-    background: var(--q4-panel-bg);
-    border: 1px solid var(--q4-border-color);
+    background: transparent; /* Rimuoviamo lo sfondo per un look più integrato */
+    border: none; /* Rimuoviamo il bordo */
     border-radius: 8px;
-    padding: 1.5rem;
+    padding: 0 1.5rem; /* Solo padding laterale */
 }
 .theme-quantum .timeline-v4-content h3 { font-size: 1.2rem; }
 .theme-quantum .timeline-v4-content p { color: var(--q4-text-secondary); margin: 0.25rem 0 1rem 0; }
