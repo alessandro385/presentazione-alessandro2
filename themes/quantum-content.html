@@ -66,7 +66,7 @@
         <!-- Progetti qui -->
         <article class="project-card bento-item glass-card">
             <div class="project-card-image"><img src="assets/app_stampa_etichette_preview.png" alt="App Stampa Etichette"></div>
-            <div class="flex flex-col flex-grow p-1">
+            <div class="project-card-content">
                 <h3 class="text-xl font-bold mb-2">App Gestione Etichette</h3>
                 <p class="text-sm text-gray-400 mb-4 flex-grow">App desktop per la gestione prodotti e stampa etichette, con analisi dati e DB manager no-code.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
@@ -81,7 +81,7 @@
 
         <article class="project-card bento-item glass-card">
             <div class="project-card-image"><img src="assets/la_corsa_di_babbo_natale/logo.png" alt="La Corsa di Babbo Natale"></div>
-            <div class="flex flex-col flex-grow p-1">
+            <div class="project-card-content">
                 <h3 class="text-xl font-bold mb-2">Gioco: Corsa di Babbo Natale</h3>
                 <p class="text-sm text-gray-400 mb-4 flex-grow">Avventura natalizia in HTML5 Canvas e JS con power-up ed effetti particellari.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
@@ -95,7 +95,7 @@
 
         <article class="project-card bento-item glass-card">
             <div class="project-card-image"><img src="assets/gestionale_parrucchiera/Home_page.png" alt="Gestionale Parrucchiera"></div>
-            <div class="flex flex-col flex-grow p-1">
+            <div class="project-card-content">
                 <h3 class="text-xl font-bold mb-2">Gestionale Salone</h3>
                 <p class="text-sm text-gray-400 mb-4 flex-grow">Web app per la gestione di clienti, servizi e appuntamenti. Backend Python, frontend Node.js.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
@@ -110,7 +110,7 @@
         
         <article class="project-card bento-item glass-card">
             <div class="project-card-image"><img src="assets/gestionale_mensa1/logo.png" alt="Gestionale Mensa"></div>
-            <div class="flex flex-col flex-grow p-1">
+            <div class="project-card-content">
                 <h3 class="text-xl font-bold mb-2">Gestionale Mensa</h3>
                 <p class="text-sm text-gray-400 mb-4 flex-grow">App desktop in Python/Flask per la gestione di una mensa aziendale, con login e DB SQL.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
@@ -127,10 +127,49 @@
 
 <!-- Sezione Esperienza -->
 <div data-theme-section-id="esperienza">
-    <!-- Contenuto della timeline da stilizzare con Quantum -->
-     <h2 class="text-3xl md:text-4xl font-bold font-serif mb-12 text-center">Percorso Professionale e Formativo</h2>
-    <!-- ... (il resto della timeline rimane invariato nell'HTML ma verrà stilizzato dal nuovo CSS) ... -->
-    <div class="relative max-w-4xl mx-auto timeline-hightech">...</div>
+    <h2 class="text-3xl md:text-4xl font-bold font-serif mb-12 text-center">Percorso Professionale e Formativo</h2>
+    <div class="relative max-w-4xl mx-auto timeline-container-quantum">
+        <!-- Esperienze Lavorative -->
+        <div class="timeline-block-quantum">
+            <div class="timeline-milestone-quantum"></div>
+            <div class="timeline-content-quantum">
+                <h3 class="font-semibold">Supply & Portfolio Power Management (Junior)</h3>
+                <p class="text-sm text-gray-400">SIME PARTECIPAZIONI S.p.A. | 05/2025 – In corso</p>
+                <ul class="list-disc list-inside text-sm text-gray-500 mt-2">
+                    <li>Gestione portfolio energetico e attività di forecasting.</li>
+                    <li>Sviluppo database (SQL, VBA) per l'ottimizzazione dei processi.</li>
+                </ul>
+            </div>
+        </div>
+        <div class="timeline-block-quantum">
+            <div class="timeline-milestone-quantum"></div>
+            <div class="timeline-content-quantum">
+                <h3 class="font-semibold">Stage Lean Promotion & Sviluppo Software</h3>
+                <p class="text-sm text-gray-400">Egidio Galbani S.P.A. | 05/2024 – 09/2024</p>
+                 <ul class="list-disc list-inside text-sm text-gray-500 mt-2">
+                    <li>Sviluppo applicazioni Dash per gestione dati produzione/magazzino.</li>
+                    <li>Progettazione dashboard KPI con Python (Dash, Plotly).</li>
+                </ul>
+            </div>
+        </div>
+        <!-- ... altre esperienze ... -->
+
+        <!-- Formazione -->
+         <div class="timeline-block-quantum">
+            <div class="timeline-milestone-quantum"></div>
+            <div class="timeline-content-quantum">
+                <h3 class="font-semibold">Tecnico Superiore Digitalizzazione Processi Industriali</h3>
+                <p class="text-sm text-gray-400">I.T.S. Academy Cremona - Crema (CR) | 2023 – 05/2025</p>
+            </div>
+        </div>
+         <div class="timeline-block-quantum">
+            <div class="timeline-milestone-quantum"></div>
+            <div class="timeline-content-quantum">
+                <h3 class="font-semibold">Diploma Relazioni Internazionali per il Marketing</h3>
+                <p class="text-sm text-gray-400">I.I.S. Luca Pacioli - Crema (CR) | 2015 – 2020</p>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- Sezione Contatti -->

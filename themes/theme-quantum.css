@@ -192,16 +192,31 @@ body.theme-quantum::before {
     grid-column: span 6;
     display: flex;
     flex-direction: column;
+    background: transparent; /* Rimuoviamo lo sfondo dalla card principale */
+    padding: 0; /* E anche il padding */
 }
 .theme-quantum .project-card-image {
     height: 200px;
-    margin-bottom: 1rem;
-    border-radius: 8px;
+    margin-bottom: 0; /* Uniamo l'immagine al contenuto */
+    border-radius: 12px 12px 0 0; /* Arrotondiamo solo gli angoli superiori */
     overflow: hidden;
+    border: 1px solid var(--quantum-border);
+    border-bottom: none;
 }
 .theme-quantum .project-card-image img {
     width: 100%; height: 100%; object-fit: cover;
 }
+.theme-quantum .project-card-content {
+    background: var(--quantum-card-bg);
+    border: 1px solid var(--quantum-border);
+    border-top: none;
+    border-radius: 0 0 12px 12px;
+    padding: 1.5rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
 .theme-quantum .tech-tag {
     background-color: rgba(56, 139, 253, 0.15);
     color: var(--quantum-accent-primary);
@@ -210,6 +225,53 @@ body.theme-quantum::before {
     font-size: 0.75rem;
     font-weight: 500;
 }
+
+/* ----- TIMELINE V2 ----- */
+.theme-quantum .timeline-container-quantum {
+    position: relative;
+    padding: 2rem 0;
+}
+.theme-quantum .timeline-container-quantum::before {
+    content: '';
+    position: absolute;
+    left: 11px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(to bottom, transparent, var(--quantum-accent-primary), transparent);
+    animation: timeline-glow 3s infinite;
+}
+
+@keyframes timeline-glow {
+    0%, 100% { box-shadow: 0 0 4px var(--quantum-accent-primary); }
+    50% { box-shadow: 0 0 12px var(--quantum-accent-primary); }
+}
+
+.theme-quantum .timeline-block-quantum {
+    position: relative;
+    margin-bottom: 2rem;
+    padding-left: 40px;
+}
+
+.theme-quantum .timeline-milestone-quantum {
+    position: absolute;
+    left: 0;
+    top: 5px;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    background: var(--quantum-bg);
+    border: 2px solid var(--quantum-accent-primary);
+    box-shadow: 0 0 8px var(--quantum-glow-color);
+}
+
+.theme-quantum .timeline-content-quantum {
+    padding: 0.5rem 1rem;
+    background: var(--quantum-card-bg);
+    border-radius: 8px;
+    border: 1px solid var(--quantum-border);
+}
+
 
 /* ----- RESPONSIVE ----- */
 @media (max-width: 1024px) {
