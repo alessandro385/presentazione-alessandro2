@@ -1,10 +1,10 @@
-/* Stili per il nuovo tema Aura */
+/* Stili per il nuovo tema Quantum */
 
 /* ----- FONT ----- */
 /* Assicurati che il font sia importato nell'HTML principale, es:
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"> */
 
-body.theme-aura {
+body.theme-quantum {
     background-color: #0D1117; /* Sfondo principale GitHub Dark */
     color: #C9D1D9; /* Testo principale */
     font-family: 'Inter', sans-serif;
@@ -14,7 +14,7 @@ body.theme-aura {
 }
 
 /* ----- Sfondo Animato "Aurora" ----- */
-body.theme-aura::before {
+body.theme-quantum::before {
     content: '';
     position: fixed; /* Fisso per rimanere durante lo scroll */
     top: 0;
@@ -36,48 +36,48 @@ body.theme-aura::before {
 }
 
 /* ----- Tipografia ----- */
-.theme-aura h1, .theme-aura h2, .theme-aura h3, .theme-aura h4 {
+.theme-quantum h1, .theme-quantum h2, .theme-quantum h3, .theme-quantum h4 {
     color: #FFFFFF;
     font-weight: 700;
 }
 
-.theme-aura h2 {
+.theme-quantum h2 {
     font-size: 2.25rem; /* 36px */
     margin-bottom: 2.5rem; /* 40px */
 }
 
-.theme-aura a {
+.theme-quantum a {
     color: #58A6FF; /* Blu link di GitHub */
     text-decoration: none;
     transition: color 0.2s ease;
 }
 
-.theme-aura a:hover {
+.theme-quantum a:hover {
     text-decoration: underline;
 }
 
 /* ----- Header ----- */
-.theme-aura header {
+.theme-quantum header {
     background-color: rgba(13, 17, 23, 0.7);
     backdrop-filter: blur(12px) saturate(180%);
     border-bottom: 1px solid rgba(240, 246, 252, 0.1);
 }
 
-.theme-aura header a,
-.theme-aura header button {
+.theme-quantum header a,
+.theme-quantum header button {
     color: #C9D1D9;
 }
-.theme-aura header a:hover,
-.theme-aura header button:hover {
+.theme-quantum header a:hover,
+.theme-quantum header button:hover {
     color: #FFFFFF;
 }
-.theme-aura .active-nav-link {
+.theme-quantum .active-nav-link {
     color: #FFFFFF !important;
     font-weight: 600;
 }
 
 /* ----- Sezioni e Card "Glassmorphism" ----- */
-.theme-aura .glass-card {
+.theme-quantum .glass-card {
     background-color: rgba(22, 27, 34, 0.6); /* Sfondo card */
     border: 1px solid rgba(240, 246, 252, 0.1);
     border-radius: 12px;
@@ -86,13 +86,13 @@ body.theme-aura::before {
     transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
 }
 
-.theme-aura .glass-card:hover {
+.theme-quantum .glass-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3);
     border-color: rgba(240, 246, 252, 0.2);
 }
 
-.theme-aura .main-content-section {
+.theme-quantum .main-content-section {
     background-color: transparent !important;
     border: none !important;
     box-shadow: none !important;
@@ -100,90 +100,90 @@ body.theme-aura::before {
 }
 
 /* ----- Hero Section ----- */
-.theme-aura .hero-section .text-gradient {
+.theme-quantum .hero-section .text-gradient {
     background: linear-gradient(90deg, #58A6FF, #A371F7, #F778BA);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
 }
-.theme-aura .hero-section img {
+.theme-quantum .hero-section img {
     border: 2px solid rgba(240, 246, 252, 0.1);
     box-shadow: 0 0 30px rgba(88, 166, 255, 0.2);
 }
-.theme-aura .hero-button {
+.theme-quantum .hero-button {
     border-radius: 8px;
     font-weight: 600;
     transition: all 0.2s ease;
     border: 1px solid transparent;
 }
-.theme-aura .hero-button.primary {
+.theme-quantum .hero-button.primary {
     background-color: #238636; /* Verde GitHub */
     color: white;
 }
-.theme-aura .hero-button.primary:hover {
+.theme-quantum .hero-button.primary:hover {
     background-color: #2EA043;
     box-shadow: 0 0 15px rgba(46, 160, 67, 0.5);
 }
-.theme-aura .hero-button.secondary {
+.theme-quantum .hero-button.secondary {
     background-color: rgba(33, 38, 45, 0.8);
     border-color: rgba(240, 246, 252, 0.1);
     color: #58A6FF;
 }
-.theme-aura .hero-button.secondary:hover {
+.theme-quantum .hero-button.secondary:hover {
     background-color: rgba(43, 48, 55, 0.9);
     border-color: #58A6FF;
 }
 
 
 /* ----- Bento Grid Layout ----- */
-.theme-aura .bento-grid {
+.theme-quantum .bento-grid {
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(12, 1fr);
     grid-auto-rows: minmax(100px, auto);
 }
 
-.theme-aura .bento-item {
+.theme-quantum .bento-item {
     padding: 1.5rem;
 }
 /* Esempi di span per la griglia - da applicare nell'HTML */
-.theme-aura .bento-span-4 { grid-column: span 4; }
-.theme-aura .bento-span-5 { grid-column: span 5; }
-.theme-aura .bento-span-6 { grid-column: span 6; }
-.theme-aura .bento-span-7 { grid-column: span 7; }
-.theme-aura .bento-span-8 { grid-column: span 8; }
-.theme-aura .bento-span-12 { grid-column: span 12; }
+.theme-quantum .bento-span-4 { grid-column: span 4; }
+.theme-quantum .bento-span-5 { grid-column: span 5; }
+.theme-quantum .bento-span-6 { grid-column: span 6; }
+.theme-quantum .bento-span-7 { grid-column: span 7; }
+.theme-quantum .bento-span-8 { grid-column: span 8; }
+.theme-quantum .bento-span-12 { grid-column: span 12; }
 
 /* Stili specifici per le card nella griglia */
-.theme-aura .bento-item h3 {
+.theme-quantum .bento-item h3 {
     font-size: 1.25rem;
     margin-bottom: 0.75rem;
 }
 
 /* ----- Progetti Section ----- */
-.theme-aura .project-card {
+.theme-quantum .project-card {
     display: flex;
     flex-direction: column;
     height: 100%;
 }
-.theme-aura .project-card-image {
+.theme-quantum .project-card-image {
     height: 180px;
     border-radius: 8px;
     margin-bottom: 1rem;
     overflow: hidden;
 }
-.theme-aura .project-card-image img {
+.theme-quantum .project-card-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
 }
-.theme-aura .project-card:hover .project-card-image img {
+.theme-quantum .project-card:hover .project-card-image img {
     transform: scale(1.05);
 }
 
-.theme-aura .tech-tag {
+.theme-quantum .tech-tag {
     background-color: rgba(56, 139, 253, 0.15);
     color: #58A6FF;
     padding: 0.25rem 0.6rem;
@@ -194,27 +194,27 @@ body.theme-aura::before {
 
 /* ----- Responsive Design per Bento Grid ----- */
 @media (max-width: 900px) {
-    .theme-aura .bento-span-4,
-    .theme-aura .bento-span-5,
-    .theme-aura .bento-span-6,
-    .theme-aura .bento-span-7,
-    .theme-aura .bento-span-8 {
+    .theme-quantum .bento-span-4,
+    .theme-quantum .bento-span-5,
+    .theme-quantum .bento-span-6,
+    .theme-quantum .bento-span-7,
+    .theme-quantum .bento-span-8 {
         grid-column: span 6;
     }
 }
 @media (max-width: 640px) {
-    .theme-aura .bento-grid {
+    .theme-quantum .bento-grid {
         grid-template-columns: repeat(1, 1fr);
     }
-    .theme-aura .bento-span-4,
-    .theme-aura .bento-span-5,
-    .theme-aura .bento-span-6,
-    .theme-aura .bento-span-7,
-    .theme-aura .bento-span-8,
-    .theme-aura .bento-span-12 {
+    .theme-quantum .bento-span-4,
+    .theme-quantum .bento-span-5,
+    .theme-quantum .bento-span-6,
+    .theme-quantum .bento-span-7,
+    .theme-quantum .bento-span-8,
+    .theme-quantum .bento-span-12 {
         grid-column: span 1;
     }
-    .theme-aura h2 {
+    .theme-quantum h2 {
         font-size: 1.75rem;
     }
 }
