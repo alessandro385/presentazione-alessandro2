@@ -5,15 +5,15 @@
 
 /* ----- VARIABILI CSS ----- */
 :root {
-    --q4-bg: #0A0C1F; /* Blu notte più profondo */
+    --q4-bg: #060714; /* Blu ancora più scuro per maggior contrasto */
     --q4-bg-transparent: rgba(10, 12, 31, 0.5);
-    --q4-panel-bg: linear-gradient(145deg, rgba(15, 18, 41, 0.7), rgba(25, 28, 61, 0.7));
-    --q4-border-color: rgba(173, 187, 255, 0.2);
+    --q4-panel-bg: linear-gradient(145deg, rgba(20, 22, 51, 0.75), rgba(35, 30, 71, 0.75)); /* Più viola e saturazione */
+    --q4-border-color: rgba(173, 187, 255, 0.25);
     --q4-text-primary: #E1E7FF;
-    --q4-text-secondary: #9fa8da; /* Tonalità più fredda e chiara */
-    --q4-accent-primary: #A7B5FF; /* Ciano/Blu più luminoso */
-    --q4-accent-secondary: #C397FF; /* Viola più vibrante */
-    --q4-glow: rgba(173, 187, 255, 0.4);
+    --q4-text-secondary: #a7b0e0; /* Leggermente più chiaro */
+    --q4-accent-primary: #A7B5FF; 
+    --q4-accent-secondary: #C397FF; 
+    --q4-glow: rgba(173, 187, 255, 0.5); /* Glow più intenso */
 }
 
 /* ----- STILI GLOBALI ----- */
@@ -222,10 +222,11 @@ body.theme-quantum {
     box-shadow: 0 0 10px var(--q4-accent-secondary);
 }
 .theme-quantum .timeline-v4-content {
-    background: transparent; /* Rimuoviamo lo sfondo per un look più integrato */
-    border: none; /* Rimuoviamo il bordo */
-    border-radius: 8px;
-    padding: 0 1.5rem; /* Solo padding laterale */
+    background: var(--q4-panel-bg); /* RIPRISTINATO SFONDO */
+    border: 1px solid var(--q4-border-color); /* RIPRISTINATO BORDO */
+    backdrop-filter: blur(10px); /* Aggiunto per coerenza */
+    border-radius: 12px; /* Coerenza con altre card */
+    padding: 1.5rem; /* RIPRISTINATO PADDING COMPLETO */
 }
 .theme-quantum .timeline-v4-content h3 { font-size: 1.2rem; }
 .theme-quantum .timeline-v4-content p { color: var(--q4-text-secondary); margin: 0.25rem 0 1rem 0; }
