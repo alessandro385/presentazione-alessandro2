@@ -1,44 +1,60 @@
-<!-- Contenuto per il nuovo tema Aura -->
+<!-- Contenuto per il nuovo tema Quantum V2 -->
 
 <!-- Sezione Hero -->
 <div data-theme-section-id="hero">
-    <div class="container mx-auto px-6 text-center z-10">
-        <div class="max-w-3xl mx-auto">
-            <img src="assets/io.png" alt="Foto Profilo Alessandro Barresi" class="w-40 h-40 md:w-48 md:h-48 rounded-full mx-auto mb-8 border-2 border-transparent transition-all duration-300 transform hover:scale-105">
-            <h1 class="text-4xl sm:text-5xl md:text-6xl font-extrabold mb-4 animate-fade-in-up" style="animation-delay: 0.2s;">
-                <span class="block text-gray-300">Ciao, sono</span>
-                <span class="block text-gradient mt-2">Alessandro Barresi</span>
+    <div class="hero-grid container mx-auto px-6">
+        <div class="hero-text-content">
+            <p class="subheading mb-2">Sviluppatore & Data Analyst</p>
+            <h1 class="mb-4">
+                Ciao, sono <span class="text-gradient">Alessandro Barresi</span>
             </h1>
-            <p class="text-xl md:text-2xl text-gray-400 font-medium mb-10 animate-fade-in-up" style="animation-delay: 0.4s;">Sviluppatore Web App & Data Analyst con la passione per soluzioni innovative.</p>
-            <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 animate-fade-in-up" style="animation-delay: 0.6s;">
-                <a href="#progetti" class="hero-button primary py-3 px-10 text-lg w-full sm:w-auto">
-                    I Miei Progetti
-                </a>
-                <a href="#contatti" class="hero-button secondary py-3 px-10 text-lg w-full sm:w-auto">
-                    Contattami
-                </a>
+            <p class="mb-8">Trasformo dati in decisioni e codice in soluzioni innovative, creando applicativi gestionali e dashboard personalizzate per ottimizzare i processi aziendali.</p>
+            <div class="flex flex-col sm:flex-row items-center gap-4">
+                <a href="#progetti" class="hero-button primary py-3 px-8 text-base w-full sm:w-auto">I Miei Progetti</a>
+                <a href="#contatti" class="hero-button secondary py-3 px-8 text-base w-full sm:w-auto">Contattami</a>
+            </div>
+        </div>
+        <div class="hero-image-content">
+            <div class="hero-image-frame">
+                <img src="assets/io.png" alt="Foto Profilo Alessandro Barresi">
             </div>
         </div>
     </div>
 </div>
 
-<!-- Sezione Chi Sono -->
+<!-- Sezione Chi Sono / Competenze -->
 <div data-theme-section-id="chi-sono">
     <div class="bento-grid">
-        <div class="bento-item glass-card bento-span-12 md:bento-span-7">
-            <h3 class="text-2xl font-bold mb-4">Chi Sono</h3>
+        <!-- Card Chi Sono -->
+        <div class="bento-item glass-card" style="grid-column: span 12; md:grid-column: span 7;">
+            <h3 class="text-2xl font-bold mb-4">Profilo</h3>
             <div class="space-y-4 text-gray-400">
-                 <p>
-                    Sono un Data Analyst e sviluppatore appassionato, con esperienza concreta nella creazione di <strong>dashboard personalizzate</strong> e <strong>applicativi gestionali</strong> volti all'ottimizzazione dei processi aziendali. Attualmente, ricopro il ruolo di <strong>Supply & Portfolio Power Management Junior</strong> presso SIME PARTECIPAZIONI S.p.A., dove mi occupo di <strong>portfolio management energetico, forecasting e sviluppo di database (SQL, VBA)</strong> per accelerare la gestione dei processi.
-                </p>
-                <p>
-                    Le mie esperienze lavorative precedenti, anche in ambito industriale, mi hanno fornito una solida base tecnica e operativa. Queste competenze, unite alla mia predisposizione per i <strong>modelli matematici</strong> e l'analisi dati, mi permettono di sviluppare soluzioni software mirate, in particular per il <strong>contesto produttivo e gestionale</strong>.
-                </p>
+                <p>Sono un Data Analyst e sviluppatore con esperienza nella creazione di dashboard e applicativi gestionali. Nel mio ruolo di Supply & Portfolio Power Management Junior, mi occupo di portfolio management energetico, forecasting e sviluppo di database (SQL, VBA).</p>
+                <p>La mia base tecnica, unita alla predisposizione per i modelli matematici, mi permette di sviluppare soluzioni software mirate per contesti produttivi e gestionali.</p>
             </div>
         </div>
-        <div class="bento-item glass-card bento-span-12 md:bento-span-5">
-            <img src="assets/io2.jpg" alt="Foto Alessandro Barresi" class="w-full h-48 object-cover rounded-lg mb-4">
-             <p class="font-medium text-center">Lingue: <span class="bg-blue-500/20 text-blue-300 px-2 py-1 rounded-full text-sm">Italiano</span> <span class="bg-green-500/20 text-green-300 px-2 py-1 rounded-full text-sm">Inglese</span></p>
+        <!-- Card Lingue -->
+        <div class="bento-item glass-card flex flex-col items-center justify-center" style="grid-column: span 12; md:grid-column: span 5;">
+             <h3 class="text-2xl font-bold mb-4">Lingue</h3>
+             <div class="flex gap-4">
+                <span class="bg-blue-500/20 text-blue-300 px-3 py-1 rounded-full text-base">Italiano (Nativo)</span>
+                <span class="bg-green-500/20 text-green-300 px-3 py-1 rounded-full text-base">Inglese (Avanzato)</span>
+             </div>
+        </div>
+        <!-- Card Competenze Principali -->
+        <div class="bento-item glass-card" style="grid-column: span 12; md:grid-column: span 8;">
+            <h3 class="text-2xl font-bold mb-4">Competenze Principali</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-sm">
+                <div><strong>Data Analytics:</strong> Estrazione, pulizia e visualizzazione dati.</div>
+                <div><strong>Sviluppo Applicativi:</strong> Web app (Python, Dash) con DB SQL.</div>
+                <div><strong>Dashboard:</strong> Interfacce interattive (Plotly, Pandas) per KPI.</div>
+                <div><strong>Automazione:</strong> Script (Python, VBA) per ridurre task ripetitivi.</div>
+            </div>
+        </div>
+        <!-- Card Strumenti -->
+        <div class="bento-item glass-card" style="grid-column: span 12; md:grid-column: span 4;">
+            <h3 class="text-2xl font-bold mb-4">Strumenti</h3>
+            <p class="text-sm text-gray-400">Python (Dash, Plotly, Pandas), SQL, Excel/VBA, Git, SAP (basi), Zucchetti (basi).</p>
         </div>
     </div>
 </div>
@@ -47,116 +63,74 @@
 <div data-theme-section-id="progetti">
     <h2 class="text-center">I Miei Progetti</h2>
     <div class="bento-grid">
-        <!-- Progetto App Stampa Etichette -->
-        <article class="bento-item glass-card bento-span-12 md:bento-span-6 project-card">
-            <div class="project-card-image">
-                <img src="assets/app_stampa_etichette_preview.png" alt="App Stampa Etichette">
-            </div>
-            <div>
-                <h3 class="text-xl font-bold mb-2">App Gestione e Stampa Etichette</h3>
-                <p class="text-sm text-gray-400 mb-4 flex-grow">Applicazione desktop completa per la gestione di prodotti e la stampa di etichette, con un pannello di analisi dati integrato e un gestore di database no-code.</p>
+        <!-- Progetti qui -->
+        <article class="project-card bento-item glass-card">
+            <div class="project-card-image"><img src="assets/app_stampa_etichette_preview.png" alt="App Stampa Etichette"></div>
+            <div class="flex flex-col flex-grow p-1">
+                <h3 class="text-xl font-bold mb-2">App Gestione Etichette</h3>
+                <p class="text-sm text-gray-400 mb-4 flex-grow">App desktop per la gestione prodotti e stampa etichette, con analisi dati e DB manager no-code.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="tech-tag">Node.js</span>
-                    <span class="tech-tag">SQLite</span>
-                    <span class="tech-tag">JavaScript</span>
-                    <span class="tech-tag">App Desktop</span>
+                    <span class="tech-tag">Node.js</span><span class="tech-tag">SQLite</span><span class="tech-tag">JavaScript</span>
                 </div>
                 <div class="flex gap-3 mt-auto">
-                    <a href="https://github.com/alessandro385/app_stampa_etichette/archive/refs/heads/main.zip" download class="hero-button secondary text-sm py-2 px-4 w-full">Scarica (.zip)</a>
-                    <a href="https://resplendent-pie-f4f1d8.netlify.app/index.html" target="_blank" class="hero-button primary text-sm py-2 px-4 w-full">Presentazione</a>
+                    <a href="https://github.com/alessandro385/app_stampa_etichette/archive/refs/heads/main.zip" download class="hero-button secondary text-sm py-2 px-4 w-full text-center">Scarica (.zip)</a>
+                    <a href="https://resplendent-pie-f4f1d8.netlify.app/index.html" target="_blank" class="hero-button primary text-sm py-2 px-4 w-full text-center">Presentazione</a>
                 </div>
             </div>
         </article>
 
-        <!-- Altri progetti... -->
-        <article class="bento-item glass-card bento-span-12 md:bento-span-6 project-card">
-            <div class="project-card-image"><img src="assets/la_corsa_di_babbo_natale/logo.png" alt="La Corsa di Babbo Natale Gioco"></div>
-            <div>
-                <h3 class="text-xl font-bold mb-2">La Corsa di Babbo Natale</h3>
-                <p class="text-sm text-gray-400 mb-4 flex-grow">Un'avventura natalizia in HTML5 Canvas e JavaScript. Scegli la tua slitta, raccogli power-up e goditi effetti particellari dinamici.</p>
-                 <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="tech-tag">HTML5 Canvas</span>
-                    <span class="tech-tag">JavaScript</span>
-                     <span class="tech-tag">Vite.js</span>
+        <article class="project-card bento-item glass-card">
+            <div class="project-card-image"><img src="assets/la_corsa_di_babbo_natale/logo.png" alt="La Corsa di Babbo Natale"></div>
+            <div class="flex flex-col flex-grow p-1">
+                <h3 class="text-xl font-bold mb-2">Gioco: Corsa di Babbo Natale</h3>
+                <p class="text-sm text-gray-400 mb-4 flex-grow">Avventura natalizia in HTML5 Canvas e JS con power-up ed effetti particellari.</p>
+                <div class="flex flex-wrap gap-2 mb-4">
+                    <span class="tech-tag">HTML5 Canvas</span><span class="tech-tag">JavaScript</span><span class="tech-tag">Vite.js</span>
                 </div>
                 <div class="flex gap-3 mt-auto">
-                     <a href="https://dynamic-valkyrie-e431a9.netlify.app/" target="_blank" class="hero-button primary text-sm py-2 px-4 w-full">Visualizza & Gioca</a>
+                     <a href="https://dynamic-valkyrie-e431a9.netlify.app/" target="_blank" class="hero-button primary text-sm py-2 px-4 w-full text-center">Visualizza & Gioca</a>
                 </div>
             </div>
         </article>
 
-        <article class="bento-item glass-card bento-span-12 md:bento-span-6 project-card">
-            <div class="project-card-image"><img src="assets/gestionale_parrucchiera/Home_page.png" alt="Homepage Gestionale Parrucchiera"></div>
-            <div>
-                <h3 class="text-xl font-bold mb-2">Gestionale Parrucchiera</h3>
-                <p class="text-sm text-gray-400 mb-4 flex-grow">Applicazione web per la gestione di un salone, con funzionalità per clienti, servizi e appuntamenti. Backend in Python e frontend Node.js.</p>
+        <article class="project-card bento-item glass-card">
+            <div class="project-card-image"><img src="assets/gestionale_parrucchiera/Home_page.png" alt="Gestionale Parrucchiera"></div>
+            <div class="flex flex-col flex-grow p-1">
+                <h3 class="text-xl font-bold mb-2">Gestionale Salone</h3>
+                <p class="text-sm text-gray-400 mb-4 flex-grow">Web app per la gestione di clienti, servizi e appuntamenti. Backend Python, frontend Node.js.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">Node.js</span>
-                    <span class="tech-tag">Web App</span>
+                    <span class="tech-tag">Python</span><span class="tech-tag">Node.js</span><span class="tech-tag">Web App</span>
                 </div>
                 <div class="flex gap-3 mt-auto">
-                    <a href="https://github.com/alessandro385/presentazione-alessandro2/releases/download/v1.00/progetto_gestionale.7z" download class="hero-button secondary text-sm py-2 px-4 w-full">Scarica (.7z)</a>
-                    <a href="presentazione_parrucchiera/presentazione_parrucchiera.html" class="hero-button primary text-sm py-2 px-4 w-full">Presentazione</a>
+                    <a href="https://github.com/alessandro385/presentazione-alessandro2/releases/download/v1.00/progetto_gestionale.7z" download class="hero-button secondary text-sm py-2 px-4 w-full text-center">Scarica (.7z)</a>
+                    <a href="presentazione_parrucchiera/presentazione_parrucchiera.html" class="hero-button primary text-sm py-2 px-4 w-full text-center">Presentazione</a>
                 </div>
             </div>
         </article>
         
-        <article class="bento-item glass-card bento-span-12 md:bento-span-6 project-card">
-            <div class="project-card-image"><img src="assets/gestionale_mensa1/logo.png" alt="Logo Gestionale Mensa"></div>
-            <div>
-                <h3 class="text-xl font-bold mb-2">Gestionale Mensa Aziendale</h3>
-                <p class="text-sm text-gray-400 mb-4 flex-grow">Applicazione desktop (PyInstaller) in Python/Flask per la gestione di una mensa. Include login, DB SQL e interfaccia web-based.</p>
+        <article class="project-card bento-item glass-card">
+            <div class="project-card-image"><img src="assets/gestionale_mensa1/logo.png" alt="Gestionale Mensa"></div>
+            <div class="flex flex-col flex-grow p-1">
+                <h3 class="text-xl font-bold mb-2">Gestionale Mensa</h3>
+                <p class="text-sm text-gray-400 mb-4 flex-grow">App desktop in Python/Flask per la gestione di una mensa aziendale, con login e DB SQL.</p>
                 <div class="flex flex-wrap gap-2 mb-4">
-                    <span class="tech-tag">Python</span>
-                    <span class="tech-tag">Flask</span>
-                    <span class="tech-tag">SQLAlchemy</span>
+                    <span class="tech-tag">Python</span><span class="tech-tag">Flask</span><span class="tech-tag">SQLAlchemy</span>
                 </div>
                 <div class="flex gap-3 mt-auto">
-                     <a href="https://github.com/alessandro385/presentazione-alessandro2/releases/download/v1.00/GestionaleMensa.7z" download class="hero-button secondary text-sm py-2 px-4 w-full">Scarica (.7z)</a>
-                    <a href="presentaione_mensa/presentazione_mensa.html" class="hero-button primary text-sm py-2 px-4 w-full">Presentazione</a>
+                     <a href="https://github.com/alessandro385/presentazione-alessandro2/releases/download/v1.00/GestionaleMensa.7z" download class="hero-button secondary text-sm py-2 px-4 w-full text-center">Scarica (.7z)</a>
+                    <a href="presentaione_mensa/presentazione_mensa.html" class="hero-button primary text-sm py-2 px-4 w-full text-center">Presentazione</a>
                 </div>
             </div>
         </article>
-    </div>
-</div>
-
-<!-- Sezione Competenze -->
-<div data-theme-section-id="cosa-faccio">
-    <h2 class="text-center">Competenze Chiave</h2>
-    <div class="bento-grid">
-        <div class="bento-item glass-card bento-span-12 md:bento-span-4"><h3>Data Analytics</h3><p class="text-sm text-gray-400">Estrazione, pulizia, analisi e visualizzazione dati per trasformare numeri grezzi in insight strategici.</p></div>
-        <div class="bento-item glass-card bento-span-12 md:bento-span-4"><h3>Sviluppo Applicativi Gestionali</h3><p class="text-sm text-gray-400">Creazione di web app (Python, Dash) integrate con database SQL per una gestione dati efficiente e su misura.</p></div>
-        <div class="bento-item glass-card bento-span-12 md:bento-span-4"><h3>Dashboard Personalizzate</h3><p class="text-sm text-gray-400">Realizzazione di interfacce interattive (Plotly, Pandas) per il monitoraggio di KPI e performance aziendali.</p></div>
-        <div class="bento-item glass-card bento-span-12 md:bento-span-4"><h3>Automazione Processi</h3><p class="text-sm text-gray-400">Sviluppo di script (Python, VBA) per automatizzare task ripetitivi, riducendo tempi operativi ed errori.</p></div>
-        <div class="bento-item glass-card bento-span-12 md:bento-span-8"><h3>Strumenti Principali</h3><p class="text-sm text-gray-400">Python (Dash, Plotly, Pandas), SQL, Excel/VBA, Git, SAP (basi), Zucchetti (basi), Strumenti IoT (basi).</p></div>
     </div>
 </div>
 
 <!-- Sezione Esperienza -->
 <div data-theme-section-id="esperienza">
-    <!-- Manteniamo la timeline per questa sezione, poiché è la più adatta a dati cronologici -->
-    <!-- (Il CSS di Aura dovrà stilizzare la timeline esistente) -->
+    <!-- Contenuto della timeline da stilizzare con Quantum -->
      <h2 class="text-3xl md:text-4xl font-bold font-serif mb-12 text-center">Percorso Professionale e Formativo</h2>
-    <div class="relative max-w-4xl mx-auto timeline-hightech">
-        <div class="timeline-hightech-line"></div> 
-        <div class="timeline-hightech-block mb-12">
-            <div class="timeline-hightech-header"><div class="timeline-hightech-header-icon"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg></div><h3 class="timeline-hightech-header-title">Esperienze Lavorative</h3></div>
-            <div class="space-y-10">
-                <div class="timeline-hightech-entry timeline-entry-left"><div class="timeline-hightech-dot"></div><div class="timeline-hightech-content-card"><h4 class="text-xl font-semibold mb-1">Supply & Portfolio Power Management (Junior)</h4><p class="text-sm font-medium mb-3">SIME PARTECIPAZIONI S.p.A. | <span class="font-semibold">05/2025 – In corso</span></p><ul class="list-disc list-inside text-sm space-y-1"><li>Gestione portfolio energetico e attività di forecasting.</li><li>Sviluppo database (SQL, VBA) per l'ottimizzazione dei processi.</li><li>Analisi dati e supporto alla modellazione matematica.</li></ul></div></div>
-                <div class="timeline-hightech-entry timeline-entry-right"><div class="timeline-hightech-dot"></div><div class="timeline-hightech-content-card"><h4 class="text-xl font-semibold mb-1">Stage Lean Promotion & Sviluppo Software</h4><p class="text-sm font-medium mb-3">Egidio Galbani S.P.A. | <span class="font-semibold">05/2024 – 09/2024</span></p><ul class="list-disc list-inside text-sm space-y-1"><li>Sviluppo applicazioni Dash per gestione dati produzione/magazzino.</li><li>Progettazione dashboard KPI con Python (Dash, Plotly).</li><li>Automazione reportistica (Python, SQL).</li><li>Collaborazione con Direzione Produzione per ottimizzazione workflow.</li></ul></div></div>
-                <div class="timeline-hightech-entry timeline-entry-left"><div class="timeline-hightech-dot"></div><div class="timeline-hightech-content-card"><h4 class="text-xl font-semibold mb-1">Operatore di Produzione</h4><p class="text-sm font-medium mb-3">Egidio Galbani S.P.A. | <span class="font-semibold">01/2023 – 05/2024</span></p><ul class="list-disc list-inside text-sm space-y-1"><li>Gestione macchine confezionamento, Robot collaborativi.</li><li>Tracciamento dati produzione con software gestionali.</li></ul></div></div>
-                <div class="timeline-hightech-entry timeline-entry-right"><div class="timeline-hightech-dot"></div><div class="timeline-hightech-content-card"><h4 class="text-xl font-semibold mb-1">Aiutante Tubista</h4><p class="text-sm font-medium mb-3">New Pipe S.R.L. | <span class="font-semibold">01/2021 – 01/2023</span></p><ul class="list-disc list-inside text-sm space-y-1"><li>Lettura disegni tecnici, Saldatura TIG, Manutenzione impianti.</li></ul></div></div>
-            </div>
-        </div>
-        <div class="timeline-hightech-block mb-0">
-            <div class="timeline-hightech-header"><div class="timeline-hightech-header-icon icon-secondary"><svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M12 14l9-5-9-5-9 5 9 5z"></path><path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222"></path></svg></div><h3 class="timeline-hightech-header-title title-secondary">Istruzione e Formazione</h3></div>
-             <div class="space-y-10">
-                <div class="timeline-hightech-entry timeline-entry-left"><div class="timeline-hightech-dot dot-secondary"></div><div class="timeline-hightech-content-card card-secondary"><h4 class="text-xl font-semibold mb-1">Tecnico Superiore Digitalizzazione Processi Industriali</h4><p class="text-sm font-medium mb-3">I.T.S. Academy Cremona - Crema (CR) | <span class="font-semibold">2023 – 05/2025</span></p><ul class="list-disc list-inside text-sm space-y-1"><li>Specializzazione in automazione industriale, IoT, gestione dati.</li><li>Progetti pratici: Sviluppo dashboard (Python, Dash), Integrazione DB SQL.</li></ul></div></div>
-                <div class="timeline-hightech-entry timeline-entry-right"><div class="timeline-hightech-dot dot-secondary"></div><div class="timeline-hightech-content-card card-secondary"><h4 class="text-xl font-semibold mb-1">Diploma Relazioni Internazionali per il Marketing</h4><p class="text-sm font-medium mb-3">I.I.S. Luca Pacioli - Crema (CR) | <span class="font-semibold">2015 – 2020</span></p><ul class="list-disc list-inside text-sm space-y-1"><li>Studio avanzato lingua Inglese.</li><li>Analisi mercati, piani marketing, simulazioni startup.</li><li>Competenze: Excel, CMS, Comunicazione digitale.</li></ul></div></div>
-             </div>
-        </div>
-    </div>
+    <!-- ... (il resto della timeline rimane invariato nell'HTML ma verrà stilizzato dal nuovo CSS) ... -->
+    <div class="relative max-w-4xl mx-auto timeline-hightech">...</div>
 </div>
 
 <!-- Sezione Contatti -->

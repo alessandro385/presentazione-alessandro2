@@ -1,220 +1,233 @@
-/* Stili per il nuovo tema Quantum */
+/* Stili per il nuovo tema Quantum V2 */
 
 /* ----- FONT ----- */
-/* Assicurati che il font sia importato nell'HTML principale, es:
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"> */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;900&display=swap');
 
+/* ----- VARIABILI CSS ----- */
+:root {
+    --quantum-bg: #010409;
+    --quantum-card-bg: rgba(22, 27, 34, 0.5);
+    --quantum-border: rgba(240, 246, 252, 0.1);
+    --quantum-text-primary: #e6edf3;
+    --quantum-text-secondary: #7d8590;
+    --quantum-accent-primary: #58a6ff;
+    --quantum-accent-secondary: #a371f7;
+    --quantum-glow-color: rgba(88, 166, 255, 0.5);
+}
+
+/* ----- STILI GLOBALI ----- */
 body.theme-quantum {
-    background-color: #0D1117; /* Sfondo principale GitHub Dark */
-    color: #C9D1D9; /* Testo principale */
+    background-color: var(--quantum-bg);
+    color: var(--quantum-text-primary);
     font-family: 'Inter', sans-serif;
     line-height: 1.7;
     overflow-x: hidden;
-    position: relative; /* Necessario per lo sfondo animato */
+    position: relative;
 }
 
-/* ----- Sfondo Animato "Aurora" ----- */
+/* Sfondo con reticolo animato */
 body.theme-quantum::before {
     content: '';
-    position: fixed; /* Fisso per rimanere durante lo scroll */
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at 15% 30%, rgba(13, 110, 253, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 85% 70%, rgba(220, 53, 69, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 50% 50%, rgba(40, 167, 69, 0.1) 0%, transparent 30%);
-    animation: aura-animation 20s ease-in-out infinite;
-    z-index: -1;
-    will-change: background;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-image: 
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 30px 30px;
+    animation: background-pan 30s linear infinite;
+    z-index: -2;
+}
+@keyframes background-pan {
+  from { background-position: 0 0; }
+  to { background-position: -300px -300px; }
 }
 
-@keyframes aura-animation {
-    0% { background-position: 0% 50%, 100% 50%, 50% 0%; }
-    50% { background-position: 100% 50%, 0% 50%, 50% 100%; }
-    100% { background-position: 0% 50%, 100% 50%, 50% 0%; }
+/* ----- TIPOGRAFIA ----- */
+.theme-quantum h1, .theme-quantum h2, .theme-quantum h3 {
+    font-weight: 800;
 }
-
-/* ----- Tipografia ----- */
-.theme-quantum h1, .theme-quantum h2, .theme-quantum h3, .theme-quantum h4 {
-    color: #FFFFFF;
-    font-weight: 700;
-}
-
 .theme-quantum h2 {
-    font-size: 2.25rem; /* 36px */
-    margin-bottom: 2.5rem; /* 40px */
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+    text-align: center;
 }
-
 .theme-quantum a {
-    color: #58A6FF; /* Blu link di GitHub */
+    color: var(--quantum-accent-primary);
     text-decoration: none;
-    transition: color 0.2s ease;
+    transition: color 0.2s;
 }
-
 .theme-quantum a:hover {
-    text-decoration: underline;
+    color: white;
 }
-
-/* ----- Header ----- */
-.theme-quantum header {
-    background-color: rgba(13, 17, 23, 0.7);
-    backdrop-filter: blur(12px) saturate(180%);
-    border-bottom: 1px solid rgba(240, 246, 252, 0.1);
-}
-
-.theme-quantum header a,
-.theme-quantum header button {
-    color: #C9D1D9;
-}
-.theme-quantum header a:hover,
-.theme-quantum header button:hover {
-    color: #FFFFFF;
-}
-.theme-quantum .active-nav-link {
-    color: #FFFFFF !important;
+.theme-quantum strong {
+    color: var(--quantum-text-primary);
     font-weight: 600;
 }
 
-/* ----- Sezioni e Card "Glassmorphism" ----- */
-.theme-quantum .glass-card {
-    background-color: rgba(22, 27, 34, 0.6); /* Sfondo card */
-    border: 1px solid rgba(240, 246, 252, 0.1);
-    border-radius: 12px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
-    backdrop-filter: blur(8px) saturate(150%);
-    transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+/* ----- HERO SECTION V2 ----- */
+.theme-quantum .hero-section {
+    min-height: 90vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.theme-quantum .glass-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.3);
-    border-color: rgba(240, 246, 252, 0.2);
+.theme-quantum .hero-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+    gap: 2rem;
 }
 
-.theme-quantum .main-content-section {
-    background-color: transparent !important;
-    border: none !important;
-    box-shadow: none !important;
-    padding: 2rem 0; /* Padding verticale, orizzontale gestito dal container */
+.theme-quantum .hero-text-content .subheading {
+    font-weight: 600;
+    color: var(--quantum-accent-primary);
 }
 
-/* ----- Hero Section ----- */
-.theme-quantum .hero-section .text-gradient {
+.theme-quantum .hero-text-content h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    font-weight: 900;
+}
+.theme-quantum .hero-text-content .text-gradient {
     background: linear-gradient(90deg, #58A6FF, #A371F7, #F778BA);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
 }
-.theme-quantum .hero-section img {
-    border: 2px solid rgba(240, 246, 252, 0.1);
-    box-shadow: 0 0 30px rgba(88, 166, 255, 0.2);
-}
-.theme-quantum .hero-button {
-    border-radius: 8px;
-    font-weight: 600;
-    transition: all 0.2s ease;
-    border: 1px solid transparent;
-}
-.theme-quantum .hero-button.primary {
-    background-color: #238636; /* Verde GitHub */
-    color: white;
-}
-.theme-quantum .hero-button.primary:hover {
-    background-color: #2EA043;
-    box-shadow: 0 0 15px rgba(46, 160, 67, 0.5);
-}
-.theme-quantum .hero-button.secondary {
-    background-color: rgba(33, 38, 45, 0.8);
-    border-color: rgba(240, 246, 252, 0.1);
-    color: #58A6FF;
-}
-.theme-quantum .hero-button.secondary:hover {
-    background-color: rgba(43, 48, 55, 0.9);
-    border-color: #58A6FF;
+.theme-quantum .hero-text-content p {
+    color: var(--quantum-text-secondary);
+    font-size: 1.125rem;
+    max-width: 500px;
 }
 
+.theme-quantum .hero-image-content {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-/* ----- Bento Grid Layout ----- */
+.theme-quantum .hero-image-frame {
+    width: 300px;
+    height: 300px;
+    position: relative;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+}
+.theme-quantum .hero-image-frame::before {
+    content: '';
+    position: absolute;
+    inset: -3px;
+    background: linear-gradient(145deg, var(--quantum-accent-primary), var(--quantum-accent-secondary));
+    z-index: 0;
+    animation: spin 8s linear infinite;
+}
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.theme-quantum .hero-image-frame img {
+    position: absolute;
+    inset: 3px;
+    width: calc(100% - 6px);
+    height: calc(100% - 6px);
+    object-fit: cover;
+    clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+    z-index: 1;
+}
+
+/* ----- BENTO GRID V2 ----- */
 .theme-quantum .bento-grid {
     display: grid;
     gap: 1rem;
     grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: minmax(100px, auto);
 }
 
 .theme-quantum .bento-item {
+    background: var(--quantum-card-bg);
+    border: 1px solid var(--quantum-border);
+    border-radius: 16px;
     padding: 1.5rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
 }
-/* Esempi di span per la griglia - da applicare nell'HTML */
-.theme-quantum .bento-span-4 { grid-column: span 4; }
-.theme-quantum .bento-span-5 { grid-column: span 5; }
-.theme-quantum .bento-span-6 { grid-column: span 6; }
-.theme-quantum .bento-span-7 { grid-column: span 7; }
-.theme-quantum .bento-span-8 { grid-column: span 8; }
-.theme-quantum .bento-span-12 { grid-column: span 12; }
-
-/* Stili specifici per le card nella griglia */
-.theme-quantum .bento-item h3 {
-    font-size: 1.25rem;
-    margin-bottom: 0.75rem;
+.theme-quantum .bento-item:hover {
+    border-color: rgba(240, 246, 252, 0.2);
+    transform: translateY(-4px);
 }
 
-/* ----- Progetti Section ----- */
+/* Glowing edge effect */
+.theme-quantum .bento-item::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+      800px circle at var(--mouse-x, -1000px) var(--mouse-y, -1000px),
+      var(--quantum-glow-color),
+      transparent 40%
+    );
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.5s;
+    z-index: 0;
+}
+.theme-quantum .bento-item:hover::before {
+    opacity: 1;
+}
+.theme-quantum .bento-item > * {
+    position: relative;
+    z-index: 1;
+}
+
+/* ----- PROJECT CARD V2 ----- */
 .theme-quantum .project-card {
+    grid-column: span 6;
     display: flex;
     flex-direction: column;
-    height: 100%;
 }
 .theme-quantum .project-card-image {
-    height: 180px;
-    border-radius: 8px;
+    height: 200px;
     margin-bottom: 1rem;
+    border-radius: 8px;
     overflow: hidden;
 }
 .theme-quantum .project-card-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.3s ease;
+    width: 100%; height: 100%; object-fit: cover;
 }
-.theme-quantum .project-card:hover .project-card-image img {
-    transform: scale(1.05);
-}
-
 .theme-quantum .tech-tag {
     background-color: rgba(56, 139, 253, 0.15);
-    color: #58A6FF;
-    padding: 0.25rem 0.6rem;
+    color: var(--quantum-accent-primary);
+    padding: 0.25rem 0.75rem;
     border-radius: 9999px;
     font-size: 0.75rem;
     font-weight: 500;
 }
 
-/* ----- Responsive Design per Bento Grid ----- */
-@media (max-width: 900px) {
-    .theme-quantum .bento-span-4,
-    .theme-quantum .bento-span-5,
-    .theme-quantum .bento-span-6,
-    .theme-quantum .bento-span-7,
-    .theme-quantum .bento-span-8 {
+/* ----- RESPONSIVE ----- */
+@media (max-width: 1024px) {
+    .theme-quantum .project-card {
         grid-column: span 6;
     }
 }
-@media (max-width: 640px) {
-    .theme-quantum .bento-grid {
-        grid-template-columns: repeat(1, 1fr);
+@media (max-width: 768px) {
+    .theme-quantum .hero-grid {
+        grid-template-columns: 1fr;
+        text-align: center;
     }
-    .theme-quantum .bento-span-4,
-    .theme-quantum .bento-span-5,
-    .theme-quantum .bento-span-6,
-    .theme-quantum .bento-span-7,
-    .theme-quantum .bento-span-8,
-    .theme-quantum .bento-span-12 {
-        grid-column: span 1;
+    .theme-quantum .hero-text-content h1 { font-size: 2.5rem; }
+    .theme-quantum .hero-text-content p { margin: 1rem auto; }
+    .theme-quantum .hero-image-content { grid-row: 1; margin-bottom: 2rem; }
+    
+    .theme-quantum .bento-grid [class*="bento-span-"] {
+        grid-column: span 12 !important;
     }
-    .theme-quantum h2 {
-        font-size: 1.75rem;
+    .theme-quantum .project-card {
+        grid-column: span 12;
     }
 }
