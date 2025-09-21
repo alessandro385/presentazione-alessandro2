@@ -7,10 +7,10 @@
 :root {
     --q4-bg: #03040B;
     --q4-bg-transparent: rgba(3, 4, 11, 0.5);
-    --q4-panel-bg: rgba(20, 22, 41, 0.6);
+    --q4-panel-bg: linear-gradient(145deg, rgba(20, 22, 41, 0.6), rgba(30, 32, 61, 0.6));
     --q4-border-color: rgba(128, 147, 255, 0.2);
     --q4-text-primary: #D4D8F0;
-    --q4-text-secondary: #7A84B2;
+    --q4-text-secondary: #8a94c5; /* Schiarito per più contrasto */
     --q4-accent-primary: #8093FF;
     --q4-accent-secondary: #9A77FF;
     --q4-glow: rgba(128, 147, 255, 0.5);
