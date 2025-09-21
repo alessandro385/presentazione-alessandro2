@@ -174,7 +174,13 @@ body.theme-quantum {
     transform: translateY(-8px); /* Più evidente */
     box-shadow: 0 0 25px var(--q4-glow);
 }
-.theme-quantum .project-card-v4 img { width: 100%; height: 200px; object-fit: cover; }
+.theme-quantum .project-card-v4 img {
+    width: 100%;
+    height: 200px;
+    object-fit: contain; /* Assicura che l'immagine sia completamente visibile */
+    background-color: var(--q4-bg); /* Sfondo per le barre nere/bianche */
+    padding: 0.5rem; /* Aggiunge un po' di respiro all'immagine */
+}
 .theme-quantum .project-card-v4-content { padding: 1.5rem; }
 .theme-quantum .project-card-v4-content h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
 .theme-quantum .project-card-v4-content p { font-size: 0.9rem; color: var(--q4-text-secondary); margin-bottom: 1rem; }
