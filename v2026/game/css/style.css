@@ -623,3 +623,20 @@ html, body {
 }
 #btn-fs:hover { transform: scale(1.1); }
 #btn-fs.fs-on { color: var(--cyan); }
+
+/* ============ Uscita dal gioco (menu) ============ */
+.menu-exit {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  font-size: 13px;
+  color: var(--muted);
+}
+.menu-exit a {
+  color: var(--muted);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.menu-exit a:hover { color: var(--text); }
