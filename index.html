@@ -1,559 +1,261 @@
 <!DOCTYPE html>
-<html lang="it" class="scroll-smooth">
+<html lang="it">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alessandro Barresi - Sviluppatore Web App & Data Analyst</title>
-    <!-- Includo Tailwind CSS via CDN -->
-    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-    <!-- Il link CSS ora punta a un tema specifico e ha un ID -->
-    <link id="theme-stylesheet" rel="stylesheet" href="themes/theme-modern.css">
-    <script>
-        // Configurazione base di Tailwind (opzionale, ma utile per personalizzazioni)
-        tailwind.config = {
-          darkMode: 'class', // Abilita il toggle manuale per dark mode se volessimo aggiungerlo
-          theme: {
-            extend: {
-              colors: {
-                primary: {
-                  light: '#a78bfa', // Viola più chiaro (vecchio A855F7)
-                  DEFAULT: '#8b5cf6', // Viola principale (vecchio 9333EA)
-                  dark: '#7c3aed',   // Viola più scuro (vecchio 7E22CE)
-                },
-                secondary: {
-                  light: '#34d399', // Verde più chiaro
-                  DEFAULT: '#10b981', // Verde principale
-                  dark: '#059669',   // Verde più scuro
-                },
-                accent: {
-                  DEFAULT: '#f59e0b', // Ambra/Arancio per accenti
-                  dark: '#d97706'
-                },
-                neutral: {
-                   lightest: '#f9fafb', // Grigio chiarissimo per sfondi sezione chiara
-                   lighter: '#f3f4f6', //  Vecchio neutral.light
-                   light: '#e5e7eb',
-                   DEFAULT: '#6b7280', // Grigio testo
-                   dark: '#374151',    // Grigio più scuro per testo o elementi scuri
-                   darker: '#1f2937',  // Header/Footer (vecchio neutral.dark)
-                   darkest: '#111827'   // Sfondo per sezioni molto scure
-                }
-              },
-              fontFamily: {
-                sans: ['Poppins', 'sans-serif'],
-                serif: ['Roboto Slab', 'serif'],
-              },
-              animation: {
-                'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                'subtle-bob': 'subtleBob 3s ease-in-out infinite',
-              },
-              keyframes: {
-                fadeInUp: {
-                  '0%': { opacity: '0', transform: 'translateY(20px)' },
-                  '100%': { opacity: '1', transform: 'translateY(0)' },
-                },
-                subtleBob: {
-                    '0%, 100%': { transform: 'translateY(0)' },
-                    '50%': { transform: 'translateY(-5px)' },
-                }
-              }
-            }
-          }
-        }
-      </script>
-      <link rel="preconnect" href="https://fonts.googleapis.com">
-      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
-      <!-- Font per il tema High-Tech -->
-      <link href="https://fonts.googleapis.com/css2?family=Aldrich&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alessandro Barresi — Portfolio</title>
+<meta name="description" content="Portfolio di Alessandro Barresi — AI Operations & Supply Chain Specialist, sviluppatore web app e data analyst. Scegli l'edizione 2026 o quella classica 2024/25.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #070a14;
+    --ink: #eef1fb;
+    --muted: #93a0c2;
+    --indigo: #6366f1;
+    --cyan: #22d3ee;
+    --mint: #34d399;
+    --amber: #fbbf24;
+    --card: rgba(255, 255, 255, 0.04);
+    --card-border: rgba(255, 255, 255, 0.09);
+    --radius: 24px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html, body { height: 100%; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, sans-serif;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ---- Sfondo aurora animato ---- */
+  .sky {
+    position: fixed; inset: 0; z-index: 0; overflow: hidden;
+    background:
+      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99, 102, 241, 0.22), transparent 60%),
+      radial-gradient(ellipse 60% 40% at 85% 10%, rgba(34, 211, 238, 0.14), transparent 60%),
+      radial-gradient(ellipse 70% 60% at 50% 110%, rgba(52, 211, 153, 0.10), transparent 60%),
+      var(--bg);
+  }
+  .aurora {
+    position: absolute; inset: -20%;
+    background:
+      conic-gradient(from 180deg at 50% 30%, transparent 0deg, rgba(99,102,241,.12) 60deg, rgba(34,211,238,.10) 120deg, transparent 180deg, rgba(52,211,153,.08) 260deg, transparent 360deg);
+    filter: blur(60px);
+    animation: drift 26s ease-in-out infinite alternate;
+  }
+  @keyframes drift {
+    0%   { transform: rotate(0deg) scale(1); }
+    100% { transform: rotate(18deg) scale(1.15); }
+  }
+  #stars { position: absolute; inset: 0; width: 100%; height: 100%; }
+
+  /* ---- Layout ---- */
+  .wrap {
+    position: relative; z-index: 1;
+    min-height: 100svh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: clamp(24px, 5vw, 64px);
+    gap: clamp(28px, 4vh, 48px);
+  }
+  header.intro { text-align: center; max-width: 720px; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .12em;
+    color: var(--cyan); text-transform: uppercase;
+    border: 1px solid rgba(34, 211, 238, .25);
+    background: rgba(34, 211, 238, .06);
+    padding: 7px 14px; border-radius: 999px;
+    margin-bottom: 22px;
+    opacity: 0; animation: rise .8s ease .1s forwards;
+  }
+  .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 10px var(--mint); animation: pulse 2.2s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+  h1 {
+    font-family: 'Sora', sans-serif;
+    font-size: clamp(2.1rem, 5.5vw, 3.6rem);
+    font-weight: 800; line-height: 1.08; letter-spacing: -0.02em;
+    opacity: 0; animation: rise .8s ease .25s forwards;
+  }
+  h1 .grad {
+    background: linear-gradient(92deg, var(--indigo), var(--cyan) 55%, var(--mint));
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+  }
+  .sub {
+    margin-top: 16px; color: var(--muted);
+    font-size: clamp(1rem, 2vw, 1.15rem); line-height: 1.6;
+    opacity: 0; animation: rise .8s ease .4s forwards;
+  }
+  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
+
+  /* ---- Card edizioni ---- */
+  .editions {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 420px));
+    justify-content: center; gap: clamp(18px, 3vw, 32px);
+    width: 100%; max-width: 920px;
+  }
+  .edition {
+    position: relative; display: block; text-decoration: none; color: inherit;
+    background: var(--card);
+    border: 1px solid var(--card-border);
+    border-radius: var(--radius);
+    padding: clamp(24px, 3.5vw, 36px);
+    backdrop-filter: blur(14px);
+    transition: transform .35s cubic-bezier(.2,.8,.25,1), border-color .35s, box-shadow .35s;
+    opacity: 0; animation: rise .8s ease forwards;
+    overflow: hidden;
+  }
+  .edition:nth-child(1) { animation-delay: .55s; }
+  .edition:nth-child(2) { animation-delay: .7s; }
+  .edition::before {
+    content: ''; position: absolute; inset: 0; border-radius: inherit;
+    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgba(255,255,255,.07), transparent 45%);
+    opacity: 0; transition: opacity .35s; pointer-events: none;
+  }
+  .edition:hover::before { opacity: 1; }
+  .edition:hover { transform: translateY(-6px); box-shadow: 0 24px 60px -24px rgba(0,0,0,.7); }
+  .edition.new:hover { border-color: rgba(34, 211, 238, .45); }
+  .edition.classic:hover { border-color: rgba(167, 139, 250, .4); }
+
+  .ed-tag {
+    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .14em;
+    text-transform: uppercase; padding: 5px 11px; border-radius: 999px; display: inline-block;
+    margin-bottom: 18px;
+  }
+  .new .ed-tag { color: #07121a; background: linear-gradient(90deg, var(--cyan), var(--mint)); font-weight: 600; }
+  .classic .ed-tag { color: #c4b5fd; background: rgba(139, 92, 246, .14); border: 1px solid rgba(139, 92, 246, .3); }
+  .edition h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.4rem, 2.6vw, 1.8rem); font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em; }
+  .edition p { color: var(--muted); font-size: .95rem; line-height: 1.65; }
+  .edition ul { list-style: none; margin: 18px 0 26px; display: grid; gap: 9px; }
+  .edition li { display: flex; gap: 10px; align-items: baseline; font-size: .9rem; color: #c2cbe4; }
+  .edition li::before { content: '▸'; flex-shrink: 0; }
+  .new li::before { color: var(--mint); }
+  .classic li::before { color: #a78bfa; }
+  .cta {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: 'Sora', sans-serif; font-weight: 600; font-size: .95rem;
+    padding: 12px 22px; border-radius: 14px;
+    transition: gap .25s ease;
+  }
+  .edition:hover .cta { gap: 16px; }
+  .new .cta { background: linear-gradient(92deg, var(--indigo), var(--cyan)); color: #fff; box-shadow: 0 8px 28px -8px rgba(99, 102, 241, .55); }
+  .classic .cta { border: 1px solid rgba(167, 139, 250, .4); color: #d6c9ff; }
+
+  footer {
+    position: relative; z-index: 1; text-align: center;
+    padding: 0 24px 34px; color: var(--muted); font-size: .85rem;
+    opacity: 0; animation: rise .8s ease .9s forwards;
+  }
+  footer a { color: var(--cyan); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  footer .links { display: flex; gap: 18px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .aurora { animation: none; }
+    .badge, h1, .sub, .edition, footer { animation-duration: .01s; animation-delay: 0s; }
+  }
+</style>
 </head>
-<body class="bg-neutral-lighter font-sans text-neutral-dark antialiased selection:bg-primary selection:text-white">
+<body>
 
-    <!-- Header Fisso -->
-    <header class="bg-neutral-darker/95 text-white shadow-lg sticky top-0 z-50 backdrop-blur-md">
-        <nav class="container mx-auto px-4 sm:px-6 py-4 flex justify-between items-center">
-            <a href="#hero" class="text-2xl font-bold tracking-tight text-primary-light hover:text-primary transition-colors duration-300">Alessandro Barresi</a>
-            <ul class="hidden md:flex space-x-8 items-center">
-                <li><a href="#hero" class="nav-link text-base font-medium hover:text-primary-light transition-colors duration-300">Home</a></li>
-                <li><a href="#chi-sono" class="nav-link text-base font-medium hover:text-primary-light transition-colors duration-300">Chi Sono</a></li>
-                <li><a href="#cosa-faccio" class="nav-link text-base font-medium hover:text-primary-light transition-colors duration-300">Competenze</a></li>
-                <li><a href="#esperienza" class="nav-link text-base font-medium hover:text-primary-light transition-colors duration-300">Esperienza</a></li>
-                <li><a href="#progetti" class="nav-link text-base font-medium hover:text-primary-light transition-colors duration-300">Progetti</a></li>
-                <li><a href="#contatti" class="nav-link text-base font-medium hover:text-primary-light transition-colors duration-300">Contatti</a></li>
-                <li class="relative">
-                    <button id="theme-dropdown-button-desktop" class="nav-link text-base font-medium hover:text-primary-light transition-colors duration-300 flex items-center">
-                        Seleziona Stile
-                        <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                    </button>
-                    <ul id="theme-dropdown-menu-desktop" class="absolute hidden right-0 mt-2 w-48 bg-neutral-darker rounded-md shadow-lg py-1 z-[60]">
-                        <li><a href="#" data-theme="modern" class="theme-select-button block px-4 py-2 text-sm text-neutral-light hover:bg-neutral-dark hover:text-primary-light">Moderno</a></li>
-                        <li><a href="#" data-theme="high-tech" class="theme-select-button block px-4 py-2 text-sm text-neutral-light hover:bg-neutral-dark hover:text-primary-light">High-Tech</a></li>
-                        <li><a href="#" data-theme="matrix" class="theme-select-button block px-4 py-2 text-sm text-neutral-light hover:bg-neutral-dark hover:text-primary-light">Matrix</a></li>
-                        <li><a href="#" data-theme="quantum" class="theme-select-button block px-4 py-2 text-sm text-neutral-light hover:bg-neutral-dark hover:text-primary-light">Quantum</a></li>
-                    </ul>
-                </li>
-            </ul>
-            <div class="md:hidden">
-                <button id="mobile-menu-button" class="text-white focus:outline-none p-2">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path></svg>
-                </button>
-            </div>
-        </nav>
-         <div id="mobile-menu" class="hidden md:hidden bg-neutral-darker/95 backdrop-blur-md">
-            <ul class="px-4 pt-2 pb-4 space-y-2">
-                 <li><a href="#hero" class="block nav-link px-3 py-2 rounded-md text-base font-medium hover:bg-neutral-dark hover:text-primary-light transition-all duration-300">Home</a></li>
-                 <li><a href="#chi-sono" class="block nav-link px-3 py-2 rounded-md text-base font-medium hover:bg-neutral-dark hover:text-primary-light transition-all duration-300">Chi Sono</a></li>
-                 <li><a href="#cosa-faccio" class="block nav-link px-3 py-2 rounded-md text-base font-medium hover:bg-neutral-dark hover:text-primary-light transition-all duration-300">Competenze</a></li>
-                 <li><a href="#esperienza" class="block nav-link px-3 py-2 rounded-md text-base font-medium hover:bg-neutral-dark hover:text-primary-light transition-all duration-300">Esperienza</a></li>
-                 <li><a href="#progetti" class="block nav-link px-3 py-2 rounded-md text-base font-medium hover:bg-neutral-dark hover:text-primary-light transition-all duration-300">Progetti</a></li>
-                 <li><a href="#contatti" class="block nav-link px-3 py-2 rounded-md text-base font-medium hover:bg-neutral-dark hover:text-primary-light transition-all duration-300">Contatti</a></li>
-             </ul>
-         </div>
-         <div id="mobile-theme-selector" class="hidden md:hidden bg-neutral-darker/95 backdrop-blur-md px-4 pb-4 space-y-2 border-t border-neutral-dark">
-            <p class="text-sm font-medium text-primary-light pt-2">Seleziona Stile:</p>
-            <a href="#" data-theme="modern" class="theme-select-button block px-3 py-2 rounded-md text-base font-medium hover:bg-neutral-dark hover:text-primary-light transition-all duration-300">Moderno</a>
-            <a href="#" data-theme="high-tech" class="theme-select-button block px-3 py-2 rounded-md text-base font-medium hover:bg-neutral-dark hover:text-primary-light transition-all duration-300">High-Tech</a>
-            <a href="#" data-theme="matrix" class="theme-select-button block px-3 py-2 rounded-md text-base font-medium hover:bg-neutral-dark hover:text-primary-light transition-all duration-300">Matrix</a>
-            <a href="#" data-theme="quantum" class="theme-select-button block px-3 py-2 rounded-md text-base font-medium hover:bg-neutral-dark hover:text-primary-light transition-all duration-300">Quantum</a>
-        </div>
-    </header>
+<div class="sky" aria-hidden="true">
+  <div class="aurora"></div>
+  <canvas id="stars"></canvas>
+</div>
 
-    <main class="overflow-x-hidden" data-current-theme="modern">
+<div class="wrap">
+  <header class="intro">
+    <span class="badge"><span class="dot"></span>Portfolio · due edizioni</span>
+    <h1>Alessandro Barresi<br><span class="grad">scegli la tua esperienza</span></h1>
+    <p class="sub">AI Operations &amp; Supply Chain Specialist · Sviluppatore Web App &amp; Data Analyst.<br>
+    Questo portfolio vive in due epoche: l'edizione classica e quella riprogettata nel 2026.</p>
+  </header>
 
-        <!-- Sezione Hero -->
-        <section id="hero" class="main-content-section hero-section theme-modern-hero relative min-h-screen flex items-center justify-center bg-gradient-to-br from-neutral-darkest via-neutral-darker to-primary-dark text-white overflow-hidden pt-20 pb-10">
-            <div class="absolute inset-0 opacity-10">
-                <!-- Pattern SVG di sfondo molto sottile -->
-                <svg width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="hero-pattern" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="scale(2) rotate(45)"><path d="M20 0L0 20L20 40L40 20Z"  fill="rgba(255,255,255,0.05)"></path></pattern></defs><rect width="100%" height="100%" fill="url(#hero-pattern)"></rect></svg>
-            </div>
-            <div class="container mx-auto px-6 text-center z-10">
-                <div class="max-w-3xl mx-auto">
-                    <img src="assets/io.png" alt="Foto Profilo Alessandro Barresi" class="w-40 h-40 md:w-48 md:h-48 rounded-full mx-auto mb-8 border-4 border-primary-light shadow-2xl animate-subtle-bob hover:animate-none transition-transform duration-300 transform hover:scale-105">
-                    <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold font-serif mb-4 animate-fade-in-up" style="animation-delay: 0.2s;">
-                        <span class="block">Ciao, sono</span>
-                        <span class="block text-primary-light mt-2">Alessandro Barresi</span>
-                    </h1>
-                    <p class="text-xl md:text-2xl text-neutral-light font-medium mb-10 animate-fade-in-up" style="animation-delay: 0.4s;">Sviluppatore Web App & Data Analyst con la passione per soluzioni innovative.</p>
-                    <div class="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 animate-fade-in-up" style="animation-delay: 0.6s;">
-                        <a href="#progetti" class="bg-primary hover:bg-primary-dark text-white font-semibold py-3 px-10 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 text-lg w-full sm:w-auto">
-                            I Miei Progetti
-                        </a>
-                        <a href="#contatti" class="border-2 border-secondary hover:bg-secondary text-secondary hover:text-white font-semibold py-3 px-10 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-105 text-lg w-full sm:w-auto">
-                            Contattami
-                        </a>
-                    </div>
-                </div>
-            </div>
-             <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce z-20">
-                <a href="#chi-sono" aria-label="Scorri verso Chi Sono">
-                    <svg class="w-8 h-8 text-white/70 hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
-                </a>
-            </div>
-        </section>
+  <main class="editions">
+    <a class="edition new" href="v2026/index.html">
+      <span class="ed-tag">Edizione 2026 · Consigliata</span>
+      <h2>La nuova generazione</h2>
+      <p>Riprogettata da zero: design system su misura, nuovi temi e un motore di gioco completamente nuovo.</p>
+      <ul>
+        <li>Nuovi temi grafici con animazioni fluide</li>
+        <li>Percorso aggiornato — Dog Heroes inclusa</li>
+        <li>La Corsa di Babbo Natale 2026: desktop &amp; mobile</li>
+        <li>Tipografia e micro-interazioni di nuova generazione</li>
+      </ul>
+      <span class="cta">Entra nel 2026 <span aria-hidden="true">→</span></span>
+    </a>
 
-        <!-- Sezione Chi Sono -->
-        <section id="chi-sono" class="main-content-section chi-sono-section theme-modern-chi-sono mb-16 p-8 bg-white rounded-lg shadow-lg fade-in-section">
-            <h2 class="text-3xl font-bold text-primary-dark mb-6 text-center md:text-left">Chi Sono</h2>
-            <div class="md:flex md:space-x-8">
-                <div class="md:w-2/3 text-lg leading-relaxed">
-                    <p class="mb-4">
-                        Sono un Data Analyst e sviluppatore appassionato, con esperienza concreta nella creazione di <strong>dashboard personalizzate</strong> e <strong>applicativi gestionali</strong> volti all'ottimizzazione dei processi aziendali. Attualmente, ricopro il ruolo di <strong>Supply & Portfolio Power Management Junior</strong> presso SIME PARTECIPAZIONI S.p.A., dove mi occupo di <strong>portfolio management energetico, forecasting e sviluppo di database (SQL, VBA)</strong> per accelerare la gestione dei processi.
-                    </p>
-                    <p class="mb-4">
-                        Le mie esperienze lavorative precedenti, anche in ambito industriale, mi hanno fornito una solida base tecnica e operativa. Queste competenze, unite alla mia predisposizione per i <strong>modelli matematici</strong> e l'analisi dati, mi permettono di sviluppare soluzioni software mirate, in particolare per il <strong>contesto produttivo e gestionale</strong>.
-                    </p>
-                     <p class="mb-4">
-                        Sono una persona dinamica e proattiva. Nel tempo libero amo fare sport, stare a contatto con la natura e tenermi impegnato. Possiedo buone capacità di <strong>problem solving</strong>, anche sotto pressione, e mi trovo a mio agio nel <strong>lavorare in team</strong> ed interagire con diverse funzioni aziendali, anche in contesti multiculturali.
-                    </p>
-                     <p class="font-medium">Lingue: <span class="bg-primary-light text-white px-2 py-1 rounded-full text-sm">Italiano (Madrelingua)</span> <span class="bg-secondary text-white px-2 py-1 rounded-full text-sm">Inglese (Avanzato)</span></p>
-                </div>
-                 <div class="md:w-1/3 mt-8 md:mt-0 text-center">
-                     <img src="assets/io2.jpg" alt="Foto Alessandro Barresi" class="w-48 h-48 md:w-56 md:h-56 rounded-full mx-auto shadow-xl border-4 border-primary-light object-cover">
-                     <p class="mt-4 text-neutral italic">"Trasformare i dati in decisioni, codice in soluzioni."</p>
-                 </div>
-            </div>
-        </section>
+    <a class="edition classic" href="versione-2024.html">
+      <span class="ed-tag">Edizione 2024/25 · Classic</span>
+      <h2>La versione originale</h2>
+      <p>Il portfolio storico, conservato così com'era: quattro temi selezionabili e i progetti dell'epoca.</p>
+      <ul>
+        <li>Temi Moderno, High-Tech, Matrix e Quantum</li>
+        <li>Timeline e progetti del periodo 2024/25</li>
+        <li>Gioco natalizio nella versione originale</li>
+        <li>Un tuffo nel punto di partenza</li>
+      </ul>
+      <span class="cta">Visita la classic <span aria-hidden="true">→</span></span>
+    </a>
+  </main>
+</div>
 
-        <!-- Sezione Progetti -->
-        <section id="progetti" class="main-content-section progetti-section theme-modern-progetti mb-16 p-8 bg-white rounded-lg shadow-xl fade-in-section">
-            <h2 class="text-3xl font-bold text-primary-dark mb-10 text-center">I Miei Progetti</h2>
-            <p class="text-lg text-center text-neutral mb-6 max-w-2xl mx-auto">Una selezione di progetti che dimostrano le mie capacità nello sviluppo di applicazioni e nell'analisi dati.</p>
-            <p class="text-center italic text-neutral-dark mb-12">Nota: Alcuni progetti sviluppati in ambito lavorativo potrebbero non essere pubblicamente accessibili.</p>
+<footer>
+  <div class="links">
+    <a href="https://github.com/alessandro385" target="_blank" rel="noopener">GitHub</a>
+    <a href="https://www.linkedin.com/in/alessandro-barresi-a4b68b324/" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="mailto:alessandrobarresi12@gmail.com">Email</a>
+    <a href="cv Barresi Alessandro (1).pdf" download>Curriculum (PDF)</a>
+  </div>
+  © 2026 Alessandro Barresi — Realizzato con passione e codice.
+</footer>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                 
-                <!-- Progetto App Stampa Etichette -->
-                <article class="progetto-card group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden">
-                    <div class="h-48 bg-gray-200 flex items-center justify-center group-hover:bg-gray-300 transition-colors duration-300 overflow-hidden">
-                        <img src="assets/app_stampa_etichette_preview.png" alt="App Stampa Etichette" class="max-h-full w-auto object-contain p-2">
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-primary-dark mb-3 group-hover:text-primary transition-colors duration-300">App Gestione e Stampa Etichette</h3>
-                        <p class="text-neutral mb-4 text-sm leading-relaxed">Applicazione desktop per la gestione del processo di etichettatura, con DB manager, interfaccia di stampa e dashboard di analisi dati.</p>
-                        <div class="mt-4 mb-2">
-                            <span class="inline-block bg-primary-light/20 text-primary-dark text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Node.js</span>
-                            <span class="inline-block bg-primary-light/20 text-primary-dark text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">SQLite</span>
-                            <span class="inline-block bg-primary-light/20 text-primary-dark text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">JavaScript</span>
-                            <span class="inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">App Desktop</span>
-                        </div>
-                        <div class="mt-5 flex flex-col sm:flex-row justify-end items-center space-y-3 sm:space-y-0 sm:space-x-3">
-                            <a href="https://github.com/alessandro385/app_stampa_etichette/archive/refs/heads/main.zip" download class="w-full sm:w-auto text-center text-sm font-medium bg-secondary hover:bg-secondary-dark text-white py-2 px-4 rounded-lg transition-colors duration-300 shadow hover:shadow-md">
-                                Scarica App (.zip)
-                            </a>
-                            <a href="https://resplendent-pie-f4f1d8.netlify.app/index.html" target="_blank" class="w-full sm:w-auto text-center text-sm font-medium bg-primary hover:bg-primary-dark text-white py-2 px-4 rounded-lg transition-colors duration-300 shadow hover:shadow-md">
-                                Visualizza Presentazione
-                            </a>
-                        </div>
-                    </div>
-                </article>
+<script>
+  // Neve / stelle leggere sul canvas di sfondo
+  const cv = document.getElementById('stars');
+  const cx = cv.getContext('2d');
+  let W, H, flakes = [];
+  function resize() {
+    W = cv.width = innerWidth * devicePixelRatio;
+    H = cv.height = innerHeight * devicePixelRatio;
+    const n = Math.min(140, Math.floor(innerWidth / 9));
+    flakes = Array.from({ length: n }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      r: (Math.random() * 1.6 + .4) * devicePixelRatio,
+      s: (Math.random() * .35 + .08) * devicePixelRatio,
+      w: Math.random() * Math.PI * 2,
+      a: Math.random() * .5 + .25
+    }));
+  }
+  resize();
+  addEventListener('resize', resize);
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  (function loop() {
+    cx.clearRect(0, 0, W, H);
+    for (const f of flakes) {
+      f.y += f.s; f.w += .01;
+      f.x += Math.sin(f.w) * .25 * devicePixelRatio;
+      if (f.y > H + 5) { f.y = -5; f.x = Math.random() * W; }
+      cx.globalAlpha = f.a;
+      cx.fillStyle = '#dfe7ff';
+      cx.beginPath(); cx.arc(f.x, f.y, f.r, 0, 7); cx.fill();
+    }
+    cx.globalAlpha = 1;
+    if (!reduced) requestAnimationFrame(loop);
+  })();
 
-                <!-- Progetto 1 Card: La Corsa di Babbo Natale -->
-                <article class="progetto-card group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden">
-                    <div class="h-48 bg-gray-200 flex items-center justify-center group-hover:bg-gray-300 transition-colors duration-300 overflow-hidden">
-                        <!-- Immagine Progetto -->
-                        <img src="assets/la_corsa_di_babbo_natale/logo.png" alt="La Corsa di Babbo Natale Gioco" class="max-h-full w-auto object-contain p-2">
-                    </div>
-                     <div class="p-6">
-                         <h3 class="text-2xl font-semibold text-primary-dark mb-3 group-hover:text-primary transition-colors duration-300">La Corsa di Babbo Natale</h3>
-                         <p class="text-neutral mb-4 text-sm leading-relaxed">Un'avventura natalizia in HTML5 Canvas e JavaScript. Scegli la tua slitta, raccogli power-up e goditi effetti particellari dinamici in questo gioco interattivo con la sua presentazione.</p>
-                         <div class="mt-4 mb-2">
-                             <span class="inline-block bg-primary-light/20 text-primary-dark text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">HTML5 Canvas</span>
-                             <span class="inline-block bg-primary-light/20 text-primary-dark text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">JavaScript</span>
-                             <span class="inline-block bg-primary-light/20 text-primary-dark text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Vite.js</span>
-                             <span class="inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">Gioco Web</span>
-                         </div>
-                         <div class="mt-5 flex flex-col sm:flex-row justify-end items-center space-y-3 sm:space-y-0 sm:space-x-3">
-                             <a href="https://dynamic-valkyrie-e431a9.netlify.app/" target="_blank" class="w-full sm:w-auto text-center text-sm font-medium bg-primary hover:bg-primary-dark text-white py-2 px-4 rounded-lg transition-colors duration-300 shadow hover:shadow-md">
-                                Visualizza Progetto & Gioca
-                             </a>
-                         </div>
-                     </div>
-                </article>
-
-                 <!-- Progetto 2 Card (Ora Gestionale Parrucchiera) -->
-                 <article class="progetto-card group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden">
-                    <div class="h-48 bg-gray-200 flex items-center justify-center group-hover:bg-gray-300 transition-colors duration-300 overflow-hidden">
-                        <!-- Immagine Progetto Sostituita -->
-                        <img src="assets/gestionale_parrucchiera/Home_page.png" alt="Homepage Gestionale Parrucchiera" class="max-h-full w-auto object-contain p-2">
-                    </div>
-                     <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-primary-dark mb-3 group-hover:text-primary transition-colors duration-300">Gestionale Parrucchiera</h3>
-                        <p class="text-neutral mb-4 text-sm leading-relaxed">Applicazione web per la gestione di un salone di parrucchieri, con funzionalità per clienti, servizi e appuntamenti. Backend in Python e frontend basato su Node.js.</p>
-                        <div class="mt-4 mb-2">
-                            <span class="inline-block bg-primary-light/20 text-primary-dark text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Python</span>
-                            <span class="inline-block bg-primary-light/20 text-primary-dark text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Node.js</span>
-                            <span class="inline-block bg-primary-light/20 text-primary-dark text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">JSON</span>
-                            <span class="inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">Web App</span>
-                        </div>
-                        <div class="mt-5 flex flex-col sm:flex-row justify-end items-center space-y-3 sm:space-y-0 sm:space-x-3">
-                             <a href="https://github.com/alessandro385/presentazione-alessandro2/releases/download/v1.00/progetto_gestionale.7z" download class="w-full sm:w-auto text-center text-sm font-medium bg-secondary hover:bg-secondary-dark text-white py-2 px-4 rounded-lg transition-colors duration-300 shadow hover:shadow-md">
-                                Scarica App (.7z)
-                             </a>
-                             <a href="presentazione_parrucchiera/presentazione_parrucchiera.html" class="w-full sm:w-auto text-center text-sm font-medium bg-primary hover:bg-primary-dark text-white py-2 px-4 rounded-lg transition-colors duration-300 shadow hover:shadow-md">
-                                Visualizza Presentazione
-                             </a>
-                         </div>
-                     </div>
-                 </article>
-
-                 <!-- Progetto 3: Gestionale Mensa -->
-                 <article class="progetto-card group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden">
-                    <div class="h-48 bg-gray-200 flex items-center justify-center group-hover:bg-gray-300 transition-colors duration-300 overflow-hidden">
-                        <!-- Immagine Progetto Sostituita -->
-                        <img src="assets/gestionale_mensa1/logo.png" alt="Logo Gestionale Mensa" class="max-h-full w-auto object-contain p-4">
-                    </div>
-                     <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-primary-dark mb-3 group-hover:text-primary transition-colors duration-300">Gestionale Mensa Aziendale</h3>
-                        <p class="text-neutral mb-4 text-sm leading-relaxed">Applicazione desktop (pacchettizzata con PyInstaller) sviluppata in Python/Flask per la gestione di una mensa. Include funzionalità di login, gestione dati tramite database SQL e interfaccia web-based.</p>
-                        <div class="mt-4 mb-2">
-                            <span class="inline-block bg-primary-light/20 text-primary-dark text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Python</span>
-                            <span class="inline-block bg-primary-light/20 text-primary-dark text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Flask</span>
-                            <span class="inline-block bg-primary-light/20 text-primary-dark text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">SQLAlchemy</span>
-                             <span class="inline-block bg-gray-200 text-gray-700 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">PyInstaller</span>
-                            <span class="inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">App Desktop</span>
-                        </div>
-                        <div class="mt-5 flex flex-col sm:flex-row justify-end items-center space-y-3 sm:space-y-0 sm:space-x-3">
-                             <a href="https://github.com/alessandro385/presentazione-alessandro2/releases/download/v1.00/GestionaleMensa.7z" download class="w-full sm:w-auto text-center text-sm font-medium bg-secondary hover:bg-secondary-dark text-white py-2 px-4 rounded-lg transition-colors duration-300 shadow hover:shadow-md">
-                                Scarica App (.7z)
-                             </a>
-                             <a href="presentaione_mensa/presentazione_mensa.html" class="w-full sm:w-auto text-center text-sm font-medium bg-primary hover:bg-primary-dark text-white py-2 px-4 rounded-lg transition-colors duration-300 shadow hover:shadow-md">
-                                Visualizza Presentazione
-                             </a>
-                         </div>
-                     </div>
-                 </article>
-
-                 <!-- Progetto 4: Idea Presentazione App Prestiti -->
-                 <article class="progetto-card group bg-white rounded-xl shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden">
-                    <div class="h-48 bg-gray-200 flex items-center justify-center group-hover:bg-gray-300 transition-colors duration-300 overflow-hidden">
-                        <!-- Immagine Placeholder o Logo Generico -->
-                        <img src="assets/flashpay/logo.png" alt="Concept App Prestiti" class="max-h-full w-auto object-contain p-4">
-                    </div>
-                     <div class="p-6">
-                        <h3 class="text-2xl font-semibold text-primary-dark mb-3 group-hover:text-primary transition-colors duration-300">Concept: App Gestione Prestiti</h3>
-                        <p class="text-neutral mb-4 text-sm leading-relaxed">Presentazione di un'idea progettuale per un'applicazione dedicata alla gestione e al monitoraggio di prestiti. Include analisi di mercato, personas e mockup iniziali dell'interfaccia.</p>
-                        <div class="mt-4 mb-2">
-                            <span class="inline-block bg-accent/20 text-accent-dark text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">Concept Design</span>
-                            <span class="inline-block bg-accent/20 text-accent-dark text-xs font-semibold mr-2 px-2.5 py-0.5 rounded-full">UX Research</span>
-                            <span class="inline-block bg-gray-200 text-gray-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">Presentazione Idea</span>
-                        </div>
-                        <div class="mt-5 flex flex-col sm:flex-row justify-end items-center space-y-3 sm:space-y-0 sm:space-x-3">
-                             <a href="https://golden-quokka-357e6d.netlify.app/" target="_blank" class="w-full sm:w-auto text-center text-sm font-medium bg-primary hover:bg-primary-dark text-white py-2 px-4 rounded-lg transition-colors duration-300 shadow hover:shadow-md">
-                                Visualizza Presentazione Idea
-                             </a>
-                         </div>
-                     </div>
-                 </article>
-
-            </div>
-             <p class="text-center mt-12 text-neutral"><em>Per discutere di altri progetti o per avere maggiori dettagli, non esitare a <a href="#contatti" class="text-primary hover:underline">contattarmi</a>.</em></p>
-        </section>
-
-        <!-- Sezione Cosa Faccio / Specializzazioni -->
-        <section id="cosa-faccio" class="main-content-section cosa-faccio-section theme-modern-cosa-faccio mb-16 p-8 bg-gradient-to-r from-neutral-dark to-gray-700 text-white rounded-lg shadow-xl fade-in-section">
-            <h2 class="text-3xl font-bold text-primary-light mb-10 text-center">Competenze Chiave</h2>
-             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-primary/50 transition-shadow duration-300 transform hover:-translate-y-1">
-                    <div class="flex items-center mb-4">
-                        <svg class="w-8 h-8 text-secondary mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
-                        <h3 class="text-xl font-semibold text-secondary">Data Analytics</h3>
-                    </div>
-                    <p class="text-neutral-light text-sm">Estrazione, pulizia, analisi e visualizzazione dati per trasformare numeri grezzi in insight strategici e report chiari.</p>
-                </div>
-
-                 <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-primary/50 transition-shadow duration-300 transform hover:-translate-y-1">
-                    <div class="flex items-center mb-4">
-                        <svg class="w-8 h-8 text-secondary mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                        <h3 class="text-xl font-semibold text-secondary">Sviluppo Applicativi Gestionali</h3>
-                    </div>
-                    <p class="text-neutral-light text-sm">Creazione di web app (Python, Dash) integrate con database SQL per una gestione dati efficiente e su misura.</p>
-                </div>
-
-                 <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-primary/50 transition-shadow duration-300 transform hover:-translate-y-1">
-                    <div class="flex items-center mb-4">
-                        <svg class="w-8 h-8 text-secondary mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 12l3-3 3 3 4-4M8 21l4-4 4 4M3 4h18M4 4h16v12a1 1 0 01-1 1H5a1 1 0 01-1-1V4z" /></svg>
-                        <h3 class="text-xl font-semibold text-secondary">Dashboard Personalizzate</h3>
-                    </div>
-                    <p class="text-neutral-light text-sm">Realizzazione di interfacce interattive (Plotly, Pandas) per il monitoraggio di KPI e performance aziendali.</p>
-                </div>
-
-                <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-primary/50 transition-shadow duration-300 transform hover:-translate-y-1">
-                     <div class="flex items-center mb-4">
-                        <svg class="w-8 h-8 text-secondary mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                        <h3 class="text-xl font-semibold text-secondary">Automazione Processi</h3>
-                    </div>
-                    <p class="text-neutral-light text-sm">Sviluppo di script (Python, VBA) per automatizzare task ripetitivi, riducendo tempi operativi ed errori.</p>
-                </div>
-
-                 <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-primary/50 transition-shadow duration-300 transform hover:-translate-y-1">
-                    <div class="flex items-center mb-4">
-                        <svg class="w-8 h-8 text-secondary mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8h2a2 2 0 012 2v6a2 2 0 01-2 2h-2v4l-4-4H9a1.994 1.994 0 01-1.414-.586m0 0L11 14h4a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2v4l.586-.586z" /></svg>
-                        <h3 class="text-xl font-semibold text-secondary">Problem Solving & Team Working</h3>
-                    </div>
-                    <p class="text-neutral-light text-sm">Capacità di analizzare problemi complessi e collaborare efficacemente per trovare soluzioni ottimali.</p>
-                </div>
-                
-                 <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:shadow-primary/50 transition-shadow duration-300 transform hover:-translate-y-1">
-                    <div class="flex items-center mb-4">
-                        <svg class="w-8 h-8 text-secondary mr-3" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2zM7 21h10" /></svg>
-                        <h3 class="text-xl font-semibold text-secondary">Strumenti Principali</h3>
-                    </div>
-                    <p class="text-neutral-light text-sm">Python (Dash, Plotly, Pandas), SQL, Excel/VBA, Git, SAP (basi), Zucchetti (basi), Strumenti IoT (basi).</p>
-                </div>
-             </div>
-        </section>
-
-        <!-- Sezione Esperienza e Formazione -->
-        <section id="esperienza" class="main-content-section esperienza-section theme-modern-esperienza mb-16 py-16 px-4 sm:px-6 lg:px-8 bg-neutral-lightest rounded-lg shadow-xl fade-in-section overflow-hidden">
-            <h2 class="text-3xl md:text-4xl font-bold font-serif text-primary-dark mb-12 text-center">Percorso Professionale e Formativo</h2>
-            
-            <div class="relative max-w-4xl mx-auto">
-                <!-- La linea verticale della timeline -->
-                <div class="absolute left-4 md:left-1/2 top-0 h-full w-0.5 bg-neutral-light transform md:-translate-x-1/2"></div>
-
-                <!-- Blocco Esperienze -->
-                <div class="mb-12">
-                    <div class="flex items-center mb-8 md:justify-center md:relative md:h-20">
-                         <div class="flex-shrink-0 w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white absolute left-0 md:left-1/2 transform -translate-x-1/2 md:-translate-x-1/2 -ml-0.5 z-10 shadow-md md:top-10">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                              </svg>
-                         </div>
-                        <h3 class="text-2xl font-semibold text-primary-dark pl-12 md:pl-0 md:text-center md:absolute md:w-full md:top-2">Esperienze Lavorative</h3>
-                    </div>
-                    
-                    <!-- Elementi Timeline Esperienze -->
-                    <div class="space-y-10">
-                        <!-- NUOVA ESPERIENZA: SIME Partecipazioni -->
-                        <div class="relative md:flex md:items-start md:justify-between">
-                            <div class="md:w-1/2 md:pr-8 timeline-item timeline-item-left">
-                                <div class="bg-white p-6 rounded-lg shadow-lg border-l-4 border-primary hover:shadow-xl transition-shadow duration-300">
-                                     <span class="absolute -left-2.5 md:left-auto md:-right-2.5 top-4 w-5 h-5 bg-white border-2 border-primary rounded-full md:hidden"></span> <!-- Dot Mobile -->
-                                     <h4 class="text-xl font-semibold text-primary mb-1">Supply & Portfolio Power Management (Junior)</h4>
-                                    <p class="text-sm text-neutral font-medium mb-3">SIME PARTECIPAZIONI S.p.A. | <span class="text-secondary-dark font-semibold">05/2025 – In corso</span></p>
-                                    <ul class="list-disc list-inside text-sm text-neutral-dark space-y-1">
-                                        <li>Gestione portfolio energetico e attività di forecasting.</li>
-                                        <li>Sviluppo database (SQL, VBA) per l'ottimizzazione dei processi.</li>
-                                        <li>Analisi dati e supporto alla modellazione matematica.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="absolute left-4 md:left-1/2 top-4 w-5 h-5 bg-white border-2 border-primary rounded-full transform -translate-x-1/2 -ml-0.5 z-10 hidden md:block"></div> <!-- Dot Desktop -->
-                            <div class="md:w-1/2 md:pl-8 timeline-date-right text-right hidden md:block">
-                                <!-- Vuoto o data ripetuta/alternativa -->
-                            </div>
-                        </div>
-
-                        <!-- Stage Galbani -->
-                        <div class="relative md:flex md:items-start md:justify-between">
-                            <div class="md:w-1/2 md:pl-8 timeline-date-left text-left hidden md:block">
-                                <!-- Vuoto o data ripetuta/alternativa -->
-                            </div>
-                            <div class="absolute left-4 md:left-1/2 top-4 w-5 h-5 bg-white border-2 border-primary rounded-full transform -translate-x-1/2 -ml-0.5 z-10 hidden md:block"></div> <!-- Dot Desktop -->
-                            <div class="md:w-1/2 md:pl-8 md:text-left timeline-item timeline-item-right">
-                                <div class="bg-white p-6 rounded-lg shadow-lg border-l-4 md:border-l-0 md:border-r-4 border-primary hover:shadow-xl transition-shadow duration-300">
-                                     <span class="absolute -left-2.5 md:left-auto md:-right-2.5 top-4 w-5 h-5 bg-white border-2 border-primary rounded-full md:hidden"></span> <!-- Dot Mobile -->
-                                     <h4 class="text-xl font-semibold text-primary mb-1">Stage Lean Promotion & Sviluppo Software</h4>
-                                    <p class="text-sm text-neutral font-medium mb-3">Egidio Galbani S.P.A. | <span class="text-secondary-dark font-semibold">05/2024 – 09/2024</span></p>
-                                    <ul class="list-disc list-inside text-sm text-neutral-dark space-y-1">
-                                        <li>Sviluppo applicazioni Dash per gestione dati produzione/magazzino.</li>
-                                        <li>Progettazione dashboard KPI con Python (Dash, Plotly).</li>
-                                        <li>Automazione reportistica (Python, SQL).</li>
-                                        <li>Collaborazione con Direzione Produzione per ottimizzazione workflow.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                         <!-- Operatore Galbani -->
-                         <div class="relative md:flex md:items-start md:justify-between">
-                             <div class="md:w-1/2 md:pr-8 timeline-item timeline-item-left">
-                                 <div class="bg-white p-6 rounded-lg shadow-lg border-l-4 border-primary hover:shadow-xl transition-shadow duration-300">
-                                     <span class="absolute -left-2.5 md:left-auto md:-right-2.5 top-4 w-5 h-5 bg-white border-2 border-primary rounded-full md:hidden"></span> <!-- Dot Mobile -->
-                                      <h4 class="text-xl font-semibold text-primary mb-1">Operatore di Produzione</h4>
-                                     <p class="text-sm text-neutral font-medium mb-3">Egidio Galbani S.P.A. | <span class="text-secondary-dark font-semibold">01/2023 – 05/2024</span></p>
-                                      <ul class="list-disc list-inside text-sm text-neutral-dark space-y-1">
-                                         <li>Gestione macchine confezionamento, Robot collaborativi.</li>
-                                         <li>Tracciamento dati produzione con software gestionali.</li>
-                                     </ul>
-                                 </div>
-                             </div>
-                         </div>
-
-                         <!-- Aiutante Tubista - Deve essere a DESTRA -->
-                         <div class="relative md:flex md:items-start md:justify-between">
-                            <div class="md:w-1/2 md:pr-8 timeline-date-left text-left hidden md:block">
-                                <!-- Vuoto o data ripetuta/alternativa -->
-                            </div>
-                            <div class="absolute left-4 md:left-1/2 top-4 w-5 h-5 bg-white border-2 border-primary rounded-full transform -translate-x-1/2 -ml-0.5 z-10 hidden md:block"></div> <!-- Dot Desktop -->
-                            <div class="md:w-1/2 md:pl-8 md:text-left timeline-item timeline-item-right">
-                                <div class="bg-white p-6 rounded-lg shadow-lg border-l-4 md:border-l-0 md:border-r-4 border-primary hover:shadow-xl transition-shadow duration-300">
-                                    <span class="absolute -left-2.5 md:left-auto md:-right-2.5 top-4 w-5 h-5 bg-white border-2 border-primary rounded-full md:hidden"></span> <!-- Dot Mobile -->
-                                     <h4 class="text-xl font-semibold text-primary mb-1">Aiutante Tubista</h4>
-                                    <p class="text-sm text-neutral font-medium mb-3">New Pipe S.R.L. | <span class="text-secondary-dark font-semibold">01/2021 – 01/2023</span></p>
-                                     <ul class="list-disc list-inside text-sm text-neutral-dark space-y-1">
-                                        <li>Lettura disegni tecnici, Saldatura TIG, Manutenzione impianti.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                         </div>
-                    </div>
-                </div>
-
-                <!-- Blocco Formazione -->
-                <div class="mb-0"> <!-- Rimuovi mb-12 dall'ultimo blocco se non serve spazio sotto -->
-                    <div class="flex items-center mb-8 md:justify-center md:relative md:h-20">
-                        <div class="flex-shrink-0 w-8 h-8 rounded-full bg-secondary flex items-center justify-center text-white absolute left-0 md:left-1/2 transform -translate-x-1/2 md:-translate-x-1/2 -ml-0.5 z-10 shadow-md md:top-10">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                <path d="M12 14l9-5-9-5-9 5 9 5z" />
-                                <path d="M12 14l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14z" />
-                              <path stroke-linecap="round" stroke-linejoin="round" d="M12 14l9-5-9-5-9 5 9 5zm0 0l6.16-3.422a12.083 12.083 0 01.665 6.479A11.952 11.952 0 0012 20.055a11.952 11.952 0 00-6.824-2.998 12.078 12.078 0 01.665-6.479L12 14zm-4 6v-7.5l4-2.222" />
-                            </svg>
-                        </div>
-                        <h3 class="text-2xl font-semibold text-secondary-dark pl-12 md:pl-0 md:text-center md:absolute md:w-full md:top-2">Istruzione e Formazione</h3>
-                    </div>
-
-                     <!-- Elementi Timeline Formazione -->
-                     <div class="space-y-10">
-                        <!-- ITS - Deve essere a SINISTRA -->
-                        <div class="relative md:flex md:items-start md:justify-between">
-                            <div class="md:w-1/2 md:pr-8 timeline-item timeline-item-left">
-                                <div class="bg-white p-6 rounded-lg shadow-lg border-l-4 border-secondary hover:shadow-xl transition-shadow duration-300">
-                                     <span class="absolute -left-2.5 md:left-auto md:-right-2.5 top-4 w-5 h-5 bg-white border-2 border-secondary rounded-full md:hidden"></span> <!-- Dot Mobile -->
-                                     <h4 class="text-xl font-semibold text-secondary-dark mb-1">Tecnico Superiore Digitalizzazione Processi Industriali</h4>
-                                     <p class="text-sm text-neutral font-medium mb-3">I.T.S. Academy Cremona - Crema (CR) | <span class="text-primary-dark font-semibold">2023 – 05/2025</span></p>
-                                    <ul class="list-disc list-inside text-sm text-neutral-dark space-y-1">
-                                        <li>Specializzazione in automazione industriale, IoT, gestione dati.</li>
-                                        <li>Progetti pratici: Sviluppo dashboard (Python, Dash), Integrazione DB SQL.</li>
-                                     </ul>
-                                </div>
-                            </div>
-                             <div class="absolute left-4 md:left-1/2 top-4 w-5 h-5 bg-white border-2 border-secondary rounded-full transform -translate-x-1/2 -ml-0.5 z-10 hidden md:block"></div> <!-- Dot Desktop -->
-                             <div class="md:w-1/2 md:pl-8 timeline-date-right text-right hidden md:block">
-                                 <!-- Vuoto o data ripetuta/alternativa -->
-                             </div>
-                         </div>
-
-                         <!-- Pacioli - Deve essere a DESTRA -->
-                        <div class="relative md:flex md:items-start md:justify-between">
-                             <div class="md:w-1/2 md:pr-8 timeline-date-left text-left hidden md:block">
-                                 <!-- Vuoto o data ripetuta/alternativa -->
-                             </div>
-                             <div class="absolute left-4 md:left-1/2 top-4 w-5 h-5 bg-white border-2 border-secondary rounded-full transform -translate-x-1/2 -ml-0.5 z-10 hidden md:block"></div> <!-- Dot Desktop -->
-                             <div class="md:w-1/2 md:pl-8 md:text-left timeline-item timeline-item-right">
-                                <div class="bg-white p-6 rounded-lg shadow-lg border-l-4 md:border-l-0 md:border-r-4 border-secondary hover:shadow-xl transition-shadow duration-300">
-                                     <span class="absolute -left-2.5 md:left-auto md:-right-2.5 top-4 w-5 h-5 bg-white border-2 border-secondary rounded-full md:hidden"></span> <!-- Dot Mobile -->
-                                    <h4 class="text-xl font-semibold text-secondary-dark mb-1">Diploma Relazioni Internazionali per il Marketing</h4>
-                                     <p class="text-sm text-neutral font-medium mb-3">I.I.S. Luca Pacioli - Crema (CR) | <span class="text-primary-dark font-semibold">2015 – 2020</span></p>
-                                    <ul class="list-disc list-inside text-sm text-neutral-dark space-y-1">
-                                         <li>Studio avanzato lingua Inglese.</li>
-                                         <li>Analisi mercati, piani marketing, simulazioni startup.</li>
-                                         <li>Competenze: Excel, CMS, Comunicazione digitale.</li>
-                                     </ul>
-                                </div>
-                            </div>
-                         </div>
-                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sezione Contatti -->
-        <section id="contatti" class="main-content-section contatti-section theme-modern-contatti p-8 bg-neutral-dark text-neutral-light rounded-lg shadow-lg fade-in-section">
-            <h2 class="text-3xl font-bold text-primary-light mb-6 text-center">Mettiamoci in Contatto</h2>
-            <p class="text-lg text-center mb-8 max-w-2xl mx-auto">Sono sempre aperto a nuove opportunità, collaborazioni o semplicemente a una chiacchierata. Non esitare a contattarmi!</p>
-            <ul class="text-center space-y-4">
-                <li>
-                    <strong class="text-secondary">Email:</strong>
-                    <a href="mailto:alessandrobarresi12@gmail.com" class="ml-2 hover:text-primary-light transition duration-300">alessandrobarresi12@gmail.com</a>
-                </li>
-                <li>
-                    <strong class="text-secondary">Telefono:</strong>
-                    <span class="ml-2">+39 392 707 0251</span>
-                 </li>
-                 <li>
-                    <strong class="text-secondary">LinkedIn:</strong>
-                    <a href="https://www.linkedin.com/in/alessandro-barresi-a4b68b324/" target="_blank" class="ml-2 hover:text-primary-light transition duration-300 underline">Alessandro Barresi</a>
-                    
-                 </li>
-                 <!-- Aggiungere GitHub se disponibile -->
-                 <!-- <li>
-                    <strong class="text-secondary">GitHub:</strong>
-                    <a href="#" target="_blank" class="ml-2 hover:text-primary-light transition duration-300">MioProfiloGitHub</a>
-                 </li> -->
-            </ul>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="bg-neutral-dark text-neutral-light text-center py-6 mt-16">
-        <p>&copy; 2024 Alessandro Barresi. Tutti i diritti riservati.</p>
-        <p class="text-sm mt-1">Realizzato con passione e codice.</p>
-    </footer>
-
-    <!-- Lo script JS va alla fine -->
-    <script src="script.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  // Glow che segue il mouse sulle card
+  document.querySelectorAll('.edition').forEach(card => {
+    card.addEventListener('pointermove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+    });
+  });
+</script>
 </body>
-</html> 
+</html>

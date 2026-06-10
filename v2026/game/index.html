@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="theme-color" content="#0a0e1a">
+  <title>La Corsa di Babbo Natale — Edizione 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div id="app">
+  <canvas id="game-canvas"></canvas>
+
+  <!-- HUD di gioco -->
+  <div id="hud" class="hidden">
+    <div class="hud-top">
+      <div class="glass hud-box hud-left">
+        <div id="hud-hearts" aria-label="Vite"></div>
+      </div>
+      <div class="glass hud-box hud-center">
+        <div id="hud-level-name">—</div>
+        <div id="hud-progress"><div id="hud-progress-fill"></div></div>
+        <div id="hud-meters">0 m</div>
+      </div>
+      <div class="glass hud-box hud-right">
+        <div id="hud-score">0</div>
+        <div id="hud-combo" class="hidden">COMBO ×1</div>
+      </div>
+    </div>
+    <div id="hud-powerups"></div>
+    <div id="hud-boss" class="glass hidden">
+      <span id="hud-boss-name">Boss</span>
+      <div id="hud-boss-bar"><div id="hud-boss-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- Banner annunci (zone, boss, livello completato) -->
+  <div id="banner" class="hidden">
+    <div id="banner-title"></div>
+    <div id="banner-sub"></div>
+  </div>
+
+  <!-- Controlli touch -->
+  <div id="touch-layer" class="hidden">
+    <div id="joystick-zone">
+      <div id="joystick-base" class="hidden"><div id="joystick-knob"></div></div>
+    </div>
+    <div id="fire-zone"><button id="fire-btn" aria-label="Fuoco">&#10052;</button></div>
+    <button id="pause-btn" aria-label="Pausa">&#10073;&#10073;</button>
+  </div>
+
+  <!-- ===== Schermata: MENU ===== -->
+  <div id="screen-menu" class="screen">
+    <div class="screen-inner">
+      <p class="kicker">Edizione 2026</p>
+      <h1 class="title">La Corsa di<br>Babbo Natale</h1>
+      <p class="tagline">Consegna i regali, schiva il gelo, sconfiggi il Grinch.</p>
+
+      <h2 class="section-label">Scegli la tua slitta</h2>
+      <div id="sled-cards"></div>
+
+      <button id="btn-start" class="btn btn-primary">Inizia la corsa</button>
+
+      <div class="options-row">
+        <label class="toggle"><input type="checkbox" id="chk-autofire"><span>Fuoco automatico (touch)</span></label>
+        <label class="toggle"><input type="checkbox" id="chk-audio" checked><span>Audio</span></label>
+      </div>
+
+      <p id="menu-highscore" class="muted">Record: —</p>
+      <p class="muted hint" id="menu-hint">Frecce / WASD per muoverti · Spazio per sparare · P per la pausa</p>
+    </div>
+  </div>
+
+  <!-- ===== Schermata: PAUSA ===== -->
+  <div id="screen-pause" class="screen hidden">
+    <div class="screen-inner glass panel">
+      <h2 class="panel-title">Pausa</h2>
+      <p class="muted" id="pause-info"></p>
+      <button id="btn-resume" class="btn btn-primary">Riprendi</button>
+      <button id="btn-restart-pause" class="btn">Ricomincia</button>
+      <button id="btn-menu-pause" class="btn btn-ghost">Torna al menu</button>
+    </div>
+  </div>
+
+  <!-- ===== Schermata: GAME OVER ===== -->
+  <div id="screen-gameover" class="screen hidden">
+    <div class="screen-inner glass panel">
+      <h2 class="panel-title danger">Partita finita</h2>
+      <p class="muted">La slitta è precipitata nella neve…</p>
+      <div id="go-record" class="record-badge hidden">Nuovo record!</div>
+      <dl id="go-stats" class="stats"></dl>
+      <button id="btn-retry" class="btn btn-primary">Riprova</button>
+      <button id="btn-menu-go" class="btn btn-ghost">Torna al menu</button>
+    </div>
+  </div>
+
+  <!-- ===== Schermata: VITTORIA ===== -->
+  <div id="screen-victory" class="screen hidden">
+    <div class="screen-inner glass panel">
+      <h2 class="panel-title success">Missione compiuta!</h2>
+      <p class="muted">Il Grinch è sconfitto: il Natale 2026 è salvo.</p>
+      <div id="vic-record" class="record-badge hidden">Nuovo record!</div>
+      <dl id="vic-stats" class="stats"></dl>
+      <button id="btn-again" class="btn btn-primary">Gioca ancora</button>
+      <button id="btn-menu-vic" class="btn btn-ghost">Torna al menu</button>
+    </div>
+  </div>
+</div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
