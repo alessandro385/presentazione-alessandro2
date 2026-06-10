@@ -20,6 +20,20 @@
     location.hostname === '127.0.0.1' ||
     location.protocol === 'file:';
 
+  // Auto-esclusione del proprietario: visita il sito con #non-contarmi
+  // una sola volta e quel browser non verrà più conteggiato.
+  // Per riattivarti: visita con #contami.
+  try {
+    if (location.hash === '#non-contarmi') {
+      localStorage.setItem('ab-no-track', '1');
+      alert('Statistiche: questo browser non verrà più conteggiato.');
+    } else if (location.hash === '#contami') {
+      localStorage.removeItem('ab-no-track');
+      alert('Statistiche: questo browser torna a essere conteggiato.');
+    }
+    if (localStorage.getItem('ab-no-track') === '1') return;
+  } catch { /* storage non disponibile: si continua normalmente */ }
+
   // Dentro un iframe (es. gioco embeddato nella presentazione) il
   // pageview lo conta già la pagina madre: qui inviamo solo eventi.
   const inIframe = window.self !== window.top;
