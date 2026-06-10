@@ -30,79 +30,162 @@
 </header>
 
 <main>
+
+  <!-- ===== HERO ===== -->
   <section class="show-hero">
-    <div class="container">
-      <img class="app-logo" src="../../assets/gestionale_mensa1/logo.png" alt="Logo Gestionale Mensa Service">
-      <h1>Gestionale <span class="grad-text">Mensa Service</span></h1>
-      <p class="lead">Una soluzione completa per la gestione efficiente del magazzino e delle preparazioni
-      in ambito ristorativo e mense aziendali: scorte, ricette, movimenti e notifiche in un'unica app desktop.</p>
-      <div class="tech-row">
-        <span class="chip">Python</span><span class="chip">Flask</span><span class="chip">SQLAlchemy</span>
-        <span class="chip">SQLite</span><span class="chip">HTML5 · CSS3</span><span class="chip">PyInstaller</span>
+    <div class="container show-hero-grid">
+      <div>
+        <span class="kicker">// case study · app desktop</span>
+        <h1>Il magazzino della mensa, <span class="grad-text">sotto controllo</span></h1>
+        <p class="lead">Gestionale completo per mense aziendali e ristorazione: scorte, ricette,
+        movimenti e notifiche proattive in un'unica applicazione desktop, dal database all'interfaccia.</p>
+        <div class="tech-row">
+          <span class="chip">Python</span><span class="chip">Flask</span><span class="chip">SQLAlchemy</span>
+          <span class="chip">SQLite</span><span class="chip">PyInstaller</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="https://github.com/alessandro385/presentazione-alessandro2/releases/download/v1.00/GestionaleMensa.7z" download>Scarica l'app (.7z)</a>
+          <a class="btn btn-ghost" href="#funzioni">Scopri come funziona ↓</a>
+        </div>
+      </div>
+      <div class="device reveal">
+        <div class="browser">
+          <div class="browser-bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <span class="url">mensa-service.local/dashboard</span>
+          </div>
+          <img src="../../assets/gestionale_mensa1/Home_page.png" alt="Dashboard del Gestionale Mensa">
+        </div>
       </div>
     </div>
   </section>
 
   <div class="container">
 
-    <div class="feature-row reveal">
-      <div class="feature-text">
-        <span class="kicker">// dashboard</span>
-        <h2>Visione d'insieme immediata</h2>
-        <p>La schermata principale mostra lo stato del magazzino a colpo d'occhio: alert per i prodotti
-        sotto soglia minima e per i prodotti finiti la cui produzione è a rischio per scarsità di materie prime.</p>
-        <p>Da qui si accede a tutte le sezioni chiave dell'applicativo.</p>
-      </div>
-      <div class="feature-shot"><img src="../../assets/gestionale_mensa1/Home_page.png" alt="Dashboard del Gestionale Mensa" loading="lazy"></div>
+    <!-- ===== STATISTICHE ===== -->
+    <div class="stat-band reveal">
+      <div class="stat-cell"><div class="v">5</div><div class="k">moduli integrati</div></div>
+      <div class="stat-cell"><div class="v">SQL</div><div class="k">database relazionale</div></div>
+      <div class="stat-cell"><div class="v">Realtime</div><div class="k">scorte aggiornate</div></div>
+      <div class="stat-cell"><div class="v">1 click</div><div class="k">installazione exe</div></div>
     </div>
 
-    <div class="feature-row reveal">
-      <div class="feature-text">
-        <span class="kicker">// materie prime</span>
-        <h2>Anagrafica materie prime</h2>
-        <p>Gestione completa dell'inventario: nuovi articoli, dettagli (nome, unità di misura, soglia minima
-        di allerta) e quantità disponibili sempre sotto controllo per non fermare mai la produzione.</p>
+    <!-- ===== CAPITOLI ===== -->
+    <div class="chapters" id="funzioni">
+
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">01</div>
+          <span class="kicker">// dashboard</span>
+          <h2>Tutto lo stato del magazzino in una schermata</h2>
+          <p>La home mostra subito ciò che conta: prodotti sotto soglia minima e produzioni a rischio
+          per scarsità di materie prime. Nessun report da aprire, nessuna query da scrivere.</p>
+          <ul class="mini-list">
+            <li>Alert automatici sotto soglia</li>
+            <li>Produzioni a rischio evidenziate</li>
+            <li>Accesso diretto a tutte le sezioni</li>
+          </ul>
+        </div>
+        <div class="shot-frame">
+          <img src="../../assets/gestionale_mensa1/Home_page.png" alt="Dashboard con alert" loading="lazy">
+          <span class="didascalia">dashboard</span>
+        </div>
       </div>
-      <div class="feature-shot"><img src="../../assets/gestionale_mensa1/inventario_mp.png" alt="Inventario materie prime" loading="lazy"></div>
+
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">02</div>
+          <span class="kicker">// materie prime</span>
+          <h2>Anagrafica e scorte delle materie prime</h2>
+          <p>Ogni articolo ha nome, unità di misura e soglia minima di allerta. Le quantità disponibili
+          sono sempre allineate ai movimenti: la produzione non resta mai senza ingredienti.</p>
+        </div>
+        <div class="shot-frame">
+          <img src="../../assets/gestionale_mensa1/inventario_mp.png" alt="Inventario materie prime" loading="lazy">
+          <span class="didascalia">inventario MP</span>
+        </div>
+      </div>
+
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">03</div>
+          <span class="kicker">// ricette</span>
+          <h2>Prodotti finiti con distinta base</h2>
+          <p>Per ogni prodotto finito si definisce la ricetta: quali materie prime servono e in che
+          quantità. È il cuore del sistema — da qui nascono il calcolo di producibilità e lo scarico
+          automatico degli ingredienti.</p>
+          <ul class="mini-list">
+            <li>Calcolo automatico della producibilità</li>
+            <li>Scarico ingredienti a ogni produzione</li>
+          </ul>
+        </div>
+        <div class="shot-frame">
+          <img src="../../assets/gestionale_mensa1/inventario_pf.png" alt="Inventario prodotti finiti e ricette" loading="lazy">
+          <span class="didascalia">prodotti finiti</span>
+        </div>
+      </div>
+
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">04</div>
+          <span class="kicker">// movimenti</span>
+          <h2>Ogni movimento, tracciato</h2>
+          <p>Entrate da acquisti o produzione interna, uscite per vendite o consumo: ogni operazione
+          aggiorna in tempo reale la disponibilità e finisce nello storico, per una tracciabilità completa.</p>
+        </div>
+        <div class="shot-frame">
+          <img src="../../assets/gestionale_mensa1/Gestione_movimenti.png" alt="Gestione movimenti di magazzino" loading="lazy">
+          <span class="didascalia">movimenti</span>
+        </div>
+      </div>
+
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">05</div>
+          <span class="kicker">// notifiche</span>
+          <h2>Il sistema ti avvisa prima del problema</h2>
+          <p>Notifiche proattive quando le scorte scendono sotto soglia o quando un piatto non può
+          essere preparato per mancanza di ingredienti: interruzioni prevenute e acquisti pianificati
+          al momento giusto.</p>
+        </div>
+        <div class="shot-frame stack">
+          <img src="../../assets/gestionale_mensa1/notificatore_1.png" alt="Notificatore scorte" loading="lazy">
+          <img src="../../assets/gestionale_mensa1/notificiatore2.png" alt="Notifiche produzione a rischio" loading="lazy">
+          <span class="didascalia">notificatore</span>
+        </div>
+      </div>
+
     </div>
 
-    <div class="feature-row reveal">
-      <div class="feature-text">
-        <span class="kicker">// prodotti finiti</span>
-        <h2>Prodotti finiti e ricette</h2>
-        <p>Per ogni prodotto finito si definisce una ricetta con le materie prime necessarie e le quantità:
-        è la base per calcolare la producibilità e per lo scarico automatico degli ingredienti.</p>
+    <!-- ===== STACK ===== -->
+    <section class="stack-section reveal">
+      <span class="kicker">// architettura</span>
+      <h2>Com'è costruito</h2>
+      <p>Backend Flask con ORM SQLAlchemy su SQLite, interfaccia web-based servita in locale e
+      pacchettizzazione PyInstaller: un solo eseguibile, nessuna installazione complicata.</p>
+      <div class="pipeline">
+        <div class="pipe-node"><span class="t">Interfaccia</span><span class="s">HTML5 · CSS3</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Backend</span><span class="s">Python · Flask</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">ORM</span><span class="s">SQLAlchemy</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Database</span><span class="s">SQLite</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Distribuzione</span><span class="s">PyInstaller · .exe</span></div>
       </div>
-      <div class="feature-shot"><img src="../../assets/gestionale_mensa1/inventario_pf.png" alt="Inventario prodotti finiti" loading="lazy"></div>
-    </div>
+    </section>
 
-    <div class="feature-row reveal">
-      <div class="feature-text">
-        <span class="kicker">// movimenti</span>
-        <h2>Tracciamento preciso dei movimenti</h2>
-        <p>Ogni entrata (acquisti, produzione interna) e uscita (vendite, consumo) aggiorna in tempo reale
-        la disponibilità. Lo storico garantisce una tracciabilità completa e dettagliata.</p>
+    <!-- ===== CTA ===== -->
+    <section class="show-cta reveal">
+      <h2>Provalo <span class="grad-text">sul tuo PC</span></h2>
+      <p>Scarica l'applicazione completa oppure torna al portfolio per gli altri progetti.</p>
+      <div class="row">
+        <a class="btn btn-primary" href="https://github.com/alessandro385/presentazione-alessandro2/releases/download/v1.00/GestionaleMensa.7z" download>Scarica l'app (.7z)</a>
+        <a class="btn btn-ghost" href="../index.html#progetti">← Torna ai progetti</a>
       </div>
-      <div class="feature-shot"><img src="../../assets/gestionale_mensa1/Gestione_movimenti.png" alt="Gestione movimenti di magazzino" loading="lazy"></div>
-    </div>
+    </section>
 
-    <div class="feature-row reveal">
-      <div class="feature-text">
-        <span class="kicker">// notifiche</span>
-        <h2>Sistema di notifiche proattivo</h2>
-        <p>L'app avvisa tempestivamente quando le scorte scendono sotto soglia o quando un prodotto finito
-        non può essere preparato per mancanza di ingredienti: interruzioni prevenute, acquisti ottimizzati.</p>
-      </div>
-      <div class="feature-shot duo">
-        <img src="../../assets/gestionale_mensa1/notificatore_1.png" alt="Notificatore scorte" loading="lazy">
-        <img src="../../assets/gestionale_mensa1/notificiatore2.png" alt="Notifiche produzione a rischio" loading="lazy">
-      </div>
-    </div>
-
-    <div class="show-cta reveal">
-      <a class="btn btn-primary" href="https://github.com/alessandro385/presentazione-alessandro2/releases/download/v1.00/GestionaleMensa.7z" download>Scarica l'app (.7z)</a>
-      <a class="btn btn-ghost" href="../index.html#progetti">← Torna ai progetti</a>
-    </div>
   </div>
 </main>
 

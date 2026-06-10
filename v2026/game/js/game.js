@@ -179,7 +179,9 @@ export class Game {
 
       case 'playing': {
         this.runTime += dt;
-        const mps = Math.min(85 + this.difficolta * 6, 130);
+        // Avanzamento: ~16 m/s all'inizio (il livello 1 dura ~1 minuto),
+        // fino a 26 m/s a fine campagna.
+        const mps = Math.min(16 + (this.difficolta - 1) * 4, 26);
         this.levelMeters += mps * dt;
         this.totalMeters += mps * dt;
         const progress = this.levelMeters / this.level.lunghezzaMetri;
@@ -382,8 +384,8 @@ export class Game {
     if (!silenzioso) audio.play('boom');
 
     // Drop: regali e power-up (gli élite sono più generosi)
-    const dropGift = e.elite ? 0.6 : 0.16;
-    const dropPower = e.elite ? 0.3 : 0.06;
+    const dropGift = e.elite ? 0.6 : 0.2;
+    const dropPower = e.elite ? 0.35 : 0.08;
     if (chance(dropGift)) this.spawnPickup('regalo', e.x, e.y);
     else if (chance(dropPower)) this.spawnPickup(null, e.x, e.y);
   }

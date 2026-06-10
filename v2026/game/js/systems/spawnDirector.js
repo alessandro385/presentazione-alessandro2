@@ -16,8 +16,8 @@ export class SpawnDirector {
 
   reset() {
     this.timer = 1.2;
-    this.giftTimer = rand(4, 7);
-    this.powerupTimer = rand(11, 16);
+    this.giftTimer = rand(2.5, 4.5);
+    this.powerupTimer = rand(5, 8);
     this.eventsFired = new Set();
     this.queue = []; // spawn ritardati: { delay, fn }
   }
@@ -67,14 +67,14 @@ export class SpawnDirector {
     // --- Regali periodici ---
     this.giftTimer -= dt;
     if (this.giftTimer <= 0) {
-      this.giftTimer = rand(5, 9);
+      this.giftTimer = rand(3.5, 6.5);
       g.spawnPickup('regalo', rand(0.1, 0.9) * w, -30);
     }
 
     // --- Power-up periodici ---
     this.powerupTimer -= dt;
     if (this.powerupTimer <= 0) {
-      this.powerupTimer = rand(13, 19);
+      this.powerupTimer = rand(9, 13);
       g.spawnPickup(null, rand(0.12, 0.88) * w, -30); // null = pesca dalla drop table
     }
 

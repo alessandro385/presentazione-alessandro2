@@ -5,7 +5,7 @@
 import { clamp, lerp, rand, pick, TAU, angleTo } from '../core/utils.js';
 import { audio } from '../core/audio.js';
 
-const TELEGRAPH = 0.55; // secondi di preavviso prima di un attacco
+const TELEGRAPH = 0.7; // secondi di preavviso prima di un attacco
 
 // Registry dei pattern d'attacco del boss: piccole funzioni pure.
 // Aggiungere un pattern = aggiungere una voce e citarla nei dati del livello.
@@ -13,19 +13,19 @@ const bossPatterns = {
   /** Ventaglio di colpi centrato sul giocatore. */
   ventaglio(b, g) {
     const aim = angleTo(b.x, b.y, g.player.x, g.player.y);
-    const n = 7;
+    const n = 5;
     for (let i = 0; i < n; i++) {
-      const a = aim + (i - (n - 1) / 2) * 0.21;
-      g.fireEnemyShot(b.x, b.y + b.dimensione * 0.4, a, 215 * g.viewport.scale, b.colore);
+      const a = aim + (i - (n - 1) / 2) * 0.24;
+      g.fireEnemyShot(b.x, b.y + b.dimensione * 0.4, a, 195 * g.viewport.scale, b.colore);
     }
   },
 
   /** Raffica di 4 colpi mirati in successione. */
   raffica(b, g) {
-    for (let i = 0; i < 4; i++) {
-      b.schedule(i * 0.16, () => {
+    for (let i = 0; i < 3; i++) {
+      b.schedule(i * 0.18, () => {
         const a = angleTo(b.x, b.y, g.player.x, g.player.y) + rand(-0.07, 0.07);
-        g.fireEnemyShot(b.x, b.y + b.dimensione * 0.4, a, 250 * g.viewport.scale, b.colore);
+        g.fireEnemyShot(b.x, b.y + b.dimensione * 0.4, a, 225 * g.viewport.scale, b.colore);
       });
     }
   },
@@ -47,11 +47,11 @@ const bossPatterns = {
   /** Pioggia gelida: colpi casuali dall'alto per ~1.6 secondi. */
   pioggia(b, g) {
     const w = g.viewport.w;
-    for (let i = 0; i < 13; i++) {
-      b.schedule(i * 0.12, () => {
+    for (let i = 0; i < 11; i++) {
+      b.schedule(i * 0.13, () => {
         const x = rand(0.05, 0.95) * w;
         const a = Math.PI / 2 + rand(-0.18, 0.18);
-        g.fireEnemyShot(x, -10, a, rand(200, 280) * g.viewport.scale, b.colore);
+        g.fireEnemyShot(x, -10, a, rand(180, 250) * g.viewport.scale, b.colore);
       });
     }
   },
@@ -88,7 +88,7 @@ export class Boss {
     this.dead = false;
     this.eta = 0;
     this.faseIdx = 0;
-    this.atkTimer = 2.2;     // respiro iniziale prima del primo attacco
+    this.atkTimer = 3.2;     // respiro iniziale prima del primo attacco
     this.telegraphT = 0;     // > 0: attacco in arrivo
     this.pendingPattern = null;
     this.flash = 0;
@@ -144,9 +144,12 @@ export class Boss {
     }
 
     // --- Movimento: oscillazione che accelera con le fasi ---
+    // Ampiezza e frequenza contenute: il giocatore deve poter stare
+    // sotto al boss per colpirlo (velocità di picco < velocità slitta).
     const f = this.fase;
-    const sway = Math.sin(this.eta * 0.7 * f.velocitaMult + this._swayPhase);
-    const range = this.vp.w * 0.5 - this.dimensione - 10;
+    const freq = 0.55 * f.velocitaMult * (this.data.velocita / 100);
+    const sway = Math.sin(this.eta * freq + this._swayPhase);
+    const range = Math.min(this.vp.w * 0.32, this.vp.w * 0.5 - this.dimensione - 10);
     this.x = this.vp.w / 2 + sway * Math.max(range, 30);
     this.y = this.targetY + Math.sin(this.eta * 1.3) * 14 * this.vp.scale;
 
