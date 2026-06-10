@@ -31,7 +31,7 @@ export const LEVELS = [
     },
     eventi: [{ at: 0.55, tipo: 'pioggiaRegali' }],
     boss: {
-      nome: 'Grinch Esploratore', hp: 35, punti: 2000,
+      nome: 'Grinch Esploratore', aspetto: 'grinch', hp: 35, punti: 2000,
       dimensione: 55, colore: '#34d399', velocita: 80,
       fasi: [
         { sotto: 1.00, pattern: ['ventaglio'], cooldown: 3.4, velocitaMult: 1.0 },
@@ -62,7 +62,7 @@ export const LEVELS = [
     },
     eventi: [{ at: 0.5, tipo: 'pioggiaRegali' }],
     boss: {
-      nome: 'Guardiano della Foresta', hp: 55, punti: 3000,
+      nome: 'Guardiano della Foresta', aspetto: 'guardiano', hp: 55, punti: 3000,
       dimensione: 60, colore: '#4ade80', velocita: 90,
       fasi: [
         { sotto: 1.00, pattern: ['ventaglio'], cooldown: 2.9, velocitaMult: 1.0 },
@@ -94,7 +94,7 @@ export const LEVELS = [
     },
     eventi: [{ at: 0.35, tipo: 'pioggiaRegali' }, { at: 0.75, tipo: 'pioggiaRegali' }],
     boss: {
-      nome: 'Sindaco di Ghiaccio', hp: 80, punti: 4500,
+      nome: 'Sindaco di Ghiaccio', aspetto: 'sindaco', hp: 80, punti: 4500,
       dimensione: 62, colore: '#a78bfa', velocita: 100,
       fasi: [
         { sotto: 1.00, pattern: ['raffica', 'ventaglio'], cooldown: 2.6, velocitaMult: 1.0 },
@@ -126,7 +126,7 @@ export const LEVELS = [
     },
     eventi: [{ at: 0.5, tipo: 'pioggiaRegali' }],
     boss: {
-      nome: 'Colosso delle Vette', hp: 110, punti: 6000,
+      nome: 'Colosso delle Vette', aspetto: 'colosso', hp: 110, punti: 6000,
       dimensione: 68, colore: '#38bdf8', velocita: 105,
       fasi: [
         { sotto: 1.00, pattern: ['ventaglio', 'muro'], cooldown: 2.4, velocitaMult: 1.0 },
@@ -158,7 +158,7 @@ export const LEVELS = [
     },
     eventi: [{ at: 0.4, tipo: 'pioggiaRegali' }, { at: 0.8, tipo: 'pioggiaRegali' }],
     boss: {
-      nome: 'Il Grinch', hp: 150, punti: 10000,
+      nome: 'Il Grinch', aspetto: 'grinchfinale', hp: 150, punti: 10000,
       dimensione: 75, colore: '#84cc16', velocita: 115,
       fasi: [
         { sotto: 1.00, pattern: ['ventaglio', 'raffica'], cooldown: 2.2, velocitaMult: 1.0 },

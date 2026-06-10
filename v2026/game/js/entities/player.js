@@ -27,7 +27,7 @@ export class Player {
     this.invulnerabile = 0;
     this.fireTimer = 0;
     this.tilt = 0;
-    this.powerups = { triplo: 0, rapido: 0, scudo: 0, x2: 0, magnete: 0 };
+    this.powerups = { triplo: 0, rapido: 0, scudo: 0, x2: 0, magnete: 0, gelo: 0 };
   }
 
   /** @param {number} dt @param {import('../core/input.js').Input} input @param {import('../game.js').Game} game */

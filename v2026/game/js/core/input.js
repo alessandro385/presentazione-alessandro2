@@ -64,6 +64,9 @@ export class Input {
 
   _bindKeyboard() {
     window.addEventListener('keydown', (e) => {
+      // Mentre si scrive in un campo di testo (es. nome in classifica)
+      // la tastiera appartiene al campo, non al gioco.
+      if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
       const k = e.code;
       if (k === 'KeyP' || k === 'Escape') {
         this._pauseRequested = true;
@@ -76,6 +79,7 @@ export class Input {
       this._recomputeKeyboard();
     });
     window.addEventListener('keyup', (e) => {
+      if (e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA')) return;
       this._keys.delete(e.code);
       this._recomputeKeyboard();
     });

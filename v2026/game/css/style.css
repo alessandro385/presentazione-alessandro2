@@ -508,3 +508,118 @@ html, body {
   .title { font-size: clamp(24px, 5vw, 36px); margin: 4px 0; }
   .tagline { margin-bottom: 10px; }
 }
+
+/* ============ Nome in classifica (menu) ============ */
+.name-row {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+#player-name {
+  width: min(260px, 60vw);
+  padding: 11px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--text);
+  font-family: var(--font-display);
+  font-size: 15px;
+  text-align: center;
+  outline: none;
+  -webkit-user-select: text;
+  user-select: text;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+#player-name:focus {
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.18);
+}
+#player-name::placeholder { color: var(--muted); }
+#btn-dice {
+  width: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.06);
+  font-size: 19px;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+#btn-dice:hover { transform: rotate(20deg) scale(1.08); background: rgba(255, 255, 255, 0.12); }
+
+/* ============ Classifica (fine partita) ============ */
+.board-pos {
+  margin: 4px 0 10px;
+  color: var(--amber);
+  font-family: var(--font-display);
+  font-size: 15px;
+}
+.board-pos strong { font-size: 19px; }
+.board {
+  list-style: none;
+  margin: 0 auto 18px;
+  max-width: 340px;
+  display: grid;
+  gap: 4px;
+  text-align: left;
+}
+.board li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 12px;
+  border-radius: 9px;
+  background: rgba(255, 255, 255, 0.04);
+  font-size: 13.5px;
+}
+.board li.me {
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.4), rgba(34, 211, 238, 0.25));
+  border: 1px solid rgba(34, 211, 238, 0.45);
+  font-weight: 700;
+}
+.board li.dots {
+  justify-content: center;
+  background: transparent;
+  color: var(--muted);
+  padding: 0;
+}
+.board .rank {
+  width: 26px;
+  font-family: var(--font-display);
+  font-weight: 800;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+.board li.me .rank { color: var(--cyan); }
+.board li:nth-child(1) .rank { color: var(--amber); }
+.board li:nth-child(2) .rank { color: #cbd5e1; }
+.board li:nth-child(3) .rank { color: #d97706; }
+.board .bname {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.board .bpts {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ============ Pulsante schermo intero ============ */
+#btn-fs {
+  position: absolute;
+  right: max(12px, env(safe-area-inset-right));
+  bottom: max(12px, env(safe-area-inset-bottom));
+  z-index: 40;
+  width: 42px;
+  height: 42px;
+  font-size: 19px;
+  color: var(--text);
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: transform 0.2s, background 0.2s;
+}
+#btn-fs:hover { transform: scale(1.1); }
+#btn-fs.fs-on { color: var(--cyan); }

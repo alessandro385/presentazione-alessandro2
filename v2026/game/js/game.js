@@ -19,6 +19,7 @@ import { ScreenShake } from './systems/screenShake.js';
 import { Pool } from './core/pool.js';
 import { clamp, lerp, rand, chance, weightedPick, formatScore } from './core/utils.js';
 import { audio } from './core/audio.js';
+import { submitScore, getPlayerName } from './core/leaderboard.js';
 import { Hud } from './ui/hud.js';
 import { Screens } from './ui/screens.js';
 
@@ -47,6 +48,7 @@ export class Game {
       onResume: () => this.togglePause(),
       onRestart: () => this.startRun(this.lastSledId),
       onMenu: () => this.showMenu(),
+      onFullscreen: () => this.toggleFullscreen(),
     }, input);
 
     this.shotPool = new Pool(() => ({}), 48);
@@ -80,6 +82,30 @@ export class Game {
     return this.state === 'playing' || this.state === 'boss' || this.state === 'transition';
   }
 
+  // ====================== Schermo intero ======================
+  // All'avvio della partita il gioco va a schermo intero; il pulsante
+  // ⛶ (sempre visibile) permette di uscire e rientrare quando si vuole.
+
+  _enterFullscreen() {
+    if (document.fullscreenElement) return;
+    const el = document.documentElement;
+    const req = el.requestFullscreen || el.webkitRequestFullscreen;
+    if (req) {
+      try {
+        const p = req.call(el, { navigationUI: 'hide' });
+        if (p && p.catch) p.catch(() => { /* negato dal browser: si gioca in finestra */ });
+      } catch { /* API non disponibile */ }
+    }
+  }
+
+  toggleFullscreen() {
+    if (document.fullscreenElement) {
+      document.exitFullscreen?.();
+    } else {
+      this._enterFullscreen();
+    }
+  }
+
   // ====================== Flusso di gioco ======================
 
   showMenu() {
@@ -95,6 +121,7 @@ export class Game {
     audio.unlock();
     this.lastSledId = sledId;
     window.abTrack?.('gioco/partita-iniziata-' + sledId);
+    this._enterFullscreen();
     this._clearWorld();
 
     this.player = new Player(getSled(sledId), this.viewport);
@@ -152,6 +179,10 @@ export class Game {
     return this.player && this.player.powerups.x2 > 0 ? 2 : 1;
   }
 
+  get geloAttivo() {
+    return !!(this.player && this.player.powerups.gelo > 0);
+  }
+
   togglePause() {
     if (!this._inPlay()) return;
     this.paused = !this.paused;
@@ -198,7 +229,7 @@ export class Game {
         this.bg.update(dt, 0.4);
         this._updateWorld(dt);
         if (this.boss) {
-          this.boss.update(dt, this);
+          this.boss.update(this.geloAttivo ? dt * 0.45 : dt, this);
           if (this.boss.dead) this._onBossDefeated();
         }
         break;
@@ -229,9 +260,9 @@ export class Game {
           this._endShown = true;
           this.hud.hide();
           this.input.showTouchControls(false);
-          const { stats, record } = this._buildEndStats();
-          if (this.state === 'victory') this.screens.showVictory(stats, record);
-          else this.screens.showGameOver(stats, record);
+          const { stats, record, classifica } = this._buildEndStats();
+          if (this.state === 'victory') this.screens.showVictory(stats, record, classifica);
+          else this.screens.showGameOver(stats, record, classifica);
         }
         break;
       }
@@ -252,12 +283,15 @@ export class Game {
       this.player.update(dt, this.input, this);
     }
 
-    for (const e of this.enemies) e.update(dt, c);
+    // Gelo Polare: il mondo ostile rallenta, la slitta no
+    const geloDt = this.geloAttivo ? dt * 0.45 : dt;
+
+    for (const e of this.enemies) e.update(geloDt, c);
     this.enemies = this.enemies.filter((e) => !e.dead);
 
     for (const s of this.shots) updateShot(s, dt, w, h);
     this.shotPool.sweep(this.shots);
-    for (const s of this.enemyShots) updateShot(s, dt, w, h);
+    for (const s of this.enemyShots) updateShot(s, geloDt, w, h);
     this.shotPool.sweep(this.enemyShots);
 
     for (const k of this.pickups) k.update(dt, c);
@@ -433,9 +467,25 @@ export class Game {
       this.particles.puff(k.x, k.y, '#fbbf24', 12);
       this.particles.floater(k.x, k.y, this.combo >= 2 ? `+${punti} ×${this.combo}` : `+${punti}`, '#fbbf24');
       audio.play('gift');
+    } else if (k.tipo === 'bomba') {
+      // Bomba di Neve: danneggia tutto ciò che è a schermo
+      this.particles.explosion(k.x, k.y, '#f97316', 40, 360);
+      this.particles.floater(k.x, k.y, this._nomePowerup(k.tipo), '#f97316');
+      this.shake.add(0.7);
+      audio.play('bossDown');
+      for (const e of [...this.enemies]) {
+        this.hitEnemy(e, 3, e.x, e.y, { silenzioso: true });
+      }
+      this.enemyShots.forEach((s) => { s.dead = true; });
+      if (this.boss && this.boss.attivo) this.hitBoss(3, this.boss.x, this.boss.y);
     } else {
       p.applyPowerup(k.tipo);
-      this.particles.explosion(k.x, k.y, '#22d3ee', 14, 160);
+      if (k.tipo === 'gelo') {
+        this.particles.explosion(k.x, k.y, '#93c5fd', 26, 240);
+        this.shake.add(0.2);
+      } else {
+        this.particles.explosion(k.x, k.y, '#22d3ee', 14, 160);
+      }
       this.particles.floater(k.x, k.y, this._nomePowerup(k.tipo), '#22d3ee');
       audio.play('power');
     }
@@ -445,6 +495,7 @@ export class Game {
     const nomi = {
       triplo: 'Sparo Triplo!', rapido: 'Fuoco Rapido!', scudo: 'Scudo!',
       vita: '+1 Vita!', x2: 'Punti ×2!', magnete: 'Magnete!',
+      gelo: 'Gelo Polare!', bomba: 'Bomba di Neve!',
     };
     return nomi[tipo] || tipo;
   }
@@ -487,10 +538,13 @@ export class Game {
     if (this.totalMeters > hs.metri) {
       localStorage.setItem(LS_HS_METERS, String(Math.floor(this.totalMeters)));
     }
+    // Registra la partita in classifica e calcola la posizione
+    const classifica = submitScore(getPlayerName(), this.score, Math.floor(this.totalMeters));
     const min = Math.floor(this.runTime / 60);
     const sec = Math.floor(this.runTime % 60);
     return {
       record,
+      classifica,
       stats: [
         ['Punteggio', formatScore(this.score)],
         ['Distanza', `${formatScore(Math.floor(this.totalMeters))} m`],

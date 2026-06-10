@@ -142,6 +142,15 @@
       </div>
     </section>
 
+    <!-- ===== CLASSIFICA ===== -->
+    <section class="stack-section reveal" id="classifica" style="margin-bottom: var(--space-4);">
+      <span class="kicker">// sala d'onore</span>
+      <h2>Classifica 🏆</h2>
+      <p>I migliori piloti di slitta dell'edizione 2026. Gioca qui sotto e scala la classifica
+      col tuo nickname — niente registrazione, niente dati personali.</p>
+      <ol class="lb" id="lb-list" style="margin-top: 22px;"></ol>
+    </section>
+
     <!-- ===== GIOCA ===== -->
     <section id="gioca" style="padding-top: var(--space-4);">
       <div class="section-head center reveal">
@@ -186,6 +195,20 @@
 
 <script src="../js/analytics.js" defer></script>
 <script src="../js/main.js"></script>
+<script type="module">
+  // Classifica nella presentazione: stessa fonte dati del gioco
+  import { getLeaderboard } from '../game/js/core/leaderboard.js';
+  const list = document.getElementById('lb-list');
+  const fmt = (n) => n.toLocaleString('it-IT');
+  const medals = ['🥇', '🥈', '🥉'];
+  list.innerHTML = getLeaderboard().slice(0, 10).map((e, i) => `
+    <li class="${e.seed ? '' : 'real'}">
+      <span class="lb-rank">${medals[i] || i + 1}</span>
+      <span class="lb-name">${e.nome}</span>
+      <span class="lb-meters">${fmt(e.metri)} m</span>
+      <span class="lb-pts">${fmt(e.punti)} pt</span>
+    </li>`).join('');
+</script>
 <script>
 (() => {
   'use strict';
@@ -228,6 +251,7 @@
     iframe.title = 'La Corsa di Babbo Natale';
     iframe.loading = 'lazy';
     iframe.allow = 'fullscreen; autoplay';
+    iframe.allowFullscreen = true; // il gioco 2026 va a schermo intero all'avvio
     stage.appendChild(iframe);
   }
 

@@ -7,6 +7,8 @@ export const POWERUPS = {
   vita:    { nome: 'Vita Extra',    etichetta: 'VITA',     colore: '#f87171', durata: 0 },
   x2:      { nome: 'Punti ×2',      etichetta: 'PUNTI ×2', colore: '#a78bfa', durata: 12 },
   magnete: { nome: 'Magnete Regali', etichetta: 'MAGNETE', colore: '#34d399', durata: 12 },
+  gelo:    { nome: 'Gelo Polare',   etichetta: 'GELO',     colore: '#93c5fd', durata: 8 },
+  bomba:   { nome: 'Bomba di Neve', etichetta: 'BOMBA',    colore: '#f97316', durata: 0 },
 };
 
 // Tipi pescabili a caso quando un nemico rilascia un power-up.
@@ -16,5 +18,7 @@ export const POWERUP_DROP_TABLE = [
   { tipo: 'scudo', peso: 3 },
   { tipo: 'x2', peso: 3 },
   { tipo: 'magnete', peso: 3 },
+  { tipo: 'gelo', peso: 3 },
+  { tipo: 'bomba', peso: 2 },
   { tipo: 'vita', peso: 1 },
 ];

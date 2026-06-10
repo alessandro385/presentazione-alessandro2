@@ -147,6 +147,31 @@ export class Pickup {
         ctx.fillRect(-8.2, 2, 4, 5);
         ctx.fillRect(4.2, 2, 4, 5);
         break;
+      case 'gelo': // fiocco di neve
+        for (let i = 0; i < 6; i++) {
+          const a = (i / 6) * TAU;
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.lineTo(Math.cos(a) * 8, Math.sin(a) * 8);
+          ctx.moveTo(Math.cos(a) * 5 - Math.cos(a + 1.1) * 2.6, Math.sin(a) * 5 - Math.sin(a + 1.1) * 2.6);
+          ctx.lineTo(Math.cos(a) * 5, Math.sin(a) * 5);
+          ctx.lineTo(Math.cos(a) * 5 - Math.cos(a - 1.1) * 2.6, Math.sin(a) * 5 - Math.sin(a - 1.1) * 2.6);
+          ctx.stroke();
+        }
+        break;
+      case 'bomba': // bomba con miccia accesa
+        ctx.beginPath();
+        ctx.arc(0, 2, 6.5, 0, TAU);
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(2.5, -3.5);
+        ctx.quadraticCurveTo(5.5, -7.5, 8, -6.5);
+        ctx.stroke();
+        ctx.fillStyle = '#fde047';
+        ctx.beginPath();
+        ctx.arc(8.4, -6.8, 2, 0, TAU);
+        ctx.fill();
+        break;
     }
   }
 }

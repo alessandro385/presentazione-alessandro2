@@ -30,6 +30,14 @@ v2026/                      → edizione 2026 (nuova)
 - **2024/25** — la versione storica, con i quattro temi originali. Non viene più
   modificata: è conservata com'era.
 
+## Classifica del gioco
+
+Il gioco 2026 ha una classifica con nickname (nessun dato personale): i punteggi
+reali vivono nel `localStorage` del browser del visitatore, sopra una base di
+15 giocatori fittizi (`v2026/game/js/core/leaderboard.js`) così la classifica
+non parte mai vuota. È quindi una classifica per-browser, non condivisa tra
+visitatori: per renderla globale servirebbe un piccolo backend (es. Supabase).
+
 ## Statistiche di accesso
 
 Il sito usa [GoatCounter](https://www.goatcounter.com) (`v2026/js/analytics.js`):
