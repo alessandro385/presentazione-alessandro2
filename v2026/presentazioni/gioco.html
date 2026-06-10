@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="aurora" data-brand="natale">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Corsa di Babbo Natale — Presentazione & Gioco</title>
+<meta name="description" content="La Corsa di Babbo Natale: la storia del gioco natalizio dal 2024 al 2026. Gioca a tutte le versioni direttamente dal browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Mountains+of+Christmas:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/showcase.css">
+</head>
+<body>
+
+<div class="backdrop" aria-hidden="true"></div>
+<canvas id="snow-canvas" aria-hidden="true"></canvas>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html#progetti" class="logo"><span class="mark">🎅</span>La Corsa di Babbo Natale</a>
+    <div class="header-actions">
+      <a class="legacy-link" href="#gioca">🎮 gioca subito</a>
+      <a class="legacy-link" href="../index.html#progetti">← progetti</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== HERO ===== -->
+  <section class="show-hero">
+    <div class="container" style="text-align:center; max-width: 880px;">
+      <span class="kicker">// gioco natalizio · 2024 → 2026</span>
+      <h1 class="font-christmas" style="font-size: clamp(2.6rem, 2rem + 4vw, 5rem);">
+        La Corsa di <span class="grad-text">Babbo Natale</span> 🎅
+      </h1>
+      <p class="lead" style="margin-inline:auto;">
+        Consegna i regali, schiva il gelo, sconfiggi il Grinch. Un'avventura in HTML5 Canvas
+        nata nel 2024 e riscritta da zero nel 2026 — giocabile qui sotto, in tutte le sue versioni.
+      </p>
+      <div class="tech-row" style="justify-content:center;">
+        <span class="chip">HTML5 Canvas</span><span class="chip">JavaScript ES Modules</span>
+        <span class="chip">Zero dipendenze</span><span class="chip">Desktop + Mobile</span>
+      </div>
+      <div class="hero-actions" style="justify-content:center; margin-top: 28px;">
+        <a class="btn btn-primary" href="#gioca">Gioca ora! 🎮</a>
+        <a class="btn btn-ghost" href="#storia">La storia del progetto ↓</a>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- ===== STATISTICHE ===== -->
+    <div class="stat-band reveal">
+      <div class="stat-cell"><div class="v">4</div><div class="k">versioni giocabili</div></div>
+      <div class="stat-cell"><div class="v">5</div><div class="k">zone da attraversare</div></div>
+      <div class="stat-cell"><div class="v">7+5</div><div class="k">nemici e boss</div></div>
+      <div class="stat-cell"><div class="v">3</div><div class="k">slitte selezionabili</div></div>
+    </div>
+
+    <!-- ===== STORIA: DAL 2024 AL 2026 ===== -->
+    <div class="chapters" id="storia">
+
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">01</div>
+          <span class="kicker">// 2024 · la prima corsa</span>
+          <h2>Nato con l'AI di prima generazione</h2>
+          <p>La prima versione è stata costruita nel 2024 orchestrando gli strumenti AI dell'epoca:
+          <strong>ChatGPT 4</strong> per i prompt e la pianificazione, <strong>Stackblitz Bolt</strong>
+          per lo scaffolding del progetto e <strong>Cursor con Claude 3.5 Sonnet</strong> per lo
+          sviluppo del gioco e della presentazione.</p>
+          <ul class="mini-list">
+            <li>Due versioni desktop (la seconda con il boss Grinch)</li>
+            <li>Versione mobile separata con joystick touch</li>
+            <li>Sprite SVG procedurali, effetti particellari</li>
+          </ul>
+        </div>
+        <div class="shot-frame">
+          <img src="../../assets/la_corsa_di_babbo_natale/logo.png" alt="Logo originale de La Corsa di Babbo Natale" loading="lazy" style="background:#0d1530; padding:24px;">
+          <span class="didascalia">edizione 2024</span>
+        </div>
+      </div>
+
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">02</div>
+          <span class="kicker">// 2026 · la riscrittura</span>
+          <h2>Riscritto da zero con Claude Fable 5</h2>
+          <p>L'edizione 2026 non è un aggiornamento: è un <strong>motore nuovo</strong>. Una sola
+          codebase responsive per desktop e mobile, livelli e nemici definiti come <strong>puri
+          dati</strong>, boss a fasi con attacchi telegrafati, audio sintetizzato via WebAudio
+          senza un solo file esterno.</p>
+          <ul class="mini-list">
+            <li>Aggiungere un nemico = una riga di dati</li>
+            <li>Object pooling e qualità adattiva alle performance</li>
+            <li>Tastiera + joystick touch nella stessa build</li>
+          </ul>
+        </div>
+        <div class="shot-frame">
+          <div style="aspect-ratio:16/10; display:grid; place-items:center; background:linear-gradient(160deg,#0d1530,#101a36); border-radius:11px; font-size:clamp(3rem,8vw,5rem);">🎅🛷✨</div>
+          <span class="didascalia">edizione 2026</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== LE 5 ZONE ===== -->
+    <section class="stack-section reveal" style="margin-bottom: var(--space-4);">
+      <span class="kicker">// il viaggio</span>
+      <h2>Cinque zone, cinque boss</h2>
+      <p>Ogni zona ha la sua palette, le sue decorazioni parallax, la sua tabella di nemici
+      e un boss con fasi che cambiano pattern d'attacco a soglie di vita.</p>
+      <div class="zone-strip" style="margin-top: 24px;">
+        <div class="zone-card"><div class="sky" style="background:linear-gradient(180deg,#0a0e1a,#1c2547);"></div><h3>Villaggio Innevato</h3><p>Grinch Esploratore</p></div>
+        <div class="zone-card"><div class="sky" style="background:linear-gradient(180deg,#081118,#123236);"></div><h3>Foresta Incantata</h3><p>Guardiano della Foresta</p></div>
+        <div class="zone-card"><div class="sky" style="background:linear-gradient(180deg,#0d0a1f,#2a1f56);"></div><h3>Città Illuminata</h3><p>Sindaco di Ghiaccio</p></div>
+        <div class="zone-card"><div class="sky" style="background:linear-gradient(180deg,#06121f,#143a52);"></div><h3>Vette Ghiacciate</h3><p>Colosso delle Vette</p></div>
+        <div class="zone-card"><div class="sky" style="background:linear-gradient(180deg,#05070f,#171c3a);"></div><h3>Cielo Artico</h3><p>Il Grinch</p></div>
+      </div>
+    </section>
+
+    <!-- ===== COM'È FATTO ===== -->
+    <section class="stack-section reveal">
+      <span class="kicker">// sotto il cofano</span>
+      <h2>Contenuti = dati, comportamenti = registry</h2>
+      <p>Il cuore dell'edizione 2026: i livelli, i nemici, le slitte e i power-up vivono in file
+      di puri dati; i pattern di movimento e di attacco sono piccole funzioni pure in un registry.
+      Bilanciare il gioco significa modificare numeri, non riscrivere logica.</p>
+      <div class="pipeline">
+        <div class="pipe-node"><span class="t">Dati</span><span class="s">levels · enemies · sleds</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Registry</span><span class="s">movimento · attacco</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Sistemi</span><span class="s">spawn · collisioni · particelle</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Loop</span><span class="s">timestep fisso + rAF</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Canvas</span><span class="s">sprite procedurali</span></div>
+      </div>
+    </section>
+
+    <!-- ===== GIOCA ===== -->
+    <section id="gioca" style="padding-top: var(--space-4);">
+      <div class="section-head center reveal">
+        <span class="kicker">// sala giochi</span>
+        <h2 class="font-christmas" style="font-size: clamp(2rem, 1.6rem + 2.4vw, 3.2rem);">Scegli la tua <span class="grad-text">versione</span> 🎄</h2>
+        <p>Tutte le versioni del gioco, dalla prima del 2024 all'edizione 2026, giocabili qui.</p>
+      </div>
+
+      <div class="version-picker reveal" role="group" aria-label="Seleziona versione del gioco">
+        <button class="version-btn" data-version="2026" aria-pressed="true">✨ Edizione 2026</button>
+        <button class="version-btn" data-version="v2" aria-pressed="false">🖥️ Desktop 2024 · con boss</button>
+        <button class="version-btn" data-version="v1" aria-pressed="false">🖥️ Desktop 2024 · classica</button>
+        <button class="version-btn" data-version="mobile" aria-pressed="false">📱 Mobile 2024</button>
+      </div>
+
+      <div class="game-stage reveal" id="game-stage">
+        <!-- l'iframe viene montato da JS -->
+      </div>
+      <p class="game-note">Desktop: frecce/WASD per muoverti, Spazio per sparare, P per la pausa · Touch: joystick a sinistra, fuoco a destra</p>
+      <p class="fullscreen-link"><a id="open-full" href="../game/index.html" target="_blank" rel="noopener">↗ Apri questa versione a schermo intero</a></p>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="show-cta reveal" style="margin-top: var(--space-4);">
+      <h2>Ti è piaciuto <span class="grad-text">il viaggio?</span></h2>
+      <p>Il codice dell'edizione 2026 è open source nel repository del portfolio.</p>
+      <div class="row">
+        <a class="btn btn-primary" href="https://github.com/alessandro385/presentazione-alessandro2/tree/main/v2026/game" target="_blank" rel="noopener">Guarda il codice su GitHub</a>
+        <a class="btn btn-ghost" href="../index.html#progetti">← Torna ai progetti</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>© 2026 Alessandro Barresi.</span>
+    <span><a href="../index.html">Portfolio 2026</a> · <a href="https://dynamic-valkyrie-e431a9.netlify.app/" target="_blank" rel="noopener">Presentazione originale 2024</a></span>
+  </div>
+</footer>
+
+<script src="../js/main.js"></script>
+<script>
+(() => {
+  'use strict';
+
+  /* ---------- Selettore versioni del gioco ---------- */
+  const VERSIONS = {
+    '2026':   { src: '../game/index.html', full: '../game/index.html' },
+    'v2':     { src: 'https://magnificent-donut-b0b78c.netlify.app/', full: 'https://magnificent-donut-b0b78c.netlify.app/' },
+    'v1':     { src: 'https://enchanting-pixie-b4c45e.netlify.app/', full: 'https://enchanting-pixie-b4c45e.netlify.app/' },
+    'mobile': { newTab: true, full: 'https://jolly-semolina-c687a7.netlify.app/' },
+  };
+
+  const stage = document.getElementById('game-stage');
+  const fullLink = document.getElementById('open-full');
+  const buttons = document.querySelectorAll('.version-btn');
+
+  function loadVersion(key) {
+    const v = VERSIONS[key];
+    if (!v) return;
+    buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.version === key)));
+    fullLink.href = v.full;
+    stage.innerHTML = '';
+
+    if (v.newTab) {
+      // La versione mobile va a schermo pieno in una nuova scheda
+      window.open(v.full, '_blank', 'noopener');
+      const msg = document.createElement('div');
+      msg.className = 'stage-msg';
+      msg.innerHTML = '📱 La versione mobile si apre in una nuova scheda, a schermo pieno.<br><br>' +
+        `Se non si è aperta, <a href="${v.full}" target="_blank" rel="noopener">clicca qui</a>.`;
+      stage.appendChild(msg);
+      return;
+    }
+
+    const iframe = document.createElement('iframe');
+    iframe.src = v.src;
+    iframe.title = 'La Corsa di Babbo Natale';
+    iframe.loading = 'lazy';
+    iframe.allow = 'fullscreen; autoplay';
+    stage.appendChild(iframe);
+  }
+
+  buttons.forEach(b => b.addEventListener('click', () => loadVersion(b.dataset.version)));
+  loadVersion('2026');
+
+  /* ---------- Neve ---------- */
+  const cv = document.getElementById('snow-canvas');
+  const cx = cv.getContext('2d');
+  let W, H, flakes = [];
+  function resize() {
+    W = cv.width = innerWidth * devicePixelRatio;
+    H = cv.height = innerHeight * devicePixelRatio;
+    const n = Math.min(130, Math.floor(innerWidth / 10));
+    flakes = Array.from({ length: n }, () => ({
+      x: Math.random() * W, y: Math.random() * H,
+      r: (Math.random() * 1.8 + .5) * devicePixelRatio,
+      s: (Math.random() * .45 + .12) * devicePixelRatio,
+      w: Math.random() * Math.PI * 2,
+      a: Math.random() * .55 + .2,
+    }));
+  }
+  resize();
+  addEventListener('resize', resize);
+  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  (function loop() {
+    cx.clearRect(0, 0, W, H);
+    for (const f of flakes) {
+      f.y += f.s; f.w += .012;
+      f.x += Math.sin(f.w) * .3 * devicePixelRatio;
+      if (f.y > H + 6) { f.y = -6; f.x = Math.random() * W; }
+      cx.globalAlpha = f.a;
+      cx.fillStyle = '#eef3ff';
+      cx.beginPath(); cx.arc(f.x, f.y, f.r, 0, 7); cx.fill();
+    }
+    cx.globalAlpha = 1;
+    if (!reduced) requestAnimationFrame(loop);
+  })();
+})();
+</script>
+</body>
+</html>

@@ -170,6 +170,154 @@
 .show-cta p { color: var(--ink-soft); margin-bottom: 28px; }
 .show-cta .row { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
 
+/* ============================================================
+   BRAND PALETTES — ogni presentazione usa i colori dell'app
+   che racconta (override dei token di main.css).
+   ============================================================ */
+
+/* Mensa Service: navy, blu e teal dell'app gestionale */
+[data-brand="mensa"] {
+  color-scheme: light;
+  --bg: #f3f6fb;
+  --bg-soft: #e7edf6;
+  --surface: rgba(255, 255, 255, 0.88);
+  --surface-strong: rgba(255, 255, 255, 0.96);
+  --border: rgba(16, 35, 70, 0.10);
+  --border-strong: rgba(16, 35, 70, 0.22);
+  --ink: #142540;
+  --ink-soft: #43577b;
+  --ink-faint: #7488a8;
+  --accent: #2563eb;
+  --accent-2: #0d9488;
+  --accent-3: #22c55e;
+  --accent-warm: #f59e0b;
+  --grad-main: linear-gradient(92deg, #1d4ed8, #0d9488 55%, #22c55e);
+  --grad-btn: linear-gradient(92deg, #1e40af, #2563eb);
+  --shadow-card: 0 18px 44px -20px rgba(20, 40, 90, 0.25);
+  --glow: 0 8px 26px -10px rgba(37, 99, 235, 0.45);
+  --hero-haze-1: rgba(37, 99, 235, 0.12);
+  --hero-haze-2: rgba(13, 148, 136, 0.10);
+  --hero-haze-3: rgba(34, 197, 94, 0.08);
+  --chip-bg: rgba(37, 99, 235, 0.10);
+  --chip-ink: #1d4ed8;
+}
+
+/* Salon Manager: il rosa del gestionale parrucchiera */
+[data-brand="salone"] {
+  color-scheme: light;
+  --bg: #fdf5f8;
+  --bg-soft: #fae9f0;
+  --surface: rgba(255, 255, 255, 0.88);
+  --surface-strong: rgba(255, 255, 255, 0.96);
+  --border: rgba(80, 7, 37, 0.10);
+  --border-strong: rgba(80, 7, 37, 0.22);
+  --ink: #46112c;
+  --ink-soft: #7d4762;
+  --ink-faint: #a97f93;
+  --accent: #ec4899;
+  --accent-2: #e11d48;
+  --accent-3: #d946ef;
+  --accent-warm: #fb923c;
+  --grad-main: linear-gradient(92deg, #db2777, #f43f5e 55%, #fb7185);
+  --grad-btn: linear-gradient(92deg, #db2777, #e11d48);
+  --shadow-card: 0 18px 44px -20px rgba(150, 30, 80, 0.22);
+  --glow: 0 8px 26px -10px rgba(236, 72, 153, 0.45);
+  --hero-haze-1: rgba(236, 72, 153, 0.13);
+  --hero-haze-2: rgba(244, 63, 94, 0.09);
+  --hero-haze-3: rgba(217, 70, 239, 0.07);
+  --chip-bg: rgba(236, 72, 153, 0.12);
+  --chip-ink: #be185d;
+}
+
+/* La Corsa di Babbo Natale: notte di Natale, rosso, oro e abete */
+[data-brand="natale"] {
+  color-scheme: dark;
+  --bg: #0a1022;
+  --bg-soft: #101a36;
+  --surface: rgba(255, 255, 255, 0.05);
+  --surface-strong: rgba(16, 26, 54, 0.85);
+  --border: rgba(255, 255, 255, 0.10);
+  --border-strong: rgba(255, 255, 255, 0.18);
+  --ink: #f4f6ff;
+  --ink-soft: #b6c0dd;
+  --ink-faint: #8590b3;
+  --accent: #ef4444;
+  --accent-2: #fbbf24;
+  --accent-3: #34d399;
+  --accent-warm: #fbbf24;
+  --grad-main: linear-gradient(92deg, #f87171, #fbbf24 50%, #34d399);
+  --grad-btn: linear-gradient(92deg, #dc2626, #ef4444);
+  --shadow-card: 0 20px 50px -22px rgba(0, 0, 0, 0.7);
+  --glow: 0 8px 30px -8px rgba(239, 68, 68, 0.5);
+  --hero-haze-1: rgba(239, 68, 68, 0.14);
+  --hero-haze-2: rgba(251, 191, 36, 0.10);
+  --hero-haze-3: rgba(52, 211, 153, 0.12);
+  --chip-bg: rgba(239, 68, 68, 0.14);
+  --chip-ink: #fca5a5;
+}
+
+/* ---------- Sezione gioco embeddato (presentazione gioco) ---------- */
+.font-christmas { font-family: 'Mountains of Christmas', var(--font-display), cursive; }
+
+#snow-canvas { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
+
+.version-picker {
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+  margin-bottom: 22px;
+}
+.version-btn {
+  display: inline-flex; align-items: center; gap: 9px;
+  font-family: var(--font-display); font-weight: 600; font-size: var(--text-s);
+  color: var(--ink-soft);
+  background: var(--surface); border: 1px solid var(--border-strong);
+  border-radius: 999px; padding: 11px 20px; cursor: pointer;
+  transition: transform .25s var(--ease-spring), border-color .25s, color .25s, background .25s, box-shadow .25s;
+}
+.version-btn:hover { transform: translateY(-2px); color: var(--ink); }
+.version-btn[aria-pressed="true"] {
+  color: #fff; background: var(--grad-btn);
+  border-color: transparent; box-shadow: var(--glow);
+}
+.game-stage {
+  position: relative;
+  border-radius: 22px; overflow: hidden;
+  border: 1px solid var(--border-strong);
+  background: #060912;
+  box-shadow: var(--shadow-card);
+  aspect-ratio: 16 / 10;
+  min-height: 440px;
+}
+.game-stage iframe { width: 100%; height: 100%; border: 0; display: block; }
+.game-stage .stage-msg {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  text-align: center; padding: 30px; color: var(--ink-soft); font-size: var(--text-m);
+}
+.game-stage .stage-msg a { color: var(--accent-2); }
+.game-note { text-align: center; color: var(--ink-faint); font-size: var(--text-xs); margin-top: 14px; }
+.fullscreen-link { text-align: center; margin-top: 10px; }
+.fullscreen-link a { color: var(--accent-2); font-size: var(--text-s); text-decoration: none; }
+.fullscreen-link a:hover { text-decoration: underline; }
+
+/* Cards delle zone del gioco */
+.zone-strip { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; }
+.zone-card {
+  border-radius: var(--radius-m); padding: 18px 16px;
+  border: 1px solid var(--border);
+  background: var(--surface); backdrop-filter: blur(8px);
+  transition: transform .3s var(--ease-spring), border-color .3s;
+}
+.zone-card:hover { transform: translateY(-4px); border-color: var(--border-strong); }
+.zone-card .sky {
+  height: 54px; border-radius: 10px; margin-bottom: 12px;
+  border: 1px solid var(--border);
+}
+.zone-card h3 { font-size: .98rem; margin-bottom: 4px; }
+.zone-card p { font-size: var(--text-xs); color: var(--ink-faint); }
+
+@media (max-width: 700px) {
+  .game-stage { aspect-ratio: 3 / 4; }
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .show-hero { min-height: 0; }

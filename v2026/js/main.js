@@ -19,10 +19,15 @@
     }
   }
 
-  try {
-    const saved = localStorage.getItem('ab-theme-2026');
-    if (saved) setTheme(saved, false);
-  } catch { /* ignora */ }
+  // Le pagine con data-brand hanno una palette fissa coerente con
+  // l'app presentata: non applicare il tema salvato dell'utente.
+  const hasBrand = !!root.dataset.brand;
+  if (!hasBrand) {
+    try {
+      const saved = localStorage.getItem('ab-theme-2026');
+      if (saved) setTheme(saved, false);
+    } catch { /* ignora */ }
+  }
 
   document.querySelectorAll('[data-set-theme]').forEach(btn => {
     btn.addEventListener('click', () => setTheme(btn.dataset.setTheme));
