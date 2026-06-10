@@ -184,6 +184,7 @@
   </div>
 </footer>
 
+<script src="../js/analytics.js" defer></script>
 <script src="../js/main.js"></script>
 <script>
 (() => {
@@ -201,9 +202,12 @@
   const fullLink = document.getElementById('open-full');
   const buttons = document.querySelectorAll('.version-btn');
 
+  let firstLoad = true;
   function loadVersion(key) {
     const v = VERSIONS[key];
     if (!v) return;
+    if (!firstLoad) window.abTrack?.('gioco/versione-' + key);
+    firstLoad = false;
     buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.version === key)));
     fullLink.href = v.full;
     stage.innerHTML = '';

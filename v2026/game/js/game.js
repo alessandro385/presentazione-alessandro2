@@ -94,6 +94,7 @@ export class Game {
   startRun(sledId) {
     audio.unlock();
     this.lastSledId = sledId;
+    window.abTrack?.('gioco/partita-iniziata-' + sledId);
     this._clearWorld();
 
     this.player = new Player(getSled(sledId), this.viewport);
@@ -311,6 +312,7 @@ export class Game {
     this.state = 'victory';
     this.endTimer = 1.6;
     this._endShown = false;
+    window.abTrack?.('gioco/vittoria');
     audio.play('victory');
   }
 
@@ -318,6 +320,7 @@ export class Game {
     this.state = 'gameover';
     this.endTimer = 1.6;
     this._endShown = false;
+    window.abTrack?.('gioco/game-over-livello-' + (this.levelIndex + 1));
     audio.play('gameover');
   }
 

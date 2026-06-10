@@ -30,6 +30,20 @@ v2026/                      → edizione 2026 (nuova)
 - **2024/25** — la versione storica, con i quattro temi originali. Non viene più
   modificata: è conservata com'era.
 
+## Statistiche di accesso
+
+Il sito usa [GoatCounter](https://www.goatcounter.com) (`v2026/js/analytics.js`):
+**nessun cookie, nessun dato personale**, quindi niente banner consensi. Traccia
+visite per pagina, tempo di permanenza a fasce ed eventi (edizione scelta, tema,
+versione del gioco giocata, partite iniziate/finite). In localhost non invia
+nulla: logga solo in console.
+
+**Attivazione (una tantum):** registrati gratis su
+https://www.goatcounter.com/signup scegliendo il codice sito `alessandro385`.
+Da quel momento i dati appaiono su https://alessandro385.goatcounter.com.
+Se il codice fosse occupato, scegline un altro e aggiorna la costante `SITE`
+in `v2026/js/analytics.js`.
+
 ## Sviluppo locale
 
 Serve solo un server statico:

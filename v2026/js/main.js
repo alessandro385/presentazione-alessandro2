@@ -15,6 +15,7 @@
       btn.setAttribute('aria-pressed', String(btn.dataset.setTheme === name));
     });
     if (save) {
+      window.abTrack?.('tema/' + name);
       try { localStorage.setItem('ab-theme-2026', name); } catch { /* storage non disponibile */ }
     }
   }
