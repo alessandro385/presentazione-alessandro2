@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="aurora" data-brand="campo">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Football Paper-Trading — Alessandro Barresi</title>
+<meta name="description" content="Football Paper-Trading: progetto di dati e modellazione statistica sul calcio con denaro 100% virtuale. Modelli Dixon-Coles e binomiale negativa, validazione walk-forward, dashboard FastAPI ed ECharts. Nessuna scommessa reale.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/showcase.css">
+<link rel="stylesheet" href="../css/progetti.css">
+</head>
+<body>
+
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html#progetti" class="logo"><span class="mark">AB</span>Football Paper-Trading</a>
+    <div class="header-actions">
+      <a class="legacy-link" href="../../index.html" title="Pagina iniziale">⌂ inizio</a>
+      <a class="legacy-link" href="../index.html#progetti">← progetti</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== HERO ===== -->
+  <section class="show-hero">
+    <div class="container show-hero-grid">
+      <div>
+        <span class="kicker">// case study · dati e modellazione</span>
+        <h1>Modelli statistici sul calcio, <span class="grad-text">denaro 100% virtuale</span></h1>
+        <p class="lead">Un banco di prova per modelli previsionali: il sistema scarica dati di partite reali,
+        stima probabilità con modelli statistici, le confronta con il mercato e simula le giocate con un
+        bankroll interamente virtuale. Lo scopo è misurare quanto valgono i modelli, non vincere soldi.</p>
+        <div class="tech-row">
+          <span class="chip">Python</span><span class="chip">scipy · numpy · pandas</span><span class="chip">SQLite</span>
+          <span class="chip">FastAPI</span><span class="chip">ECharts</span><span class="chip">pytest</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#funzioni">Come funziona ↓</a>
+          <a class="btn btn-ghost" href="#risultato">Il risultato</a>
+        </div>
+      </div>
+      <div class="device reveal">
+        <div class="browser art">
+          <div class="browser-bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <span class="url">paper-trading · simulazione</span>
+          </div>
+          <img src="../../assets/football_paper_trading/cover.svg" alt="Illustrazione: campo da calcio stilizzato, distribuzione dei gol attesi e confronto tra le probabilità del modello e quelle del mercato, con l'etichetta denaro 100% virtuale">
+        </div>
+        <span class="art-note">illustrazione schematica · non è uno screenshot</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- ===== AVVISO ===== -->
+    <div class="notice-box reveal">
+      <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M9 12l2 2 4-4"/></svg></span>
+      <div>
+        <h2>Nessuna scommessa reale, per scelta di progetto</h2>
+        <p>È un progetto di dati e modellazione. Il vincolo è scritto nelle regole del repository e non è negoziabile:</p>
+        <ul>
+          <li>denaro esclusivamente virtuale, da un bankroll simulato;</li>
+          <li>nessuna API di piazzamento, nessun account presso operatori di scommesse, nessuno scraping dei loro siti;</li>
+          <li>le quote reali arrivano in sola lettura da API legittime e servono solo come termine di confronto.</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- ===== STATISTICHE (fatti del progetto, non risultati) ===== -->
+    <div class="stat-band reveal">
+      <div class="stat-cell"><div class="v">0 €</div><div class="k">denaro reale</div></div>
+      <div class="stat-cell"><div class="v">5 + 1</div><div class="k">campionati (le 5 maggiori + Serie B)</div></div>
+      <div class="stat-cell"><div class="v">Walk-forward</div><div class="k">validazione temporale</div></div>
+      <div class="stat-cell"><div class="v">CLI + web</div><div class="k">comandi e dashboard</div></div>
+    </div>
+
+    <!-- ===== CAPITOLI ===== -->
+    <div class="chapters" id="funzioni">
+
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">01</div>
+          <span class="kicker">// dati</span>
+          <h2>Dati reali, in sola lettura</h2>
+          <p>Risultati e statistiche storiche arrivano da CSV pubblici; le quote di mercato da un
+          aggregatore con API ufficiali, con un budget di richieste controllato dal sistema stesso;
+          i risultati della sera da un'API di statistiche post-partita. Tutto finisce in un database
+          SQLite locale, con gli snapshot delle quote storicizzati.</p>
+          <ul class="mini-list">
+            <li>Controlli di qualità all'ingresso dei dati</li>
+            <li>Budget delle API persistito: oltre la soglia il comando si ferma da solo</li>
+            <li>Modalità offline per i test, con payload registrati</li>
+          </ul>
+        </div>
+        <div class="shot-frame art">
+          <img src="../../assets/football_paper_trading/dati.svg" alt="Illustrazione schematica del flusso dei dati: fonti in sola lettura, database SQLite, modelli" loading="lazy">
+          <span class="didascalia">illustrazione · dati</span>
+        </div>
+      </div>
+
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">02</div>
+          <span class="kicker">// modelli</span>
+          <h2>Probabilità, non pronostici</h2>
+          <p>Il modello dei gol è un doppio Poisson con correzione Dixon-Coles, stimato per massima
+          verosimiglianza con <code>scipy</code>: produce la matrice di tutti i punteggi possibili, da
+          cui si derivano 1X2, Over/Under e gli altri mercati. Corner e tiri usano una binomiale
+          negativa, i cartellini un Poisson. Un modello per campionato, versionato nel database.</p>
+          <ul class="mini-list">
+            <li>Mai addestrare su dati successivi alla partita da prevedere</li>
+            <li>Seed fissi e versione del modello salvata con ogni previsione</li>
+            <li>Valutazione con log-loss e Brier score, non con l'accuratezza</li>
+          </ul>
+        </div>
+        <div class="shot-frame art">
+          <img src="../../assets/football_paper_trading/matrice-punteggi.svg" alt="Illustrazione schematica della matrice dei punteggi di un modello gol, con evidenziate le celle Over 2.5" loading="lazy">
+          <span class="didascalia">illustrazione · matrice</span>
+        </div>
+      </div>
+
+      <div class="chapter reveal" id="risultato">
+        <div class="chapter-copy">
+          <div class="chapter-num">03</div>
+          <span class="kicker">// valutazione onesta</span>
+          <h2>Il risultato più utile è stato un «no»</h2>
+          <p>Il backtest rigioca le stagioni passate come se fossero future, riaddestrando i modelli a
+          intervalli regolari. La conclusione è chiara: il modello non batte le quote di chiusura del
+          mercato, e nessuna ricalibrazione (Platt, isotonica, Platt con il mercato come variabile),
+          fatta senza leakage, cambia le cose.</p>
+          <p>Il perché è la parte interessante: la sovrastima sulle giocate non è un difetto globale di
+          calibrazione ma un <b>effetto di selezione</b>. Si gioca proprio dove il modello è in disaccordo
+          con il mercato, ed è lì che di solito sbaglia lui.</p>
+          <ul class="mini-list">
+            <li>Report di calibrazione documentato nel repository</li>
+            <li>Esperimento CLV: si misura se il modello anticipa i movimenti del mercato, confrontando la quota presa con l'ultima prima del calcio d'inizio</li>
+          </ul>
+        </div>
+        <div class="shot-frame art">
+          <img src="../../assets/football_paper_trading/calibrazione.svg" alt="Illustrazione schematica di un diagramma di calibrazione: sulle giocate selezionate la frequenza osservata resta sotto la probabilità dichiarata" loading="lazy">
+          <span class="didascalia">illustrazione · calibrazione</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== MOTORE, DASHBOARD, AUTOMAZIONE ===== -->
+    <section class="block reveal">
+      <div class="section-intro">
+        <span class="kicker">// il resto del sistema</span>
+        <h2>Dalla previsione al registro virtuale</h2>
+        <p>Attorno ai modelli c'è un sistema completo che gira da solo ogni giorno, sempre con denaro finto.</p>
+      </div>
+      <div class="trio">
+        <article class="trio-card">
+          <span class="tag">Motore</span>
+          <h3>Simulazione e liquidazione</h3>
+          <p>Confronto tra probabilità e quote, puntate virtuali da un bankroll simulato, liquidazione
+          idempotente con i risultati reali su un registro contabile, cashout simulato con regole
+          configurabili.</p>
+        </article>
+        <article class="trio-card">
+          <span class="tag">Dashboard</span>
+          <h3>FastAPI + ECharts</h3>
+          <p>Pagine server-side senza build: andamento del bankroll virtuale, schedine, modelli, CLV e
+          backtest, con tema chiaro e scuro. Le pagine leggono il database in sola lettura.</p>
+        </article>
+        <article class="trio-card">
+          <span class="tag">Automazione</span>
+          <h3>CLI e timer</h3>
+          <p>Comandi <code>typer</code> per ogni fase (ingest, train, predict, settle, backtest) e timer
+          pianificati per generare, aggiornare e liquidare. Test <code>pytest</code> con dati finti.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== STACK ===== -->
+    <section class="stack-section reveal">
+      <span class="kicker">// architettura</span>
+      <h2>Com'è costruito</h2>
+      <p>Un monolite Python pulito, con moduli separati e nessuna dipendenza di machine learning pesante:
+      tutto gira su CPU, su un portatile.</p>
+      <div class="pipeline">
+        <div class="pipe-node"><span class="t">Dati</span><span class="s">CSV · API in lettura</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Storage</span><span class="s">SQLite</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Modelli</span><span class="s">scipy · numpy · pandas</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Motore</span><span class="s">bankroll virtuale</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Dashboard</span><span class="s">FastAPI · Jinja2 · ECharts</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Automazione</span><span class="s">typer · systemd</span></div>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="show-cta reveal">
+      <h2>Un progetto <span class="grad-text">di metodo</span></h2>
+      <p>Il codice è privato. Se ti interessa il lato statistico (modelli, validazione, calibrazione) ne parlo volentieri.</p>
+      <div class="row">
+        <a class="btn btn-primary" href="../index.html#contatti">Contattami</a>
+        <a class="btn btn-ghost" href="../index.html#progetti">← Torna ai progetti</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>© 2026 Alessandro Barresi. Simulazione con denaro virtuale: nessuna scommessa reale.</span>
+    <span><a href="../index.html">Portfolio 2026</a> · <a href="../../index.html">Pagina iniziale</a></span>
+  </div>
+</footer>
+
+<script src="../js/analytics.js" defer></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

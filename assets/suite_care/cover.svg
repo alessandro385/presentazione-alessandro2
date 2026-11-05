@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" role="img" aria-labelledby="t">
+  <title id="t">Illustrazione: la Suite Care, tre moduli collegati</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#f1f6fb"/>
+      <stop offset="1" stop-color="#e6eef7"/>
+    </linearGradient>
+    <linearGradient id="hub" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0f766e"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="240" rx="18" fill="url(#bg)"/>
+  <!-- collegamenti -->
+  <g stroke="#94a3b8" stroke-width="2" stroke-dasharray="5 5" fill="none">
+    <path d="M200 120 L88 64"/>
+    <path d="M200 120 L312 64"/>
+    <path d="M200 120 L200 196"/>
+  </g>
+  <!-- hub -->
+  <circle cx="200" cy="120" r="34" fill="url(#hub)"/>
+  <path d="M188 112h24a6 6 0 0 1 6 6v8a6 6 0 0 1-6 6h-14l-8 6v-6h-2a6 6 0 0 1-6-6v-8a6 6 0 0 1 6-6z" fill="#fff"/>
+  <circle cx="193" cy="122" r="2" fill="#0f766e"/><circle cx="200" cy="122" r="2" fill="#0f766e"/><circle cx="207" cy="122" r="2" fill="#0f766e"/>
+
+  <!-- Helpdesk -->
+  <g transform="translate(30 30)">
+    <rect width="116" height="64" rx="14" fill="#fff" stroke="#cbd5e1"/>
+    <rect x="12" y="14" width="28" height="20" rx="4" fill="#dbeafe"/>
+    <path d="M14 17l12 9 12-9" stroke="#2563eb" stroke-width="2" fill="none"/>
+    <rect x="48" y="16" width="56" height="6" rx="3" fill="#cbd5e1"/>
+    <rect x="48" y="28" width="40" height="6" rx="3" fill="#e2e8f0"/>
+    <text x="12" y="54" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Helpdesk</text>
+  </g>
+  <!-- Marketing -->
+  <g transform="translate(254 30)">
+    <rect width="116" height="64" rx="14" fill="#fff" stroke="#cbd5e1"/>
+    <circle cx="26" cy="24" r="12" fill="#dcfce7"/>
+    <path d="M20 28l2-6a7 7 0 1 1 3 3z" fill="#16a34a"/>
+    <rect x="48" y="16" width="56" height="6" rx="3" fill="#cbd5e1"/>
+    <rect x="48" y="28" width="32" height="6" rx="3" fill="#bbf7d0"/>
+    <text x="12" y="54" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Marketing</text>
+  </g>
+  <!-- Servizio -->
+  <g transform="translate(142 166)">
+    <rect width="116" height="56" rx="14" fill="#fff" stroke="#cbd5e1"/>
+    <path d="M18 30a10 10 0 0 1 20 0v4h-4v-4a6 6 0 0 0-12 0v4h-4z" fill="#7c3aed"/>
+    <rect x="16" y="32" width="6" height="8" rx="2" fill="#7c3aed"/><rect x="34" y="32" width="6" height="8" rx="2" fill="#7c3aed"/>
+    <text x="48" y="34" font-family="Inter, system-ui, sans-serif" font-size="11" font-weight="700" fill="#0f172a">Servizio</text>
+    <text x="48" y="46" font-family="Inter, system-ui, sans-serif" font-size="9" fill="#64748b">gestito</text>
+  </g>
+  <!-- scintilla AI -->
+  <path d="M244 104l3 7 7 3-7 3-3 7-3-7-7-3 7-3z" fill="#7c3aed"/>
+</svg>

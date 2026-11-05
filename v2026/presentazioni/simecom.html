@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="lumen" data-brand="energia">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forecasting energetico e temperature — Alessandro Barresi</title>
+<meta name="description" content="Strumenti di dati costruiti in SIME: dashboard forecast vs consuntivo per zona elettrica, correzione del forecast con machine learning, elaborazione massiva con generazione dei file XML e mappa delle temperature. Python, Streamlit, scikit-learn, Flask.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/showcase.css">
+<link rel="stylesheet" href="../css/progetti.css">
+</head>
+<body>
+
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html#progetti" class="logo"><span class="mark">AB</span>Dati energetici</a>
+    <div class="header-actions">
+      <a class="legacy-link" href="../../index.html" title="Pagina iniziale">⌂ inizio</a>
+      <a class="legacy-link" href="../index.html#progetti">← progetti</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== HERO ===== -->
+  <section class="show-hero">
+    <div class="container show-hero-grid">
+      <div>
+        <span class="kicker">// case study · strumenti interni in SIME</span>
+        <h1>Dal forecast al file per il mercato, <span class="grad-text">senza macro</span></h1>
+        <p class="lead">Durante il lavoro su portfolio energetico e forecasting ho costruito una serie di
+        strumenti in Python per chi prepara ogni giorno le previsioni di consumo: confronto tra forecast e
+        consuntivo per zona elettrica, ritocchi guidati, una correzione con machine learning, l'elaborazione
+        di più giorni insieme e una mappa delle temperature.</p>
+        <div class="tech-row">
+          <span class="chip">Python</span><span class="chip">Streamlit</span><span class="chip">Plotly</span>
+          <span class="chip">scikit-learn</span><span class="chip">SQL Server</span><span class="chip">Flask</span>
+          <span class="chip">Leaflet</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#forecast">Il forecast ↓</a>
+          <a class="btn btn-ghost" href="#temperature">La mappa delle temperature</a>
+        </div>
+      </div>
+      <div class="device reveal">
+        <div class="browser art">
+          <div class="browser-bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <span class="url">forecast · consuntivo</span>
+          </div>
+          <img src="../../assets/simecom/cover.svg" alt="Illustrazione: curva oraria di forecast e consuntivo dei consumi elettrici, con un termometro">
+        </div>
+        <span class="art-note">illustrazione schematica · non sono dati aziendali</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- ===== STATISTICHE (caratteristiche, non risultati) ===== -->
+    <div class="stat-band reveal">
+      <div class="stat-cell"><div class="v">Per zona</div><div class="k">analisi sulle zone elettriche</div></div>
+      <div class="stat-cell"><div class="v">60 / 15 min</div><div class="k">risoluzione oraria o al quarto d'ora</div></div>
+      <div class="stat-cell"><div class="v">3 modelli</div><div class="k">confrontati nel backtest</div></div>
+      <div class="stat-cell"><div class="v">VBA → Python</div><div class="k">macro sostituite da web app</div></div>
+    </div>
+
+    <!-- ===== CAPITOLI ===== -->
+    <div class="chapters" id="forecast">
+
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">01</div>
+          <span class="kicker">// dashboard</span>
+          <h2>Forecast e consuntivo, zona per zona</h2>
+          <p>Una web app Streamlit legge i dati dal database aziendale e mette a confronto, per ogni zona
+          elettrica, la previsione e il consumo reale con grafici Plotly interattivi. Si può lavorare sul
+          database live o su un backup locale, utile quando la connessione non c'è.</p>
+          <ul class="mini-list">
+            <li>Modifica live del forecast del giorno dopo: cursori, ±5%, percentuali ora per ora</li>
+            <li>Copia delle modifiche tra zone e ripristino selettivo</li>
+            <li>Confronto visivo tra forecast originale e modificato, esportazione delle tabelle</li>
+          </ul>
+        </div>
+        <div class="shot-frame art">
+          <img src="../../assets/simecom/forecast.svg" alt="Illustrazione schematica: forecast originale, forecast corretto e consuntivo su una giornata, con i controlli di modifica percentuale" loading="lazy">
+          <span class="didascalia">illustrazione · forecast</span>
+        </div>
+      </div>
+
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">02</div>
+          <span class="kicker">// machine learning</span>
+          <h2>Un modello che impara dall'errore</h2>
+          <p>Invece di rifare la previsione da zero, il modello ML impara a prevedere <b>l'errore</b> del
+          forecast esistente e lo corregge: forecast corretto = forecast originale + errore previsto.
+          Un Random Forest per zona, ottimizzato con ricerca a griglia, su variabili di calendario
+          (ora, giorno della settimana, mese) e festività italiane.</p>
+          <p>Un backtest confronta tre modelli (originale, con variazioni manuali, corretto dal ML) con il
+          consuntivo tramite il MAPE e indica per ogni zona il migliore, con un report Excel.</p>
+        </div>
+        <div class="shot-frame art">
+          <img src="../../assets/simecom/backtest.svg" alt="Illustrazione schematica del backtest: tre modelli confrontati con il consuntivo tramite il MAPE, zona per zona" loading="lazy">
+          <span class="didascalia">illustrazione · backtest</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== ELABORAZIONE MASSIVA ===== -->
+    <section class="block reveal">
+      <div class="section-intro">
+        <span class="kicker">// dalle previsioni ai file</span>
+        <h2>Più giorni in un colpo solo</h2>
+        <p>La parte più ripetitiva del lavoro era trasformare le previsioni nei file da consegnare.
+        L'ho portata dentro la stessa app.</p>
+      </div>
+      <div class="trio">
+        <article class="trio-card">
+          <span class="tag">Elaborazione massiva</span>
+          <h3>Un intervallo di date</h3>
+          <p>Si sceglie il periodo e l'app applica a ogni giorno e a ogni zona la correzione ML e quella
+          automatica, restituendo i risultati pronti da controllare.</p>
+        </article>
+        <article class="trio-card">
+          <span class="tag">XML</span>
+          <h3>File per i mercati dell'energia</h3>
+          <p>Generazione dei file XML nel formato standard richiesto per il mercato del giorno prima (MGP)
+          e per la piattaforma conti energia (PCE), revoche comprese, scaricabili in un unico archivio.</p>
+        </article>
+        <article class="trio-card">
+          <span class="tag">VBA → Python</span>
+          <h3>Logica portata in chiaro</h3>
+          <p>Le macro VBA da cui partiva il processo sono state riscritte in moduli Python leggibili,
+          versionati e riusabili tra le pagine dell'app.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== TEMPERATURE ===== -->
+    <div class="chapters" id="temperature">
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">03</div>
+          <span class="kicker">// temperature</span>
+          <h2>Una mappa delle temperature d'Italia</h2>
+          <p>Le temperature pesano sui consumi, quindi servivano a colpo d'occhio. La prima versione
+          generava un'unica pagina HTML enorme e lentissima da aprire; l'ho riprogettata separando dati e
+          interfaccia: uno script estrae i dati dal database e li prepara in JSON, un server Flask li espone
+          con API REST e la pagina li carica solo quando servono.</p>
+          <ul class="mini-list">
+            <li>Mappa Leaflet con un punto per comune, a cerchi o heatmap, e più schemi di colore</li>
+            <li>Dashboard con statistiche nazionali e regionali (Chart.js)</li>
+            <li>Ricerca della singola città e aggiornamento dei dati dal database</li>
+          </ul>
+        </div>
+        <div class="shot-frame art">
+          <img src="../../assets/simecom/temperature.svg" alt="Illustrazione schematica della mappa: un punto per comune colorato dal freddo al caldo" loading="lazy">
+          <span class="didascalia">illustrazione · mappa</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== STACK ===== -->
+    <section class="stack-section reveal">
+      <span class="kicker">// architettura</span>
+      <h2>Com'è costruito</h2>
+      <p>Due applicazioni Python indipendenti che leggono dallo stesso tipo di sorgente: una per il
+      forecast, multipagina in Streamlit, e una per le temperature, con backend Flask e frontend leggero.</p>
+      <div class="pipeline">
+        <div class="pipe-node"><span class="t">Sorgente</span><span class="s">SQL Server · pyodbc</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Dati</span><span class="s">pandas · SQLAlchemy</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Modelli</span><span class="s">scikit-learn · joblib</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Interfaccia</span><span class="s">Streamlit · Plotly</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Output</span><span class="s">XML · Excel · CSV</span></div>
+      </div>
+    </section>
+
+    <!-- ===== NOTA ===== -->
+    <div class="notice-box reveal">
+      <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></span>
+      <div>
+        <h3>Strumenti interni, codice privato</h3>
+        <p>Sono nati per uso interno in azienda: il codice non è pubblico e in questa pagina non ci sono
+        dati aziendali. Curve, barre e mappa sono illustrazioni schematiche.</p>
+      </div>
+    </div>
+
+    <!-- ===== CTA ===== -->
+    <section class="show-cta reveal" style="margin-top: var(--space-4);">
+      <h2>Dati che diventano <span class="grad-text">decisioni</span></h2>
+      <p>Forecasting, automazione e dashboard sono il filo che lega questi strumenti al mio lavoro di oggi.</p>
+      <div class="row">
+        <a class="btn btn-primary" href="../index.html#esperienza">Il mio percorso</a>
+        <a class="btn btn-ghost" href="../index.html#progetti">← Torna ai progetti</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>© 2026 Alessandro Barresi.</span>
+    <span><a href="../index.html">Portfolio 2026</a> · <a href="../../index.html">Pagina iniziale</a></span>
+  </div>
+</footer>
+
+<script src="../js/analytics.js" defer></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

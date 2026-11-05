@@ -7,165 +7,188 @@
 <meta name="description" content="Portfolio di Alessandro Barresi — AI Operations & Supply Chain Specialist, sviluppatore web app e data analyst. Scegli l'edizione 2026 o quella classica 2024/25.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
+  /* Landing: stessa direzione dell'edizione 2026 ("documento operativo").
+     Fondo piatto, Archivo in due larghezze, mono solo per dati.
+     L'edizione consigliata è un'etichetta di spedizione: è l'unico
+     elemento audace della pagina. */
   :root {
-    --bg: #070a14;
-    --ink: #eef1fb;
-    --muted: #93a0c2;
-    --indigo: #6366f1;
-    --cyan: #22d3ee;
-    --mint: #34d399;
-    --amber: #fbbf24;
-    --card: rgba(255, 255, 255, 0.04);
-    --card-border: rgba(255, 255, 255, 0.09);
-    --radius: 24px;
+    color-scheme: dark;
+    --bg: #0b1622;
+    --surface: #13212f;
+    --ink: #e9eff4;
+    --ink-soft: #b9c6d1;
+    --ink-faint: #8b9cab;
+    --accent: #7be0b8;
+    --accent-2: #93cde6;
+    --border: rgba(185, 205, 225, 0.13);
+    --border-strong: rgba(185, 205, 225, 0.28);
+    --paper: #eef1ec;
+    --paper-ink: #121c26;
+    --paper-ink-soft: #4a5663;
+    --radius: 12px;
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --font: 'Archivo', system-ui, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, monospace;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  html, body { height: 100%; }
+  html { scrollbar-color: var(--border-strong) var(--bg); }
   body {
     background: var(--bg);
     color: var(--ink);
-    font-family: 'Inter', system-ui, sans-serif;
+    font-family: var(--font);
+    line-height: 1.6;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
   }
-
-  /* ---- Sfondo aurora animato ---- */
-  .sky {
-    position: fixed; inset: 0; z-index: 0; overflow: hidden;
-    background:
-      radial-gradient(ellipse 80% 50% at 20% -10%, rgba(99, 102, 241, 0.22), transparent 60%),
-      radial-gradient(ellipse 60% 40% at 85% 10%, rgba(34, 211, 238, 0.14), transparent 60%),
-      radial-gradient(ellipse 70% 60% at 50% 110%, rgba(52, 211, 153, 0.10), transparent 60%),
-      var(--bg);
-  }
-  .aurora {
-    position: absolute; inset: -20%;
-    background:
-      conic-gradient(from 180deg at 50% 30%, transparent 0deg, rgba(99,102,241,.12) 60deg, rgba(34,211,238,.10) 120deg, transparent 180deg, rgba(52,211,153,.08) 260deg, transparent 360deg);
-    filter: blur(60px);
-    animation: drift 26s ease-in-out infinite alternate;
-  }
-  @keyframes drift {
-    0%   { transform: rotate(0deg) scale(1); }
-    100% { transform: rotate(18deg) scale(1.15); }
-  }
-  #stars { position: absolute; inset: 0; width: 100%; height: 100%; }
+  ::selection { background: var(--accent); color: #062a1c; }
+  a { color: inherit; text-underline-offset: .2em; }
+  :focus-visible { outline: 2px solid var(--accent-2); outline-offset: 4px; border-radius: 4px; }
 
   /* ---- Layout ---- */
   .wrap {
-    position: relative; z-index: 1;
     min-height: 100svh;
-    display: flex; flex-direction: column;
-    align-items: center; justify-content: center;
-    padding: clamp(24px, 5vw, 64px);
-    gap: clamp(28px, 4vh, 48px);
+    width: min(1080px, 100% - clamp(32px, 7vw, 96px));
+    margin-inline: auto;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: clamp(40px, 8vh, 96px) 0 clamp(32px, 6vh, 64px);
+    gap: clamp(36px, 6vh, 64px);
   }
-  header.intro { text-align: center; max-width: 720px; }
+  header.intro { max-width: 820px; }
   .badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-family: 'JetBrains Mono', monospace; font-size: 12px; letter-spacing: .12em;
-    color: var(--cyan); text-transform: uppercase;
-    border: 1px solid rgba(34, 211, 238, .25);
-    background: rgba(34, 211, 238, .06);
-    padding: 7px 14px; border-radius: 999px;
-    margin-bottom: 22px;
-    opacity: 0; animation: rise .8s ease .1s forwards;
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--mono); font-size: .8rem;
+    color: var(--ink-soft);
+    margin-bottom: 26px;
   }
-  .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 10px var(--mint); animation: pulse 2.2s infinite; }
-  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .35; } }
+  .badge .dot { width: 8px; height: 8px; border-radius: 1px; background: var(--accent); }
   h1 {
-    font-family: 'Sora', sans-serif;
-    font-size: clamp(2.1rem, 5.5vw, 3.6rem);
-    font-weight: 800; line-height: 1.08; letter-spacing: -0.02em;
-    opacity: 0; animation: rise .8s ease .25s forwards;
+    font-size: clamp(2.6rem, 1.2rem + 6vw, 6rem);
+    font-stretch: 125%; font-weight: 750;
+    line-height: .96; letter-spacing: -0.035em;
+    text-wrap: balance;
   }
   h1 .grad {
-    background: linear-gradient(92deg, var(--indigo), var(--cyan) 55%, var(--mint));
-    -webkit-background-clip: text; background-clip: text; color: transparent;
+    display: block; margin-top: .22em;
+    font-size: .46em; font-stretch: 100%; font-weight: 400;
+    letter-spacing: -0.015em; line-height: 1.1;
+    color: var(--ink-soft);
   }
   .sub {
-    margin-top: 16px; color: var(--muted);
-    font-size: clamp(1rem, 2vw, 1.15rem); line-height: 1.6;
-    opacity: 0; animation: rise .8s ease .4s forwards;
+    margin-top: 22px; color: var(--ink-soft); max-width: 60ch;
+    font-size: clamp(1rem, .96rem + .3vw, 1.15rem); line-height: 1.6;
+    text-wrap: pretty;
   }
-  @keyframes rise { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: none; } }
 
-  /* ---- Card edizioni ---- */
+  /* ---- Edizioni ---- */
   .editions {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 420px));
-    justify-content: center; gap: clamp(18px, 3vw, 32px);
-    width: 100%; max-width: 920px;
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(min(320px, 100%), 1fr));
+    gap: clamp(16px, 3vw, 28px);
+    align-items: start;
   }
   .edition {
-    position: relative; display: block; text-decoration: none; color: inherit;
-    background: var(--card);
-    border: 1px solid var(--card-border);
+    position: relative; display: flex; flex-direction: column;
+    text-decoration: none; color: inherit;
     border-radius: var(--radius);
     padding: clamp(24px, 3.5vw, 36px);
-    backdrop-filter: blur(14px);
-    transition: transform .35s cubic-bezier(.2,.8,.25,1), border-color .35s, box-shadow .35s;
-    opacity: 0; animation: rise .8s ease forwards;
-    overflow: hidden;
+    transition: translate .3s var(--ease-out), scale .2s var(--ease-out), border-color .25s ease, box-shadow .3s var(--ease-out);
   }
-  .edition:nth-child(1) { animation-delay: .55s; }
-  .edition:nth-child(2) { animation-delay: .7s; }
-  .edition::before {
-    content: ''; position: absolute; inset: 0; border-radius: inherit;
-    background: radial-gradient(420px circle at var(--mx, 50%) var(--my, 0%), rgba(255,255,255,.07), transparent 45%);
-    opacity: 0; transition: opacity .35s; pointer-events: none;
+  .edition:hover { translate: 0 -4px; }
+  .edition:active { scale: .99; }
+  /* 2026: l'etichetta di spedizione */
+  .edition.new {
+    background: var(--paper); color: var(--paper-ink);
+    border-top: 12px solid var(--accent);
+    box-shadow: 0 2px 4px rgba(0,0,0,.25), 0 26px 50px -20px rgba(0,0,0,.65);
+    transform: rotate(-1deg);
   }
-  .edition:hover::before { opacity: 1; }
-  .edition:hover { transform: translateY(-6px); box-shadow: 0 24px 60px -24px rgba(0,0,0,.7); }
-  .edition.new:hover { border-color: rgba(34, 211, 238, .45); }
-  .edition.classic:hover { border-color: rgba(167, 139, 250, .4); }
+  .edition.new:hover { box-shadow: 0 2px 4px rgba(0,0,0,.25), 0 34px 60px -20px rgba(0,0,0,.7); }
+  .edition.new::after {
+    /* codice a barre decorativo */
+    content: ''; display: block; height: 38px; margin-top: 26px;
+    background: repeating-linear-gradient(90deg,
+      var(--paper-ink) 0 2px, transparent 2px 4px,
+      var(--paper-ink) 4px 5px, transparent 5px 8px,
+      var(--paper-ink) 8px 11px, transparent 11px 12px,
+      var(--paper-ink) 12px 13px, transparent 13px 16px,
+      var(--paper-ink) 16px 17px, transparent 17px 19px,
+      var(--paper-ink) 19px 22px, transparent 22px 25px);
+    order: 9;
+  }
+  .edition.new:focus-visible { outline-color: var(--paper); outline-offset: 5px; }
+  /* 2024/25: il faldone d'archivio */
+  .edition.classic {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    margin-top: clamp(0px, 3vw, 28px);
+  }
+  .edition.classic:hover { border-color: var(--border-strong); }
 
   .ed-tag {
-    font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: .14em;
-    text-transform: uppercase; padding: 5px 11px; border-radius: 999px; display: inline-block;
-    margin-bottom: 18px;
+    align-self: flex-start;
+    font-family: var(--mono); font-size: .8rem; font-weight: 500;
+    padding-bottom: 12px; margin-bottom: 18px; width: 100%;
   }
-  .new .ed-tag { color: #07121a; background: linear-gradient(90deg, var(--cyan), var(--mint)); font-weight: 600; }
-  .classic .ed-tag { color: #c4b5fd; background: rgba(139, 92, 246, .14); border: 1px solid rgba(139, 92, 246, .3); }
-  .edition h2 { font-family: 'Sora', sans-serif; font-size: clamp(1.4rem, 2.6vw, 1.8rem); font-weight: 700; margin-bottom: 10px; letter-spacing: -0.01em; }
-  .edition p { color: var(--muted); font-size: .95rem; line-height: 1.65; }
-  .edition ul { list-style: none; margin: 18px 0 26px; display: grid; gap: 9px; }
-  .edition li { display: flex; gap: 10px; align-items: baseline; font-size: .9rem; color: #c2cbe4; }
-  .edition li::before { content: '▸'; flex-shrink: 0; }
-  .new li::before { color: var(--mint); }
-  .classic li::before { color: #a78bfa; }
+  .new .ed-tag { color: var(--paper-ink); border-bottom: 1px dashed rgba(18, 28, 38, .35); }
+  .classic .ed-tag { color: var(--ink-faint); border-bottom: 1px solid var(--border); }
+  .edition h2 {
+    font-size: clamp(1.5rem, 1.1rem + 1.6vw, 2.2rem);
+    font-stretch: 118%; font-weight: 700; line-height: 1.05;
+    letter-spacing: -0.025em; margin-bottom: 12px;
+  }
+  .edition p { font-size: .98rem; line-height: 1.6; }
+  .new p { color: var(--paper-ink-soft); }
+  .classic p { color: var(--ink-soft); }
+  .edition ul { list-style: none; margin: 20px 0 28px; display: grid; gap: 8px; }
+  .edition li { position: relative; padding-left: 1.2em; font-size: .94rem; }
+  .edition li::before { content: ''; position: absolute; left: 0; top: .62em; width: 6px; height: 6px; border-radius: 1px; }
+  .new li { color: var(--paper-ink); }
+  .new li::before { background: var(--paper-ink); }
+  .classic li { color: var(--ink-soft); }
+  .classic li::before { background: var(--ink-faint); }
   .cta {
+    align-self: flex-start;
     display: inline-flex; align-items: center; gap: 10px;
-    font-family: 'Sora', sans-serif; font-weight: 600; font-size: .95rem;
-    padding: 12px 22px; border-radius: 14px;
-    transition: gap .25s ease;
+    font-weight: 600; font-size: .95rem;
+    padding: 12px 22px; border-radius: 4px; min-height: 46px;
+    transition: gap .3s var(--ease-out), background-color .2s ease, border-color .2s ease;
   }
-  .edition:hover .cta { gap: 16px; }
-  .new .cta { background: linear-gradient(92deg, var(--indigo), var(--cyan)); color: #fff; box-shadow: 0 8px 28px -8px rgba(99, 102, 241, .55); }
-  .classic .cta { border: 1px solid rgba(167, 139, 250, .4); color: #d6c9ff; }
+  .edition:hover .cta { gap: 15px; }
+  .new .cta { background: var(--paper-ink); color: var(--paper); }
+  .classic .cta { border: 1px solid var(--border-strong); color: var(--ink); }
+  .classic:hover .cta { border-color: var(--ink); }
 
   footer {
-    position: relative; z-index: 1; text-align: center;
-    padding: 0 24px 34px; color: var(--muted); font-size: .85rem;
-    opacity: 0; animation: rise .8s ease .9s forwards;
+    width: min(1080px, 100% - clamp(32px, 7vw, 96px)); margin-inline: auto;
+    display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px;
+    padding: 22px 0 34px; border-top: 1px solid var(--border);
+    color: var(--ink-faint); font-size: .88rem;
   }
-  footer a { color: var(--cyan); text-decoration: none; }
-  footer a:hover { text-decoration: underline; }
-  footer .links { display: flex; gap: 18px; justify-content: center; margin-bottom: 12px; flex-wrap: wrap; }
+  footer a { color: var(--ink-soft); text-decoration: none; }
+  footer a:hover { color: var(--ink); text-decoration: underline; }
+  footer .links { display: flex; gap: 6px 18px; flex-wrap: wrap; }
+
+  /* ---- Un solo momento: ingresso in sequenza, l'etichetta "esce dalla stampante" ---- */
+  @keyframes rise { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+  @keyframes printLabel {
+    from { clip-path: inset(-60px -60px 100% -60px); transform: rotate(-1deg) translateY(-12px); }
+    to { clip-path: inset(-60px -60px -80px -60px); transform: rotate(-1deg); }
+  }
+  .badge { animation: rise .8s var(--ease-out) .05s both; }
+  h1 { animation: rise .8s var(--ease-out) .12s both; }
+  .sub { animation: rise .8s var(--ease-out) .2s both; }
+  .edition.new { animation: printLabel 1.2s var(--ease-out) .35s both; }
+  .edition.classic { animation: rise .8s var(--ease-out) .5s both; }
+  footer { animation: rise .8s var(--ease-out) .6s both; }
+  /* l'hover usa la proprietà translate, separata dal transform animato */
 
   @media (prefers-reduced-motion: reduce) {
-    .aurora { animation: none; }
-    .badge, h1, .sub, .edition, footer { animation-duration: .01s; animation-delay: 0s; }
+    *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; }
   }
 </style>
 </head>
 <body>
-
-<div class="sky" aria-hidden="true">
-  <div class="aurora"></div>
-  <canvas id="stars"></canvas>
-</div>
 
 <div class="wrap">
   <header class="intro">
@@ -184,7 +207,7 @@
         <li>Nuovi temi grafici con animazioni fluide</li>
         <li>Percorso aggiornato — Dog Heroes inclusa</li>
         <li>La Corsa di Babbo Natale 2026: desktop &amp; mobile</li>
-        <li>Tipografia e micro-interazioni di nuova generazione</li>
+        <li>Nuovi case study: Suite Care, Football Paper-Trading, forecasting energetico</li>
       </ul>
       <span class="cta">Entra nel 2026 <span aria-hidden="true">→</span></span>
     </a>
@@ -215,48 +238,5 @@
 </footer>
 
 <script src="v2026/js/analytics.js" defer></script>
-<script>
-  // Neve / stelle leggere sul canvas di sfondo
-  const cv = document.getElementById('stars');
-  const cx = cv.getContext('2d');
-  let W, H, flakes = [];
-  function resize() {
-    W = cv.width = innerWidth * devicePixelRatio;
-    H = cv.height = innerHeight * devicePixelRatio;
-    const n = Math.min(140, Math.floor(innerWidth / 9));
-    flakes = Array.from({ length: n }, () => ({
-      x: Math.random() * W, y: Math.random() * H,
-      r: (Math.random() * 1.6 + .4) * devicePixelRatio,
-      s: (Math.random() * .35 + .08) * devicePixelRatio,
-      w: Math.random() * Math.PI * 2,
-      a: Math.random() * .5 + .25
-    }));
-  }
-  resize();
-  addEventListener('resize', resize);
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  (function loop() {
-    cx.clearRect(0, 0, W, H);
-    for (const f of flakes) {
-      f.y += f.s; f.w += .01;
-      f.x += Math.sin(f.w) * .25 * devicePixelRatio;
-      if (f.y > H + 5) { f.y = -5; f.x = Math.random() * W; }
-      cx.globalAlpha = f.a;
-      cx.fillStyle = '#dfe7ff';
-      cx.beginPath(); cx.arc(f.x, f.y, f.r, 0, 7); cx.fill();
-    }
-    cx.globalAlpha = 1;
-    if (!reduced) requestAnimationFrame(loop);
-  })();
-
-  // Glow che segue il mouse sulle card
-  document.querySelectorAll('.edition').forEach(card => {
-    card.addEventListener('pointermove', e => {
-      const r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
-      card.style.setProperty('--my', (e.clientY - r.top) + 'px');
-    });
-  });
-</script>
 </body>
 </html>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="lumen" data-brand="care">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suite Care — Alessandro Barresi</title>
+<meta name="description" content="Suite Care: helpdesk per e-commerce (email, WhatsApp, chat, AI, Help Center), WhatsApp marketing per Shopify e un servizio gestito di assistenza clienti. FastAPI, React, PostgreSQL, Claude API.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/showcase.css">
+<link rel="stylesheet" href="../css/progetti.css">
+</head>
+<body>
+
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html#progetti" class="logo"><span class="mark">AB</span>Suite Care</a>
+    <div class="header-actions">
+      <a class="legacy-link" href="../../index.html" title="Pagina iniziale">⌂ inizio</a>
+      <a class="legacy-link" href="../index.html#progetti">← progetti</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== HERO ===== -->
+  <section class="show-hero">
+    <div class="container show-hero-grid">
+      <div>
+        <span class="kicker">// case study · prodotto in sviluppo</span>
+        <h1>L'assistenza clienti di un e-commerce, <span class="grad-text">in un posto solo</span></h1>
+        <p class="lead">Care è una piccola suite per i brand che vendono online: un helpdesk che riunisce
+        email, WhatsApp, chat del sito e Help Center con l'AI accanto all'operatore, un'app di WhatsApp
+        marketing per Shopify e un servizio gestito per chi vuole il risultato senza occuparsi dello strumento.</p>
+        <div class="tech-row">
+          <span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">React</span>
+          <span class="chip">PostgreSQL</span><span class="chip">Claude API</span><span class="chip">WhatsApp Cloud API</span>
+          <span class="chip">Shopify</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#suite">Scopri la suite ↓</a>
+          <a class="btn btn-ghost" href="../index.html#contatti">Parliamone</a>
+        </div>
+      </div>
+      <div class="device reveal">
+        <div class="browser art">
+          <div class="browser-bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <span class="url">care · suite</span>
+          </div>
+          <img src="../../assets/suite_care/cover.svg" alt="Illustrazione dei tre moduli della Suite Care, Helpdesk, Marketing e Servizio gestito, collegati a un centro comune">
+        </div>
+        <span class="art-note">illustrazione schematica · non è uno screenshot</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- ===== STATISTICHE (solo fatti, nessuna metrica inventata) ===== -->
+    <div class="stat-band reveal">
+      <div class="stat-cell"><div class="v">3</div><div class="k">progetti collegati</div></div>
+      <div class="stat-cell"><div class="v">4 canali</div><div class="k">email · WhatsApp · chat · Help Center</div></div>
+      <div class="stat-cell"><div class="v">IT · EN</div><div class="k">interfaccia operatori</div></div>
+      <div class="stat-cell"><div class="v">Fail-closed</div><div class="k">nessun invio senza ok</div></div>
+    </div>
+
+    <!-- ===== LA SUITE ===== -->
+    <section class="block reveal" id="suite">
+      <div class="section-intro">
+        <span class="kicker">// la suite</span>
+        <h2>Tre pezzi, un'idea sola</h2>
+        <p>Prima è nato l'helpdesk; il marketing su WhatsApp è diventato un'app a sé; il servizio gestito
+        è il modo più diretto per portare tutto questo ai brand. Codice e documenti sono separati,
+        ma condividono le stesse regole di sicurezza e lo stesso design system.</p>
+      </div>
+      <div class="trio">
+        <article class="trio-card">
+          <span class="tag">Care Helpdesk</span>
+          <h3>L'inbox per l'assistenza</h3>
+          <p>Conversazioni da email, WhatsApp e chat del sito in un'unica coda, con il contesto
+          del cliente (ordini e abbonamenti da Shopify), bozze dell'AI, macro, SLA e Help Center.</p>
+        </article>
+        <article class="trio-card">
+          <span class="tag">Care Marketing</span>
+          <h3>WhatsApp marketing per Shopify</h3>
+          <p>Template, campagne a segmenti e flussi automatici (benvenuto, carrello abbandonato,
+          dopo l'acquisto) mossi dagli eventi del negozio. Klaviyo si collega, ma non serve.</p>
+        </article>
+        <article class="trio-card">
+          <span class="tag">Servizio assistenza</span>
+          <h3>Il risultato, non il software</h3>
+          <p>Un servizio gestito: configuro e mantengo per il brand l'assistenza su WhatsApp con l'AI,
+          sui suoi account. Oggi è in fase di validazione con i primi colloqui.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== CAPITOLI ===== -->
+    <div class="chapters" id="funzioni">
+
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">01</div>
+          <span class="kicker">// helpdesk</span>
+          <h2>Tutti i canali in una coda sola</h2>
+          <p>Un ticket si capisce senza aprirlo: canale, priorità, SLA di prima risposta e anteprima
+          sono già in lista. Accanto alla conversazione c'è il pannello del cliente con ordini e
+          abbonamenti, così l'operatore non deve aprire altri strumenti.</p>
+          <ul class="mini-list">
+            <li>Email (Gmail), WhatsApp e chat del sito con widget isolato</li>
+            <li>Viste salvate e cartelle, macro suggerite mentre scrivi</li>
+            <li>Tastiera prima del mouse e palette comandi</li>
+            <li>Help Center pubblico con dati strutturati per i motori di ricerca</li>
+          </ul>
+        </div>
+        <div class="shot-frame art">
+          <img src="../../assets/suite_care/inbox.svg" alt="Illustrazione schematica dell'inbox a tre colonne" loading="lazy">
+          <span class="didascalia">illustrazione · inbox</span>
+        </div>
+      </div>
+
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">02</div>
+          <span class="kicker">// intelligenza artificiale</span>
+          <h2>L'AI prepara, l'operatore decide</h2>
+          <p>Con la Claude API l'helpdesk propone bozze di risposta, riassume le conversazioni lunghe e
+          attinge a una base di conoscenza propria del brand. Tutto ciò che viene dall'AI ha un colore
+          dedicato nell'interfaccia, così è sempre chiaro chi ha scritto cosa.</p>
+          <ul class="mini-list">
+            <li>Bozze e riassunti con il contesto dell'ordine</li>
+            <li>Risposta automatica in chat con limiti precisi: niente dati personali a chi non è verificato</li>
+            <li>Tono e descrizione dell'azienda configurabili dal profilo</li>
+          </ul>
+        </div>
+        <div class="shot-frame art">
+          <img src="../../assets/suite_care/ai.svg" alt="Illustrazione schematica dell'AI: riassunto, fonti dalla base di conoscenza e bozza di risposta da rivedere" loading="lazy">
+          <span class="didascalia">illustrazione · AI</span>
+        </div>
+      </div>
+
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">03</div>
+          <span class="kicker">// marketing</span>
+          <h2>Messaggi che partono solo quando ha senso</h2>
+          <p>Care Marketing usa direttamente la WhatsApp Cloud API. Gli eventi di Shopify (ordini,
+          checkout, clienti) muovono flussi e segmenti; prima di ogni invio una funzione pura controlla
+          consenso, esclusioni, fascia oraria e frequenza, e trattiene il messaggio se il cliente sta
+          già parlando con un operatore o ha appena ordinato.</p>
+          <ul class="mini-list">
+            <li>Template creati dal pannello e approvati da Meta</li>
+            <li>Link tracciati, STOP/START e inbox per le risposte</li>
+            <li>Connettore Klaviyo facoltativo, nei due sensi</li>
+          </ul>
+        </div>
+        <div class="shot-frame art">
+          <img src="../../assets/suite_care/marketing.svg" alt="Illustrazione schematica di un flusso: evento Shopify, regole di invio, messaggio WhatsApp, inbox delle risposte e Klaviyo facoltativo" loading="lazy">
+          <span class="didascalia">illustrazione · flusso</span>
+        </div>
+      </div>
+
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">04</div>
+          <span class="kicker">// pensato per essere rivenduto</span>
+          <h2>Un prodotto, non un progetto su misura</h2>
+          <p>Nome, colori, logo, orari e testi del brand stanno nel «Profilo azienda», non nel codice:
+          un solo colore di marchio genera tutta la palette, e un test verifica che nel prodotto non
+          resti il marchio di nessun cliente. Il widget della chat si personalizza da interfaccia con
+          un'anteprima fedele.</p>
+          <ul class="mini-list">
+            <li>Interfaccia operatori in italiano e inglese</li>
+            <li>Academy interna con corsi e tutorial interattivi per gli operatori</li>
+            <li>API REST con chiavi e ambiti, documentazione OpenAPI e server MCP per gli agenti AI</li>
+          </ul>
+        </div>
+        <div class="shot-frame art">
+          <img src="../../assets/suite_care/whitelabel.svg" alt="Illustrazione schematica del white label: il colore del marchio nel profilo azienda genera la palette e cambia il widget della chat" loading="lazy">
+          <span class="didascalia">illustrazione · white label</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== SICUREZZA ===== -->
+    <section class="block reveal">
+      <div class="section-intro">
+        <span class="kicker">// sicurezza e affidabilità</span>
+        <h2>Prudente per impostazione</h2>
+        <p>Un helpdesk tocca dati di clienti e parla a nome di un brand: le scelte di base sono tutte
+        dalla parte della prudenza.</p>
+      </div>
+      <div class="trio">
+        <article class="trio-card">
+          <span class="tag">Invii</span>
+          <h3>Fail-closed e modalità ombra</h3>
+          <p>Nessun messaggio parte finché gli invii non vengono accesi in modo esplicito; in modalità
+          ombra il sistema lavora e prepara le risposte senza mandarle.</p>
+        </article>
+        <article class="trio-card">
+          <span class="tag">Dati</span>
+          <h3>Chiavi cifrate e GDPR</h3>
+          <p>Credenziali delle integrazioni cifrate con AES-256-GCM, export e cancellazione dei dati
+          del cliente finale, perimetro pubblico ridotto a poche rotte coperte da test.</p>
+        </article>
+        <article class="trio-card">
+          <span class="tag">Infrastruttura</span>
+          <h3>Postgres, Docker e una coda durevole</h3>
+          <p>Lavori in background (invii, webhook) in una coda svolta da un worker separato, webhook
+          Shopify verificati con HMAC, backup e ripristino provati su dati finti.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== STACK ===== -->
+    <section class="stack-section reveal">
+      <span class="kicker">// architettura</span>
+      <h2>Com'è costruito</h2>
+      <p>Un monolite ordinato: frontend React compilato e servito dal backend FastAPI, database
+      relazionale tramite SQLAlchemy, worker per i lavori lunghi e integrazioni dirette con le API
+      dei servizi che i brand usano già.</p>
+      <div class="pipeline">
+        <div class="pipe-node"><span class="t">Interfaccia</span><span class="s">React · Vite · Tailwind</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Backend</span><span class="s">Python · FastAPI</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Database</span><span class="s">SQLAlchemy · PostgreSQL</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Worker</span><span class="s">coda di lavori</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Integrazioni</span><span class="s">Gmail · WhatsApp · Shopify · Klaviyo</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">AI</span><span class="s">Claude API</span></div>
+      </div>
+    </section>
+
+    <!-- ===== NOTA ===== -->
+    <div class="notice-box reveal">
+      <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></span>
+      <div>
+        <h3>Codice privato, progetto in sviluppo</h3>
+        <p>La suite è un mio progetto personale e il codice non è pubblico. Le immagini di questa pagina
+        sono illustrazioni schematiche, non screenshot: se vuoi vederla funzionare, scrivimi e te la mostro.</p>
+      </div>
+    </div>
+
+    <!-- ===== CTA ===== -->
+    <section class="show-cta reveal" style="margin-top: var(--space-4);">
+      <h2>Vuoi vederla <span class="grad-text">dal vivo?</span></h2>
+      <p>Una demo con dati di prova vale più di mille illustrazioni.</p>
+      <div class="row">
+        <a class="btn btn-primary" href="../index.html#contatti">Contattami</a>
+        <a class="btn btn-ghost" href="../index.html#progetti">← Torna ai progetti</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>© 2026 Alessandro Barresi.</span>
+    <span><a href="../index.html">Portfolio 2026</a> · <a href="../../index.html">Pagina iniziale</a></span>
+  </div>
+</footer>
+
+<script src="../js/analytics.js" defer></script>
+<script src="../js/main.js"></script>
+</body>
+</html>
