@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="t">
+  <title id="t">Illustrazione schematica della verifica degli ordini: le quantità inviate e quelle registrate dal mercato vengono unite per data, ora e zona, e il report mostra solo le differenze</title>
+  <style>
+    text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .h { font-size: 12.5px; font-weight: 700; fill: #14201b; }
+    .s { font-size: 10.5px; fill: #56645d; }
+    .m { font-family: ui-monospace, Menlo, monospace; font-size: 10px; fill: #3f4d46; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7d8c84"/></marker>
+  </defs>
+  <rect width="640" height="400" rx="16" fill="#fbfcfa"/>
+
+  <!-- inviato -->
+  <g transform="translate(28 32)">
+    <rect width="190" height="150" rx="12" fill="#ffffff" stroke="#c9d3cb"/>
+    <text x="14" y="24" class="h">Inviato</text><text x="14" y="40" class="s">file di controllo</text>
+    <g class="m"><text x="14" y="62">data</text><text x="60" y="62">ora</text><text x="96" y="62">zona</text><text x="140" y="62">qtà</text></g>
+    <path d="M14 68 H176" stroke="#d9e0da"/>
+    <g fill="#e7ebe5"><rect x="14" y="76" width="162" height="12" rx="2"/><rect x="14" y="94" width="162" height="12" rx="2"/><rect x="14" y="112" width="162" height="12" rx="2"/><rect x="14" y="130" width="162" height="12" rx="2"/></g>
+  </g>
+  <!-- registrato -->
+  <g transform="translate(28 210)">
+    <rect width="190" height="150" rx="12" fill="#ffffff" stroke="#c9d3cb"/>
+    <text x="14" y="24" class="h">Registrato</text><text x="14" y="40" class="s">riscontro del mercato</text>
+    <g class="m"><text x="14" y="62">data</text><text x="60" y="62">ora</text><text x="96" y="62">zona</text><text x="140" y="62">qtà</text></g>
+    <path d="M14 68 H176" stroke="#d9e0da"/>
+    <g fill="#e7ebe5"><rect x="14" y="76" width="162" height="12" rx="2"/><rect x="14" y="94" width="162" height="12" rx="2"/><rect x="14" y="130" width="162" height="12" rx="2"/></g>
+    <rect x="14" y="112" width="162" height="12" rx="2" fill="#f1e6d3"/>
+  </g>
+
+  <g stroke="#7d8c84" stroke-width="2" fill="none">
+    <path d="M218 107 C 250 107, 250 180, 272 190" marker-end="url(#a)"/>
+    <path d="M218 285 C 250 285, 250 210, 272 200" marker-end="url(#a)"/>
+  </g>
+
+  <!-- confronto -->
+  <g transform="translate(278 140)">
+    <rect width="130" height="110" rx="12" fill="#ffffff" stroke="#1d6a4c" stroke-width="1.5"/>
+    <text x="65" y="28" class="h" text-anchor="middle">Confronto</text>
+    <text x="65" y="50" class="m" text-anchor="middle">merge outer</text>
+    <text x="65" y="66" class="m" text-anchor="middle">data · ora · zona</text>
+    <text x="65" y="90" class="m" text-anchor="middle">np.isclose</text>
+  </g>
+  <path d="M408 195 H436" stroke="#7d8c84" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- report -->
+  <g transform="translate(442 96)">
+    <rect width="170" height="198" rx="12" fill="#ffffff" stroke="#c9d3cb"/>
+    <text x="14" y="24" class="h">Report</text><text x="14" y="40" class="s">solo le differenze</text>
+    <g transform="translate(14 56)">
+      <rect width="142" height="40" rx="6" fill="#f1e6d3" stroke="#9a5a00"/>
+      <text x="10" y="17" class="m" style="fill:#7a4700">qtà diversa</text>
+      <text x="10" y="31" class="m" style="fill:#7a4700">inviato ≠ registrato</text>
+    </g>
+    <g transform="translate(14 104)">
+      <rect width="142" height="40" rx="6" fill="#f1e6d3" stroke="#9a5a00"/>
+      <text x="10" y="17" class="m" style="fill:#7a4700">ordine mancante</text>
+      <text x="10" y="31" class="m" style="fill:#7a4700">o in più</text>
+    </g>
+    <text x="14" y="170" class="s">nessuna riga = tutto ok</text>
+  </g>
+
+  <text x="442" y="330" class="h">da 10-15 minuti</text>
+  <text x="442" y="348" class="h" style="fill:#1d6a4c">a pochi secondi</text>
+  <text x="442" y="366" class="s">eseguibile, avvio con doppio click</text>
+</svg>

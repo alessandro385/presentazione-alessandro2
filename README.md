@@ -14,17 +14,22 @@ presentazione_parrucchiera/ → presentazione gestionale parrucchiera (2024)
 assets/                     → immagini condivise tra le edizioni
 ├── suite_care/             → illustrazioni SVG della Suite Care
 ├── football_paper_trading/ → illustrazioni SVG di Football Paper-Trading
-└── simecom/                → illustrazioni SVG dei progetti di dati energetici
+├── simecom/                → illustrazioni SVG dei progetti di dati energetici, più i dati della demo meteo:
+│   ├── capoluoghi.json     → 107 capoluoghi di provincia (nome, sigla, regione, lat, lon; coordinate GeoNames)
+│   └── temperature-esempio.json → istantanea reale di Open-Meteo usata se la richiesta dal vivo fallisce
+└── tesi/                   → illustrazioni SVG della tesi ITS
 
 v2026/                      → edizione 2026 (nuova)
 ├── index.html              → presentazione principale
 ├── css/                    → design system con 3 temi (Aurora, Lumen, Ember)
-│   └── progetti.css        → palette e blocchi dei case study 2026 (care, campo, energia)
+│   └── progetti.css        → palette e blocchi dei case study 2026 (care, campo, energia, tesi)
 ├── js/                     → interazioni (temi, typewriter, scroll reveal)
+│   └── demo-energia.js     → le due demo interattive del case study sui dati energetici
 ├── presentazioni/          → case study dei progetti
 │   ├── suite-care.html     → Suite Care: helpdesk, WhatsApp marketing, servizio gestito
 │   ├── football-paper-trading.html → modelli statistici sul calcio, denaro 100% virtuale
 │   ├── simecom.html        → forecasting energetico e mappa delle temperature
+│   ├── tesi.html           → tesi ITS: architettura dati, automazioni, ML e verifica ordini
 │   ├── gioco.html          → La Corsa di Babbo Natale, giocabile nella pagina
 │   ├── mensa.html          → Gestionale Mensa
 │   └── parrucchiera.html   → Gestionale Parrucchiera
@@ -34,11 +39,35 @@ v2026/                      → edizione 2026 (nuova)
 
 ### Case study dei progetti privati
 
-Suite Care, Football Paper-Trading e gli strumenti di dati energetici hanno il codice privato: le
-pagine descrivono cosa fanno e con quali tecnologie, senza link ai repository, dati
-aziendali, clienti o cifre. Le immagini sono **illustrazioni SVG schematiche**, non
-screenshot, e lo dichiarano nella didascalia. Le palette dei tre case study stanno in
-`v2026/css/progetti.css`, caricato dopo `main.css` e `showcase.css`.
+Suite Care, Football Paper-Trading, gli strumenti di dati energetici e la tesi ITS hanno il
+codice privato: le pagine descrivono cosa fanno e con quali tecnologie, senza link ai
+repository, nome dell'azienda, dati aziendali, clienti o cifre. La tesi racconta il quadro
+d'insieme e rimanda al case study del forecasting (e viceversa). Le immagini sono
+**illustrazioni SVG schematiche**, non screenshot, e lo dichiarano nella didascalia. Le palette dei case study stanno in `v2026/css/progetti.css`, caricato dopo
+`main.css` e `showcase.css`.
+
+### Demo interattive del case study energetico
+
+`v2026/presentazioni/simecom.html` contiene due demo che ricreano l'esperienza delle app
+interne senza usarne i dati (JS in `v2026/js/demo-energia.js`, stili nella sezione "Demo
+interattive" di `v2026/css/progetti.css`):
+
+- **Forecast vs consuntivo** — curve a 96 quarti d'ora per le zone del mercato elettrico
+  (NORD, CNOR, CSUD, SUD, CALA, SICI, SARD) generate nel browser in modo deterministico
+  (seed per zona e giorno). Ritocchi percentuali per fascia, MAPE prima/dopo, grafico SVG
+  disegnato a mano. Dati **simulati**, nessun dato aziendale.
+- **Temperature dei capoluoghi** — una sola richiesta a [Open-Meteo](https://open-meteo.com)
+  (gratuito, senza chiave, CC BY 4.0) per i 107 capoluoghi, mappa Leaflet 1.9.4 da cdnjs con
+  le tile standard di OpenStreetMap rese grigie via CSS. Le basemap CARTO ora chiedono una
+  chiave (gratuita per uso non commerciale, carto.com/basemaps/apikey): inserendola nella
+  costante `CARTO_KEY` di `demo-energia.js` la mappa passa a CARTO light/dark in automatico.
+  Leaflet e dati si caricano solo quando la sezione entra in vista;
+  la risposta resta in `sessionStorage` per 15 minuti. Se la richiesta fallisce si usa
+  `assets/simecom/temperature-esempio.json`, dichiarato come "dati di esempio". Per
+  rigenerare l'istantanea basta salvare una risposta reale con lo stesso formato
+  (`generato`, `valori: [{sigla, t, min, max}]`).
+
+Eventi analytics: `demo-forecast` (prima interazione) e `demo-temperature` (prima mappa caricata).
 
 ## Edizioni
 

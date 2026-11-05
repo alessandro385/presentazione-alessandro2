@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="t">
+  <title id="t">Illustrazione schematica del database al centro: uno script per ogni fonte alimenta SQL Server, ogni esecuzione viene registrata, e dal database leggono modelli, dashboard e generazione degli ordini</title>
+  <style>
+    text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .h { font-size: 12.5px; font-weight: 700; fill: #14201b; }
+    .s { font-size: 10.5px; fill: #56645d; }
+    .m { font-family: ui-monospace, Menlo, monospace; font-size: 10px; fill: #3f4d46; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7d8c84"/></marker>
+  </defs>
+  <rect width="640" height="400" rx="16" fill="#fbfcfa"/>
+  <text x="28" y="34" class="m">uno script per fonte</text>
+  <text x="612" y="34" class="m" text-anchor="end">chi legge</text>
+
+  <g class="src">
+    <g transform="translate(28 50)"><rect width="168" height="40" rx="8" fill="#fff" stroke="#c9d3cb"/><text x="12" y="17" class="h">Consuntivi orari</text><text x="12" y="31" class="s">storico per zona</text></g>
+    <g transform="translate(28 100)"><rect width="168" height="40" rx="8" fill="#fff" stroke="#c9d3cb"/><text x="12" y="17" class="h">Misure a 48 ore</text><text x="12" y="31" class="s">base per l'addestramento</text></g>
+    <g transform="translate(28 150)"><rect width="168" height="40" rx="8" fill="#fff" stroke="#c9d3cb"/><text x="12" y="17" class="h">Profili di carico</text><text x="12" y="31" class="s">clienti senza misura oraria</text></g>
+    <g transform="translate(28 200)"><rect width="168" height="40" rx="8" fill="#fff" stroke="#c9d3cb"/><text x="12" y="17" class="h">Budget mensili</text><text x="12" y="31" class="s">per zona e fascia oraria</text></g>
+    <g transform="translate(28 250)"><rect width="168" height="40" rx="8" fill="#fff" stroke="#c9d3cb"/><text x="12" y="17" class="h">Meteo ponderato</text><text x="12" y="31" class="s">osservato e previsto</text></g>
+  </g>
+
+  <g stroke="#7d8c84" stroke-width="1.6" fill="none">
+    <path d="M196 70 C 230 70, 230 150, 252 162" marker-end="url(#a)"/>
+    <path d="M196 120 C 224 120, 228 156, 252 166" marker-end="url(#a)"/>
+    <path d="M196 170 H252" marker-end="url(#a)"/>
+    <path d="M196 220 C 224 220, 228 184, 252 174" marker-end="url(#a)"/>
+    <path d="M196 270 C 230 270, 230 190, 252 178" marker-end="url(#a)"/>
+  </g>
+
+  <g transform="translate(258 104)">
+    <ellipse cx="66" cy="14" rx="66" ry="14" fill="#d6e8de"/>
+    <path d="M0 14 V118 A66 14 0 0 0 132 118 V14" fill="#e9f3ed"/>
+    <ellipse cx="66" cy="14" rx="66" ry="14" fill="none" stroke="#1d6a4c" stroke-width="1.6"/>
+    <path d="M0 14 V118 A66 14 0 0 0 132 118 V14" fill="none" stroke="#1d6a4c" stroke-width="1.6"/>
+    <text x="66" y="60" class="h" text-anchor="middle" font-size="14">SQL Server</text>
+    <text x="66" y="78" class="s" text-anchor="middle">consumi · anagrafiche</text>
+    <text x="66" y="92" class="s" text-anchor="middle">mercato · meteo</text>
+    <text x="66" y="106" class="s" text-anchor="middle">previsioni versionate</text>
+  </g>
+
+  <g stroke="#7d8c84" stroke-width="1.6" fill="none">
+    <path d="M390 160 C 412 150, 412 100, 438 96" marker-end="url(#a)"/>
+    <path d="M390 170 H438" marker-end="url(#a)"/>
+    <path d="M390 180 C 412 190, 412 240, 438 244" marker-end="url(#a)"/>
+  </g>
+  <g transform="translate(444 76)"><rect width="168" height="40" rx="8" fill="#fff" stroke="#c9d3cb"/><text x="12" y="17" class="h">Modelli di previsione</text><text x="12" y="31" class="s">dataset pronti</text></g>
+  <g transform="translate(444 150)"><rect width="168" height="40" rx="8" fill="#fff" stroke="#c9d3cb"/><text x="12" y="17" class="h">Dashboard</text><text x="12" y="31" class="s">sempre la stessa versione</text></g>
+  <g transform="translate(444 224)"><rect width="168" height="40" rx="8" fill="#fff" stroke="#c9d3cb"/><text x="12" y="17" class="h">Ordini di mercato</text><text x="12" y="31" class="s">dati già formattati</text></g>
+
+  <!-- registro esecuzioni -->
+  <g transform="translate(28 314)">
+    <rect width="584" height="62" rx="12" fill="#ffffff" stroke="#1d6a4c"/>
+    <text x="16" y="22" class="m" style="fill:#1d6a4c">registro di ogni esecuzione</text>
+    <g class="m">
+      <text x="16" y="44">quando</text><text x="120" y="44">fonte</text><text x="230" y="44">record</text><text x="330" y="44">errori</text><text x="430" y="44">durata</text>
+    </g>
+    <path d="M16 50 H568" stroke="#d9e0da"/>
+  </g>
+</svg>
