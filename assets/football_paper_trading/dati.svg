@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="t">
+  <title id="t">Illustrazione schematica del flusso dei dati: risultati storici, quote e statistiche in sola lettura confluiscono in un database locale e alimentano i modelli</title>
+  <style>
+    text { font-family: Inter, system-ui, sans-serif; }
+    .h { font-size: 12.5px; font-weight: 700; fill: #f1f5fb; }
+    .s { font-size: 10.5px; fill: #8aa3b5; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0L10 5L0 10z" fill="#4f6b85"/>
+    </marker>
+  </defs>
+  <rect width="640" height="400" rx="16" fill="#0c1526"/>
+
+  <!-- fonti -->
+  <g transform="translate(28 40)">
+    <rect width="196" height="84" rx="14" fill="#10223a" stroke="#22406a"/>
+    <text x="18" y="32" class="h">Risultati storici</text>
+    <text x="18" y="52" class="s">CSV pubblici: gol, tiri,</text>
+    <text x="18" y="67" class="s">corner, cartellini, quote</text>
+  </g>
+  <g transform="translate(28 158)">
+    <rect width="196" height="84" rx="14" fill="#10223a" stroke="#22406a"/>
+    <text x="18" y="32" class="h">Quote di mercato</text>
+    <text x="18" y="52" class="s">API di un aggregatore,</text>
+    <text x="18" y="67" class="s">sola lettura, budget a crediti</text>
+  </g>
+  <g transform="translate(28 276)">
+    <rect width="196" height="84" rx="14" fill="#10223a" stroke="#22406a"/>
+    <text x="18" y="32" class="h">Statistiche post-partita</text>
+    <text x="18" y="52" class="s">risultati la sera stessa,</text>
+    <text x="18" y="67" class="s">statistiche di squadra</text>
+  </g>
+
+  <g stroke="#4f6b85" stroke-width="2" fill="none">
+    <path d="M224 82 C 262 82, 262 190, 290 196" marker-end="url(#a)"/>
+    <path d="M224 200 H290" marker-end="url(#a)"/>
+    <path d="M224 318 C 262 318, 262 210, 290 204" marker-end="url(#a)"/>
+  </g>
+
+  <!-- database -->
+  <g transform="translate(296 140)">
+    <ellipse cx="62" cy="14" rx="62" ry="14" fill="#173356"/>
+    <path d="M0 14 V104 A62 14 0 0 0 124 104 V14" fill="#132a48"/>
+    <ellipse cx="62" cy="14" rx="62" ry="14" fill="none" stroke="#2a78d6"/>
+    <path d="M0 14 V104 A62 14 0 0 0 124 104 V14" fill="none" stroke="#2a78d6"/>
+    <text x="62" y="58" class="h" text-anchor="middle">SQLite</text>
+    <text x="62" y="76" class="s" text-anchor="middle">snapshot quote,</text>
+    <text x="62" y="90" class="s" text-anchor="middle">partite, previsioni</text>
+  </g>
+
+  <path d="M420 200 H452" stroke="#4f6b85" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- modelli -->
+  <g transform="translate(458 118)">
+    <rect width="156" height="164" rx="14" fill="#0f2a22" stroke="#34d399"/>
+    <text x="18" y="32" class="h">Modelli</text>
+    <text x="18" y="56" class="s">Dixon-Coles · Poisson</text>
+    <text x="18" y="74" class="s">binomiale negativa</text>
+    <text x="18" y="92" class="s">calibrazione</text>
+    <rect x="18" y="112" width="120" height="34" rx="10" fill="#052e1f" stroke="#34d399"/>
+    <text x="78" y="133" text-anchor="middle" font-size="10" font-weight="700" fill="#6ee7b7">denaro virtuale</text>
+  </g>
+  <text x="458" y="320" class="s">Le quote reali sono solo un input:</text>
+  <text x="458" y="336" class="s">nessun account, nessun piazzamento.</text>
+</svg>

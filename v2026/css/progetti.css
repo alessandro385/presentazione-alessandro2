@@ -1,0 +1,165 @@
+/* ============================================================
+   Case study dei progetti 2026 (Suite Care, Football
+   Paper-Trading, dati energetici SIME).
+   Si carica DOPO main.css e showcase.css e ne riusa i token e la
+   direzione (superfici piatte, nessun alone): qui ci sono solo le
+   palette dei nuovi brand e pochi blocchi in più (avvisi, schede
+   a tre colonne, note sulle illustrazioni).
+   ============================================================ */
+
+/* ---------- Palette dei brand ---------- */
+
+/* Suite Care: neutri freddi, teal per le azioni, viola per l'AI */
+[data-brand="care"] {
+  color-scheme: light;
+  --bg: #f4f7fb;
+  --bg-soft: #e8eef6;
+  --surface: #ffffff;
+  --surface-strong: #ffffff;
+  --border: rgba(15, 23, 42, 0.11);
+  --border-strong: rgba(15, 23, 42, 0.22);
+  --ink: #0f172a;
+  --ink-soft: #3d4b63;
+  --ink-faint: #56647c;
+  --accent: #0f766e;
+  --accent-2: #0f766e;
+  --accent-3: #15803d;
+  --accent-warm: #6d28d9;
+  --on-accent: #ffffff;
+  --btn-bg: #0f766e;
+  --btn-ink: #ffffff;
+  --focus: #0f766e;
+  --media-bg: #e8eef6;
+  --grad-main: linear-gradient(var(--accent), var(--accent));
+  --grad-btn: linear-gradient(#0f766e, #0f766e);
+  --glow: none;
+  --shadow-card: 0 14px 32px -22px rgba(15, 40, 70, 0.3);
+  --shadow-float: 0 1px 2px rgba(15, 40, 70, 0.1), 0 22px 44px -18px rgba(15, 40, 70, 0.3);
+  --hero-haze-1: transparent;
+  --hero-haze-2: transparent;
+  --hero-haze-3: transparent;
+  --chip-bg: rgba(15, 118, 110, 0.09);
+  --chip-ink: #0f5f59;
+}
+
+/* Football Paper-Trading: notte allo stadio, blu e verde della dashboard */
+[data-brand="campo"] {
+  color-scheme: dark;
+  --bg: #08111f;
+  --bg-soft: #0e1a2e;
+  --surface: #0f1d33;
+  --surface-strong: #13233d;
+  --border: rgba(200, 220, 245, 0.12);
+  --border-strong: rgba(200, 220, 245, 0.24);
+  --ink: #f1f5fb;
+  --ink-soft: #b4c1d6;
+  --ink-faint: #8a9bb4;
+  --accent: #5ea3f0;
+  --accent-2: #34d399;
+  --accent-3: #34d399;
+  --accent-warm: #fbbf24;
+  --on-accent: #04121f;
+  --btn-bg: #1d64bf;
+  --btn-ink: #ffffff;
+  --focus: #34d399;
+  --media-bg: #0c1526;
+  --grad-main: linear-gradient(var(--accent-2), var(--accent-2));
+  --grad-btn: linear-gradient(#1d64bf, #1d64bf);
+  --glow: none;
+  --shadow-card: 0 18px 40px -24px rgba(0, 0, 0, 0.75);
+  --shadow-float: 0 2px 4px rgba(0, 0, 0, 0.3), 0 24px 48px -16px rgba(0, 0, 0, 0.65);
+  --hero-haze-1: transparent;
+  --hero-haze-2: transparent;
+  --hero-haze-3: transparent;
+  --chip-bg: rgba(94, 163, 240, 0.12);
+  --chip-ink: #a9cdf7;
+}
+
+/* Dati energetici SIME: dal freddo al caldo, come le curve di carico */
+[data-brand="energia"] {
+  color-scheme: light;
+  --bg: #fbf8f2;
+  --bg-soft: #f2ece0;
+  --surface: #ffffff;
+  --surface-strong: #ffffff;
+  --border: rgba(60, 40, 10, 0.12);
+  --border-strong: rgba(60, 40, 10, 0.24);
+  --ink: #1f2430;
+  --ink-soft: #4a5263;
+  --ink-faint: #5f6676;
+  --accent: #0c6780;
+  --accent-2: #0c6780;
+  --accent-3: #b45309;
+  --accent-warm: #b45309;
+  --on-accent: #ffffff;
+  --btn-bg: #0c6780;
+  --btn-ink: #ffffff;
+  --focus: #0c6780;
+  --media-bg: #f2ece0;
+  --grad-main: linear-gradient(var(--accent), var(--accent));
+  --grad-btn: linear-gradient(#0c6780, #0c6780);
+  --glow: none;
+  --shadow-card: 0 14px 32px -22px rgba(80, 50, 10, 0.3);
+  --shadow-float: 0 1px 2px rgba(80, 50, 10, 0.1), 0 22px 44px -18px rgba(80, 50, 10, 0.3);
+  --hero-haze-1: transparent;
+  --hero-haze-2: transparent;
+  --hero-haze-3: transparent;
+  --chip-bg: rgba(12, 103, 128, 0.09);
+  --chip-ink: #0a5568;
+}
+
+/* ---------- Illustrazioni SVG al posto degli screenshot ---------- */
+.browser.art img { aspect-ratio: 5 / 3; object-fit: cover; }
+.shot-frame.art img { aspect-ratio: 8 / 5; object-fit: cover; }
+
+/* Nota che dichiara che l'immagine è un'illustrazione */
+.art-note {
+  display: block; margin-top: 10px;
+  font-family: var(--font-mono); font-size: 12px;
+  color: var(--ink-faint);
+}
+
+/* ---------- Avviso in evidenza (denaro virtuale, codice privato) ---------- */
+.notice-box {
+  display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 16px; align-items: start;
+  background: var(--surface); border: 1px solid var(--border-strong);
+  border-radius: var(--radius-m); padding: 20px 22px;
+  margin: var(--space-3) 0 0;
+}
+.notice-box .ico {
+  width: 40px; height: 40px; border-radius: var(--radius-m);
+  display: grid; place-items: center;
+  background: var(--chip-bg); color: var(--accent-2);
+}
+.notice-box .ico svg { width: 22px; height: 22px; }
+.notice-box h2, .notice-box h3 { font-size: 1.08rem; margin-bottom: 6px; }
+.notice-box p { color: var(--ink-soft); font-size: var(--text-s); max-width: 70ch; }
+.notice-box ul { margin-top: 8px; padding-left: 1.1em; color: var(--ink-soft); font-size: var(--text-s); display: grid; gap: 4px; }
+
+/* ---------- Schede a tre colonne (moduli della suite, temi) ---------- */
+.block { margin-bottom: var(--space-5); }
+.section-intro { max-width: 64ch; margin-bottom: var(--space-3); }
+.section-intro h2 { font-size: var(--text-l); margin: 8px 0 10px; }
+.section-intro p { color: var(--ink-soft); font-size: var(--text-s); }
+
+.trio { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); gap: 12px; }
+.trio-card {
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius-l); padding: 22px 20px;
+  transition: border-color .25s ease;
+}
+.trio-card:hover { border-color: var(--border-strong); }
+.trio-card .tag {
+  display: inline-block; margin-bottom: 12px;
+  font-family: var(--font-mono); font-size: 12px; font-weight: 500;
+  color: var(--chip-ink); background: var(--chip-bg);
+  padding: 3px 9px; border-radius: var(--radius-s);
+}
+.trio-card h3 { font-size: 1.05rem; margin-bottom: 8px; }
+.trio-card p { font-size: var(--text-s); color: var(--ink-soft); }
+
+.chapter-copy code, .trio-card code { font-family: var(--font-mono); font-size: .92em; }
+
+@media (max-width: 600px) {
+  .notice-box { grid-template-columns: minmax(0, 1fr); }
+}

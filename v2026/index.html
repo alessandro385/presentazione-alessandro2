@@ -7,7 +7,7 @@
 <meta name="description" content="Portfolio 2026 di Alessandro Barresi: AI Operations & Supply Chain Specialist @ Dog Heroes, sviluppatore di dashboard e automazioni dati con Python, SQL e Streamlit.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
@@ -319,13 +319,53 @@
       <div class="section-head center reveal">
         <span class="kicker">// progetti</span>
         <h2>Cose che ho <span class="grad-text">costruito</span></h2>
-        <p>Una selezione di applicazioni, giochi e gestionali. Alcuni progetti sviluppati in ambito lavorativo non sono pubblicamente accessibili.</p>
+        <p>Prodotti, strumenti di dati, giochi e gestionali, dai più recenti. Alcuni progetti sono nati in azienda o sono ancora in sviluppo e il loro codice resta privato: per quelli racconto cosa fanno e come sono costruiti.</p>
       </div>
       <div class="projects-grid">
 
-        <!-- Gioco 2026 — featured -->
+        <!-- Suite Care — featured (il lavoro più recente) -->
         <article class="project-card featured reveal">
-          <span class="featured-tag">Novità 2026</span>
+          <span class="featured-tag">Novità</span>
+          <div class="project-media"><img src="../assets/suite_care/cover.svg" width="267" height="160" alt="Illustrazione della Suite Care: Helpdesk, Marketing e Servizio gestito collegati" loading="lazy"></div>
+          <div class="project-body">
+            <h3>Suite Care</h3>
+            <p>Un helpdesk per e-commerce che riunisce email, WhatsApp, chat del sito e Help Center con l'AI accanto all'operatore, un'app di WhatsApp marketing per Shopify e un servizio gestito di assistenza clienti.</p>
+            <div class="project-tags"><span class="chip">Python</span><span class="chip">FastAPI</span><span class="chip">React</span><span class="chip">PostgreSQL</span><span class="chip">Claude API</span><span class="chip">In sviluppo · codice privato</span></div>
+            <div class="project-actions">
+              <a class="btn-s solid" href="presentazioni/suite-care.html">Case study →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Football Paper-Trading -->
+        <article class="project-card reveal" data-delay="1">
+          <div class="project-media"><img src="../assets/football_paper_trading/cover.svg" width="267" height="160" alt="Illustrazione di Football Paper-Trading: distribuzione dei gol attesi e confronto con il mercato, denaro 100% virtuale" loading="lazy"></div>
+          <div class="project-body">
+            <h3>Football Paper-Trading</h3>
+            <p>Progetto di dati e modellazione: modelli statistici (Dixon-Coles, binomiale negativa) su partite di calcio reali, validati nel tempo contro il mercato. Denaro 100% virtuale: nessuna scommessa reale.</p>
+            <div class="project-tags"><span class="chip">Python</span><span class="chip">scipy</span><span class="chip">SQLite</span><span class="chip">FastAPI</span><span class="chip">ECharts</span><span class="chip">Codice privato</span></div>
+            <div class="project-actions">
+              <a class="btn-s solid" href="presentazioni/football-paper-trading.html">Case study →</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Dati energetici (forecast + temperature, repo privati raggruppati) -->
+        <article class="project-card reveal" data-delay="2">
+          <div class="project-media"><img src="../assets/simecom/cover.svg" width="267" height="160" alt="Illustrazione: curve di forecast e consuntivo dei consumi elettrici con un termometro" loading="lazy"></div>
+          <div class="project-body">
+            <h3>Forecasting energetico e temperature</h3>
+            <p>Strumenti di dati per il settore energetico: dashboard forecast vs consuntivo per zona elettrica, correzione del forecast con machine learning, file XML per i mercati dell'energia e una mappa delle temperature d'Italia.</p>
+            <div class="project-tags"><span class="chip">Python</span><span class="chip">Streamlit</span><span class="chip">scikit-learn</span><span class="chip">Flask</span><span class="chip">Strumenti interni</span></div>
+            <div class="project-actions">
+              <a class="btn-s solid" href="presentazioni/simecom.html">Case study →</a>
+              <a class="btn-s line" href="presentazioni/simecom.html#temperature">La mappa</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Gioco 2026 -->
+        <article class="project-card reveal">
           <div class="project-media"><span class="game-art" aria-hidden="true">🎅🛷✨</span></div>
           <div class="project-body">
             <h3>La Corsa di Babbo Natale — Edizione 2026</h3>
@@ -395,11 +435,11 @@
 
         <!-- GitHub -->
         <article class="project-card reveal" data-delay="2">
-          <div class="project-media"><span class="game-art" aria-hidden="true">⚡📊🐍</span></div>
+          <div class="project-media"><span class="game-art" aria-hidden="true">👾📦🐍</span></div>
           <div class="project-body">
             <h3>E molto altro su GitHub</h3>
-            <p>Forecasting energetico, app meteo, sistemi di raccolta dati di produzione, web app per analisi temperature e altri esperimenti.</p>
-            <div class="project-tags"><span class="chip">Python</span><span class="chip">SQL</span><span class="chip">Open Source</span></div>
+            <p>Le prime versioni del gioco in stile Space Invaders, un'app per la raccolta dei dati di produzione, landing page, presentazioni di progetti e altri esperimenti pubblici.</p>
+            <div class="project-tags"><span class="chip">JavaScript</span><span class="chip">Python</span><span class="chip">Open Source</span></div>
             <div class="project-actions">
               <a class="btn-s solid" href="https://github.com/alessandro385" target="_blank" rel="noopener">Profilo GitHub →</a>
             </div>

@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="t">
+  <title id="t">Illustrazione schematica dell'AI nell'helpdesk: riassunto della conversazione, bozza di risposta e fonti dalla base di conoscenza</title>
+  <style>
+    text { font-family: Inter, system-ui, sans-serif; }
+  </style>
+  <rect width="640" height="400" rx="16" fill="#f4f7fb"/>
+
+  <!-- riassunto -->
+  <g transform="translate(28 28)">
+    <rect width="284" height="132" rx="14" fill="#fff" stroke="#dbe3ee"/>
+    <path d="M22 22l3 6.5 6.5 3-6.5 3-3 6.5-3-6.5-6.5-3 6.5-3z" fill="#7c3aed"/>
+    <text x="40" y="36" font-size="12" font-weight="700" fill="#0f172a">Riassunto</text>
+    <rect x="216" y="22" width="52" height="18" rx="9" fill="#ede9fe"/>
+    <text x="242" y="35" font-size="9.5" font-weight="700" fill="#6d28d9" text-anchor="middle">AI</text>
+    <g fill="#c4b5fd">
+      <rect x="18" y="58" width="236" height="7" rx="3.5"/>
+      <rect x="18" y="74" width="210" height="7" rx="3.5"/>
+      <rect x="18" y="90" width="226" height="7" rx="3.5"/>
+      <rect x="18" y="106" width="150" height="7" rx="3.5"/>
+    </g>
+  </g>
+
+  <!-- base di conoscenza -->
+  <g transform="translate(28 180)">
+    <rect width="284" height="192" rx="14" fill="#fff" stroke="#dbe3ee"/>
+    <text x="18" y="32" font-size="12" font-weight="700" fill="#0f172a">Base di conoscenza</text>
+    <g transform="translate(18 50)">
+      <rect width="248" height="34" rx="9" fill="#f8fafc" stroke="#e2e8f0"/>
+      <rect x="12" y="10" width="14" height="14" rx="3" fill="#99f6e4"/>
+      <rect x="36" y="14" width="120" height="6" rx="3" fill="#475569"/>
+      <rect x="196" y="9" width="40" height="16" rx="8" fill="#ede9fe"/>
+    </g>
+    <g transform="translate(18 92)">
+      <rect width="248" height="34" rx="9" fill="#f8fafc" stroke="#e2e8f0"/>
+      <rect x="12" y="10" width="14" height="14" rx="3" fill="#99f6e4"/>
+      <rect x="36" y="14" width="96" height="6" rx="3" fill="#475569"/>
+      <rect x="196" y="9" width="40" height="16" rx="8" fill="#ede9fe"/>
+    </g>
+    <g transform="translate(18 134)">
+      <rect width="248" height="34" rx="9" fill="#f8fafc" stroke="#e2e8f0"/>
+      <rect x="12" y="10" width="14" height="14" rx="3" fill="#e2e8f0"/>
+      <rect x="36" y="14" width="140" height="6" rx="3" fill="#94a3b8"/>
+    </g>
+  </g>
+
+  <!-- frecce verso la bozza -->
+  <g stroke="#a78bfa" stroke-width="2" stroke-dasharray="5 4" fill="none">
+    <path d="M312 94 C 340 94, 340 170, 364 170"/>
+    <path d="M312 264 C 340 264, 340 210, 364 210"/>
+  </g>
+
+  <!-- bozza -->
+  <g transform="translate(364 96)">
+    <rect width="248" height="208" rx="16" fill="#f5f3ff" stroke="#c4b5fd" stroke-dasharray="5 4"/>
+    <path d="M22 24l3 6.5 6.5 3-6.5 3-3 6.5-3-6.5-6.5-3 6.5-3z" fill="#7c3aed"/>
+    <text x="40" y="38" font-size="12" font-weight="700" fill="#6d28d9">Bozza di risposta</text>
+    <g fill="#a78bfa" opacity=".75">
+      <rect x="18" y="60" width="210" height="7" rx="3.5"/>
+      <rect x="18" y="76" width="196" height="7" rx="3.5"/>
+      <rect x="18" y="92" width="206" height="7" rx="3.5"/>
+      <rect x="18" y="108" width="140" height="7" rx="3.5"/>
+    </g>
+    <rect x="18" y="132" width="212" height="26" rx="8" fill="#fff" stroke="#e2e8f0"/>
+    <rect x="28" y="142" width="12" height="6" rx="3" fill="#bbf7d0"/>
+    <rect x="46" y="142" width="96" height="6" rx="3" fill="#94a3b8"/>
+    <rect x="18" y="170" width="94" height="24" rx="8" fill="#0f766e"/>
+    <text x="65" y="186" font-size="10" font-weight="700" fill="#fff" text-anchor="middle">Usa e modifica</text>
+    <rect x="120" y="170" width="70" height="24" rx="8" fill="#fff" stroke="#cbd5e1"/>
+    <text x="155" y="186" font-size="10" fill="#334155" text-anchor="middle">Scarta</text>
+  </g>
+  <text x="364" y="336" font-size="10.5" fill="#64748b">L'operatore rivede sempre prima di inviare.</text>
+</svg>

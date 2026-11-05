@@ -53,9 +53,10 @@
       console.log('[analytics:local]', isEvent ? 'evento' : 'pagina', path);
       return;
     }
-    // fetch keepalive sopravvive alla chiusura della pagina (per pagehide)
+    // fetch keepalive sopravvive alla chiusura della pagina (per pagehide).
+    // Il .catch evita errori in console quando un adblock o la rete bloccano la richiesta.
     try {
-      fetch(url, { mode: 'no-cors', keepalive: true, credentials: 'omit' });
+      fetch(url, { mode: 'no-cors', keepalive: true, credentials: 'omit' }).catch(() => {});
     } catch {
       const img = new Image();
       img.src = url;

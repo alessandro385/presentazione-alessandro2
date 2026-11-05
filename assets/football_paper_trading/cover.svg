@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" role="img" aria-labelledby="t">
+  <title id="t">Illustrazione: campo da calcio stilizzato e distribuzione di probabilità dei gol</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1f1a"/><stop offset="1" stop-color="#0a1628"/>
+    </linearGradient>
+    <linearGradient id="bar" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#2a78d6"/>
+    </linearGradient>
+  </defs>
+  <rect width="400" height="240" rx="18" fill="url(#bg)"/>
+  <g fill="none" stroke="#1f4d3f" stroke-width="2">
+    <rect x="24" y="24" width="352" height="192" rx="6"/>
+    <path d="M200 24V216"/><circle cx="200" cy="120" r="34"/>
+    <rect x="24" y="76" width="44" height="88"/><rect x="332" y="76" width="44" height="88"/>
+  </g>
+  <g transform="translate(-160 0)">
+    <rect x="214" y="105.6" width="16" height="70.4" rx="3" fill="url(#bar)"/><rect x="236" y="74.0" width="16" height="102.0" rx="3" fill="url(#bar)"/><rect x="258" y="102.0" width="16" height="74.0" rx="3" fill="url(#bar)"/><rect x="280" y="140.2" width="16" height="35.8" rx="3" fill="url(#bar)"/><rect x="302" y="163.0" width="16" height="13.0" rx="3" fill="url(#bar)"/><rect x="324" y="172.2" width="16" height="3.8" rx="3" fill="url(#bar)"/><rect x="346" y="175.1" width="16" height="0.9" rx="3" fill="url(#bar)"/>
+  </g>
+  <path d="M50 176 H194" stroke="#5b7a8f" stroke-width="1.5" transform="translate(0 0)"/>
+  <g font-family="Inter, system-ui, sans-serif" font-size="9" fill="#8aa3b5">
+    <text x="62" y="190" text-anchor="middle">0</text><text x="84" y="190" text-anchor="middle">1</text><text x="106" y="190" text-anchor="middle">2</text><text x="128" y="190" text-anchor="middle">3</text><text x="150" y="190" text-anchor="middle">4</text><text x="172" y="190" text-anchor="middle">5</text><text x="194" y="190" text-anchor="middle">6</text>
+    <text x="138" y="204" text-anchor="middle">gol attesi (modello)</text>
+  </g>
+  <g font-family="Inter, system-ui, sans-serif" font-size="9" fill="#8aa3b5">
+    <text x="236" y="70">modello</text>
+    <rect x="236" y="76" width="61" height="22" rx="5" fill="#34d399"/>
+    <rect x="299" y="76" width="36" height="22" rx="5" fill="#2a78d6"/>
+    <rect x="337" y="76" width="31" height="22" rx="5" fill="#eb6834"/>
+    <text x="236" y="122">mercato (de-marginato)</text>
+    <rect x="236" y="128" width="56" height="22" rx="5" fill="#34d399" opacity=".55"/>
+    <rect x="294" y="128" width="39" height="22" rx="5" fill="#2a78d6" opacity=".55"/>
+    <rect x="335" y="128" width="33" height="22" rx="5" fill="#eb6834" opacity=".55"/>
+    <g font-size="11" font-weight="700" fill="#06131f" text-anchor="middle">
+      <text x="266" y="91">1</text><text x="317" y="91">X</text><text x="352" y="91">2</text>
+      <text x="264" y="143">1</text><text x="313" y="143">X</text><text x="351" y="143">2</text>
+    </g>
+  </g>
+  <g font-family="Inter, system-ui, sans-serif">
+    <rect x="236" y="182" width="132" height="24" rx="12" fill="#052e1f" stroke="#34d399"/>
+    <text x="302" y="198" text-anchor="middle" font-size="10.5" font-weight="700" fill="#6ee7b7">Denaro 100% virtuale</text>
+  </g>
+</svg>
