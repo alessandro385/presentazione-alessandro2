@@ -169,6 +169,9 @@
           forecast esistente e lo corregge: forecast corretto = forecast originale + errore previsto.
           Un Random Forest per zona, ottimizzato con ricerca a griglia, su variabili di calendario
           (ora, giorno della settimana, mese) e festività italiane.</p>
+          <p>Era la prima versione, del giugno 2025. Nei mesi successivi è diventata un sistema a due livelli,
+          con LightGBM e iperparametri ottimizzati con Optuna per l'errore e un secondo livello sul meteo:
+          è raccontato nel <a href="tesi.html#forecasting">case study della tesi</a>.</p>
           <p>Un backtest confronta tre modelli (originale, con variazioni manuali, corretto dal ML) con il
           consuntivo tramite il MAPE e indica per ogni zona il migliore, con un report Excel.</p>
         </div>
