@@ -1,6 +1,6 @@
 /* ============================================================
    Case study dei progetti 2026 (Suite Care, Football
-   Paper-Trading, dati energetici SIME).
+   Paper-Trading, dati energetici, tesi ITS).
    Si carica DOPO main.css e showcase.css e ne riusa i token e la
    direzione (superfici piatte, nessun alone): qui ci sono solo le
    palette dei nuovi brand e pochi blocchi in più (avvisi, schede
@@ -75,7 +75,7 @@
   --chip-ink: #a9cdf7;
 }
 
-/* Dati energetici SIME: dal freddo al caldo, come le curve di carico */
+/* Dati energetici: dal freddo al caldo, come le curve di carico */
 [data-brand="energia"] {
   color-scheme: light;
   --bg: #fbf8f2;
@@ -107,6 +107,51 @@
   --chip-bg: rgba(12, 103, 128, 0.09);
   --chip-ink: #0a5568;
 }
+
+/* Tesi ITS: carta da relazione tecnica, verde registro.
+   Contrasti calcolati (WCAG 2.1): --ink-soft 8.2:1 e --ink-faint 5.7:1 su --bg,
+   5.2:1 su --bg-soft; --accent 6.0:1 su --bg; testo bianco sul pulsante 6.5:1;
+   --chip-ink 6.9:1 sul chip. */
+[data-brand="tesi"] {
+  color-scheme: light;
+  --bg: #f4f6f3;
+  --bg-soft: #e7ebe5;
+  --surface: #ffffff;
+  --surface-strong: #ffffff;
+  --border: rgba(20, 40, 30, 0.12);
+  --border-strong: rgba(20, 40, 30, 0.24);
+  --ink: #14201b;
+  --ink-soft: #3f4d46;
+  --ink-faint: #56645d;
+  --accent: #1d6a4c;
+  --accent-2: #1d6a4c;
+  --accent-3: #1d6a4c;
+  --accent-warm: #9a5a00;
+  --on-accent: #ffffff;
+  --btn-bg: #1d6a4c;
+  --btn-ink: #ffffff;
+  --focus: #1d6a4c;
+  --media-bg: #e7ebe5;
+  --grad-main: linear-gradient(var(--accent), var(--accent));
+  --grad-btn: linear-gradient(#1d6a4c, #1d6a4c);
+  --glow: none;
+  --shadow-card: 0 14px 32px -22px rgba(20, 50, 35, 0.3);
+  --shadow-float: 0 1px 2px rgba(20, 50, 35, 0.1), 0 22px 44px -18px rgba(20, 50, 35, 0.3);
+  --hero-haze-1: transparent;
+  --hero-haze-2: transparent;
+  --hero-haze-3: transparent;
+  --chip-bg: rgba(29, 106, 76, 0.09);
+  --chip-ink: #17573e;
+}
+
+/* Rimando a un altro case study (tesi ↔ forecasting) */
+.link-box {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 20px;
+  background: var(--surface); border: 1px solid var(--border-strong);
+  border-radius: var(--radius-m); padding: 18px 22px;
+  margin-top: 12px;
+}
+.link-box p { color: var(--ink-soft); font-size: var(--text-s); max-width: 62ch; }
 
 /* ---------- Illustrazioni SVG al posto degli screenshot ---------- */
 .browser.art img { aspect-ratio: 5 / 3; object-fit: cover; }

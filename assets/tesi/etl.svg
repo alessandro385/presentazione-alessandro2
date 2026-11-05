@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="t">
+  <title id="t">Illustrazione schematica dell'ETL della raccolta consumi mensile: tre archivi ZIP vengono estratti, normalizzati e uniti in un unico file, poi caricati nel database</title>
+  <style>
+    text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .h { font-size: 13px; font-weight: 700; fill: #14201b; }
+    .s { font-size: 11px; fill: #56645d; }
+    .m { font-family: ui-monospace, Menlo, monospace; font-size: 10.5px; fill: #3f4d46; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7d8c84"/></marker>
+  </defs>
+  <rect width="640" height="400" rx="16" fill="#fbfcfa"/>
+
+  <!-- tre archivi -->
+  <g transform="translate(28 46)">
+    <rect width="150" height="64" rx="10" fill="#ffffff" stroke="#c9d3cb"/>
+    <rect x="12" y="14" width="22" height="28" rx="3" fill="#f1e6d3" stroke="#9a5a00"/><path d="M23 14 V42" stroke="#9a5a00" stroke-dasharray="3 3"/>
+    <text x="44" y="28" class="h">Fornitura</text><text x="44" y="45" class="s">dati contrattuali</text>
+  </g>
+  <g transform="translate(28 128)">
+    <rect width="150" height="64" rx="10" fill="#ffffff" stroke="#c9d3cb"/>
+    <rect x="12" y="14" width="22" height="28" rx="3" fill="#f1e6d3" stroke="#9a5a00"/><path d="M23 14 V42" stroke="#9a5a00" stroke-dasharray="3 3"/>
+    <text x="44" y="28" class="h">Dati tecnici</text><text x="44" y="45" class="s">potenze, misura</text>
+  </g>
+  <g transform="translate(28 210)">
+    <rect width="150" height="64" rx="10" fill="#ffffff" stroke="#c9d3cb"/>
+    <rect x="12" y="14" width="22" height="28" rx="3" fill="#f1e6d3" stroke="#9a5a00"/><path d="M23 14 V42" stroke="#9a5a00" stroke-dasharray="3 3"/>
+    <text x="44" y="28" class="h">Indirizzi</text><text x="44" y="45" class="s">comune e CAP</text>
+  </g>
+  <text x="28" y="30" class="m">3 archivi ZIP · ogni mese</text>
+
+  <g stroke="#7d8c84" stroke-width="2" fill="none">
+    <path d="M178 78 C 200 78, 200 150, 222 156" marker-end="url(#a)"/>
+    <path d="M178 160 H222" marker-end="url(#a)"/>
+    <path d="M178 242 C 200 242, 200 170, 222 164" marker-end="url(#a)"/>
+  </g>
+
+  <!-- passaggi -->
+  <g transform="translate(228 46)">
+    <rect width="200" height="228" rx="12" fill="#ffffff" stroke="#1d6a4c" stroke-width="1.5"/>
+    <text x="16" y="28" class="h">Script Python</text>
+    <g transform="translate(16 46)">
+      <circle cx="9" cy="9" r="9" fill="#1d6a4c"/><text x="9" y="13" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">1</text>
+      <text x="26" y="8" class="h" font-size="12">Estrae</text><text x="26" y="23" class="s">anche gli ZIP annidati</text>
+    </g>
+    <g transform="translate(16 92)">
+      <circle cx="9" cy="9" r="9" fill="#1d6a4c"/><text x="9" y="13" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">2</text>
+      <text x="26" y="8" class="h" font-size="12">Normalizza</text><text x="26" y="23" class="s">migliaia o decimali?</text><text x="26" y="37" class="s">codici POD a 14 caratteri</text>
+    </g>
+    <g transform="translate(16 152)">
+      <circle cx="9" cy="9" r="9" fill="#1d6a4c"/><text x="9" y="13" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">3</text>
+      <text x="26" y="8" class="h" font-size="12">Unisce</text><text x="26" y="23" class="s">merge outer: nessun</text><text x="26" y="37" class="s">punto di prelievo perso</text>
+    </g>
+  </g>
+
+  <path d="M428 160 H462" stroke="#7d8c84" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- uscite -->
+  <g transform="translate(468 66)">
+    <rect width="144" height="56" rx="10" fill="#ffffff" stroke="#c9d3cb"/>
+    <text x="14" y="24" class="h">File consolidato</text><text x="14" y="41" class="s">nel tracciato aziendale</text>
+  </g>
+  <g transform="translate(482 150)">
+    <ellipse cx="58" cy="10" rx="58" ry="10" fill="#d6e8de"/>
+    <path d="M0 10 V82 A58 10 0 0 0 116 82 V10" fill="#e9f3ed"/>
+    <ellipse cx="58" cy="10" rx="58" ry="10" fill="none" stroke="#1d6a4c" stroke-width="1.5"/>
+    <path d="M0 10 V82 A58 10 0 0 0 116 82 V10" fill="none" stroke="#1d6a4c" stroke-width="1.5"/>
+    <text x="58" y="48" class="h" text-anchor="middle">SQL Server</text>
+    <text x="58" y="65" class="s" text-anchor="middle">consumi mensili</text>
+  </g>
+  <path d="M540 122 V146" stroke="#7d8c84" stroke-width="2" marker-end="url(#a)"/>
+
+  <!-- tempi -->
+  <g transform="translate(28 306)">
+    <rect width="584" height="62" rx="12" fill="#ffffff" stroke="#c9d3cb"/>
+    <text x="20" y="27" class="m">prima</text>
+    <rect x="76" y="16" width="300" height="14" rx="4" fill="#f1e6d3" stroke="#9a5a00"/>
+    <text x="388" y="27" class="s">1-2 ore di lavoro manuale</text>
+    <text x="20" y="50" class="m">dopo</text>
+    <rect x="76" y="39" width="16" height="14" rx="4" fill="#1d6a4c"/>
+    <text x="104" y="50" class="s">circa 5 minuti, avvio con un doppio click</text>
+  </g>
+</svg>

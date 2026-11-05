@@ -14,17 +14,19 @@ presentazione_parrucchiera/ → presentazione gestionale parrucchiera (2024)
 assets/                     → immagini condivise tra le edizioni
 ├── suite_care/             → illustrazioni SVG della Suite Care
 ├── football_paper_trading/ → illustrazioni SVG di Football Paper-Trading
-└── simecom/                → illustrazioni SVG dei progetti di dati energetici
+├── simecom/                → illustrazioni SVG dei progetti di dati energetici
+└── tesi/                   → illustrazioni SVG della tesi ITS
 
 v2026/                      → edizione 2026 (nuova)
 ├── index.html              → presentazione principale
 ├── css/                    → design system con 3 temi (Aurora, Lumen, Ember)
-│   └── progetti.css        → palette e blocchi dei case study 2026 (care, campo, energia)
+│   └── progetti.css        → palette e blocchi dei case study 2026 (care, campo, energia, tesi)
 ├── js/                     → interazioni (temi, typewriter, scroll reveal)
 ├── presentazioni/          → case study dei progetti
 │   ├── suite-care.html     → Suite Care: helpdesk, WhatsApp marketing, servizio gestito
 │   ├── football-paper-trading.html → modelli statistici sul calcio, denaro 100% virtuale
 │   ├── simecom.html        → forecasting energetico e mappa delle temperature
+│   ├── tesi.html           → tesi ITS: architettura dati, automazioni, ML e verifica ordini
 │   ├── gioco.html          → La Corsa di Babbo Natale, giocabile nella pagina
 │   ├── mensa.html          → Gestionale Mensa
 │   └── parrucchiera.html   → Gestionale Parrucchiera
@@ -34,11 +36,12 @@ v2026/                      → edizione 2026 (nuova)
 
 ### Case study dei progetti privati
 
-Suite Care, Football Paper-Trading e gli strumenti di dati energetici hanno il codice privato: le
-pagine descrivono cosa fanno e con quali tecnologie, senza link ai repository, dati
-aziendali, clienti o cifre. Le immagini sono **illustrazioni SVG schematiche**, non
-screenshot, e lo dichiarano nella didascalia. Le palette dei tre case study stanno in
-`v2026/css/progetti.css`, caricato dopo `main.css` e `showcase.css`.
+Suite Care, Football Paper-Trading, gli strumenti di dati energetici e la tesi ITS hanno il
+codice privato: le pagine descrivono cosa fanno e con quali tecnologie, senza link ai
+repository, nome dell'azienda, dati aziendali, clienti o cifre. La tesi racconta il quadro
+d'insieme e rimanda al case study del forecasting (e viceversa). Le immagini sono
+**illustrazioni SVG schematiche**, non screenshot, e lo dichiarano nella didascalia. Le palette dei case study stanno in `v2026/css/progetti.css`, caricato dopo
+`main.css` e `showcase.css`.
 
 ## Edizioni
 

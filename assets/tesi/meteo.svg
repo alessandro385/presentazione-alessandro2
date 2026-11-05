@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 400" role="img" aria-labelledby="t">
+  <title id="t">Illustrazione schematica della media meteo ponderata: i comuni di una zona pesano in proporzione ai consumi del portafoglio, e il meteo è salvato in tre tabelle distinte per evitare la fuga di informazioni</title>
+  <style>
+    text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .h { font-size: 12.5px; font-weight: 700; fill: #14201b; }
+    .s { font-size: 10.5px; fill: #56645d; }
+    .m { font-family: ui-monospace, Menlo, monospace; font-size: 10.5px; fill: #3f4d46; }
+  </style>
+  <rect width="640" height="400" rx="16" fill="#fbfcfa"/>
+
+  <!-- zona con comuni pesati -->
+  <g transform="translate(28 28)">
+    <rect width="300" height="232" rx="14" fill="#ffffff" stroke="#c9d3cb"/>
+    <text x="16" y="26" class="h">Una zona di mercato</text>
+    <text x="16" y="42" class="s">cerchio = peso del comune sui consumi</text>
+    <path d="M40 200 C 30 150, 70 90, 130 72 C 190 56, 260 80, 272 130 C 284 180, 240 214, 170 214 C 110 216, 50 230, 40 200 Z" fill="#f4f6f3" stroke="#d9e0da"/>
+    <circle cx="150" cy="140" r="38" fill="#1d6a4c" fill-opacity=".18" stroke="#1d6a4c"/>
+    <circle cx="226" cy="118" r="22" fill="#1d6a4c" fill-opacity=".18" stroke="#1d6a4c"/>
+    <circle cx="90" cy="178" r="16" fill="#1d6a4c" fill-opacity=".18" stroke="#1d6a4c"/>
+    <circle cx="218" cy="180" r="10" fill="#1d6a4c" fill-opacity=".18" stroke="#1d6a4c"/>
+    <circle cx="96" cy="104" r="6" fill="#1d6a4c" fill-opacity=".18" stroke="#1d6a4c"/>
+    <circle cx="256" cy="160" r="5" fill="#1d6a4c" fill-opacity=".18" stroke="#1d6a4c"/>
+    <text x="150" y="144" class="m" text-anchor="middle">A</text>
+    <text x="226" y="122" class="m" text-anchor="middle">B</text>
+    <text x="90" y="182" class="m" text-anchor="middle">C</text>
+  </g>
+
+  <!-- formula -->
+  <g transform="translate(344 28)">
+    <rect width="268" height="232" rx="14" fill="#ffffff" stroke="#1d6a4c"/>
+    <text x="16" y="26" class="h">Media ponderata</text>
+    <text x="16" y="56" class="m" font-size="13">T zona = Σ peso · T comune</text>
+    <text x="16" y="84" class="s">peso = consumo del comune / consumo</text>
+    <text x="16" y="99" class="s">della zona, ricalcolato ogni mese</text>
+    <text x="16" y="130" class="s">media semplice</text>
+    <g fill="#c9d3cb"><rect x="16" y="138" width="38" height="10" rx="2"/><rect x="58" y="138" width="38" height="10" rx="2"/><rect x="100" y="138" width="38" height="10" rx="2"/><rect x="142" y="138" width="38" height="10" rx="2"/><rect x="184" y="138" width="38" height="10" rx="2"/></g>
+    <text x="16" y="172" class="s">media ponderata</text>
+    <g fill="#1d6a4c"><rect x="16" y="180" width="110" height="10" rx="2"/><rect x="130" y="180" width="56" height="10" rx="2"/><rect x="190" y="180" width="22" height="10" rx="2"/><rect x="216" y="180" width="10" height="10" rx="2"/><rect x="230" y="180" width="6" height="10" rx="2"/></g>
+    <text x="16" y="214" class="s">conta dove i clienti consumano davvero</text>
+  </g>
+
+  <!-- tre tabelle -->
+  <text x="28" y="292" class="m">il meteo in tre tabelle</text>
+  <g transform="translate(28 302)">
+    <rect width="186" height="72" rx="10" fill="#ffffff" stroke="#c9d3cb"/>
+    <text x="14" y="26" class="h">Previsioni</text><text x="14" y="44" class="s">prossimi 7 giorni,</text><text x="14" y="58" class="s">aggiornate ogni giorno</text>
+  </g>
+  <g transform="translate(227 302)">
+    <rect width="186" height="72" rx="10" fill="#ffffff" stroke="#c9d3cb"/>
+    <text x="14" y="26" class="h">Osservato</text><text x="14" y="44" class="s">cosa è successo davvero,</text><text x="14" y="58" class="s">per grafici e analisi</text>
+  </g>
+  <g transform="translate(426 302)">
+    <rect width="186" height="72" rx="10" fill="#f1e6d3" stroke="#9a5a00"/>
+    <text x="14" y="26" class="h">Storico previsioni</text><text x="14" y="44" class="s">con la data di emissione:</text><text x="14" y="58" class="s">niente fuga di informazioni</text>
+  </g>
+</svg>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="it" data-theme="lumen" data-brand="tesi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tesi ITS: un ecosistema di dati per l'energia — Alessandro Barresi</title>
+<meta name="description" content="Tesi del corso ITS Tecnico Superiore in Digitalizzazione Processi Industriali: da Excel, Access e VBA a un ecosistema con SQL Server al centro, ETL in Python, meteo ponderato, forecasting con machine learning e verifica automatica degli ordini, per un operatore del settore energetico.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/main.css">
+<link rel="stylesheet" href="../css/showcase.css">
+<link rel="stylesheet" href="../css/progetti.css">
+</head>
+<body>
+
+<div class="backdrop" aria-hidden="true"></div>
+
+<header class="site-header">
+  <div class="container">
+    <a href="../index.html#progetti" class="logo"><span class="mark">AB</span>Tesi ITS</a>
+    <div class="header-actions">
+      <a class="legacy-link" href="../../index.html" title="Pagina iniziale">⌂ inizio</a>
+      <a class="legacy-link" href="../index.html#progetti">← progetti</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== HERO ===== -->
+  <section class="show-hero">
+    <div class="container show-hero-grid">
+      <div>
+        <span class="kicker">// case study · tesi ITS</span>
+        <h1>Dai file sparsi a un <span class="grad-text">ecosistema di dati</span></h1>
+        <p class="lead">La tesi del corso ITS Tecnico Superiore in Digitalizzazione Processi Industriali racconta
+        il lavoro fatto come Supply &amp; Portfolio Manager junior presso un operatore del settore energetico:
+        portare un'infrastruttura nata su Excel, Access e macro VBA verso un database SQL Server al centro,
+        con automazioni in Python, previsioni con machine learning e controlli automatici sugli ordini.</p>
+        <div class="tech-row">
+          <span class="chip">Python</span><span class="chip">pandas</span><span class="chip">SQL Server</span>
+          <span class="chip">LightGBM</span><span class="chip">Optuna</span><span class="chip">Dash · Plotly</span>
+          <span class="chip">PyInstaller</span>
+        </div>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#architettura">L'architettura ↓</a>
+          <a class="btn btn-ghost" href="simecom.html">Il forecasting nel dettaglio</a>
+        </div>
+      </div>
+      <div class="device reveal">
+        <div class="browser art">
+          <div class="browser-bar">
+            <div class="dots"><span></span><span></span><span></span></div>
+            <span class="url">fonti · hub · strumenti</span>
+          </div>
+          <img src="../../assets/tesi/cover.svg" alt="Illustrazione: file e API in ingresso, un database SQL Server al centro, modelli, dashboard e ordini verificati in uscita">
+        </div>
+        <span class="art-note">illustrazione schematica · non sono dati aziendali</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="container">
+
+    <!-- ===== STATISTICHE (dalla tesi) ===== -->
+    <div class="stat-band reveal">
+      <div class="stat-cell"><div class="v">~60.000</div><div class="k">punti di prelievo (POD) in portafoglio</div></div>
+      <div class="stat-cell"><div class="v">1-2 h → 5 min</div><div class="k">elaborazione mensile dei consumi</div></div>
+      <div class="stat-cell"><div class="v">Minuti → secondi</div><div class="k">verifica degli ordini di mercato</div></div>
+      <div class="stat-cell"><div class="v">24 → 96</div><div class="k">periodi al giorno con il quarto d'ora</div></div>
+    </div>
+
+    <!-- ===== PUNTO DI PARTENZA ===== -->
+    <section class="block reveal">
+      <div class="section-intro">
+        <span class="kicker">// il punto di partenza</span>
+        <h2>Perché cambiare un sistema che funzionava</h2>
+        <p>Excel, Access e VBA erano stati per anni una soluzione economica e funzionale. Tre spinte li hanno
+        portati al limite.</p>
+      </div>
+      <div class="trio">
+        <article class="trio-card">
+          <span class="tag">Quarto d'ora</span>
+          <h3>Quattro volte i dati</h3>
+          <p>Con il passaggio del mercato del giorno prima alla risoluzione quart'oraria, una singola utenza
+          passa da 8.760 a 35.040 misure l'anno. Ogni processo e ogni modello va ripensato.</p>
+        </article>
+        <article class="trio-card">
+          <span class="tag">Frammentazione</span>
+          <h3>Decine di file, nessuna versione certa</h3>
+          <p>Ogni procedura aveva il suo foglio e le sue macro: difficile sapere quale fosse il dato
+          aggiornato, chi l'avesse modificato e come fosse stato calcolato.</p>
+        </article>
+        <article class="trio-card">
+          <span class="tag">Errore umano</span>
+          <h3>Ogni copia-incolla è un rischio</h3>
+          <p>Previsioni imprecise o ordini sbagliati si traducono in costi di sbilanciamento. Automatizzare
+          i passaggi ripetitivi riduce gli errori e libera tempo per l'analisi.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== CAPITOLI: ARCHITETTURA DEI DATI ===== -->
+    <div class="chapters" id="architettura">
+
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">01</div>
+          <span class="kicker">// ETL</span>
+          <h2>La raccolta consumi mensile, in cinque minuti</h2>
+          <p>Ogni mese i consumi effettivi di tutto il portafoglio arrivano dal distributore in tre archivi ZIP:
+          dati di fornitura, dati tecnici e indirizzi. I CSV contenuti hanno convenzioni scomode: il punto vale
+          come separatore delle migliaia in alcune colonne e come decimale in altre, i codici POD hanno lunghezze
+          diverse.</p>
+          <p>Uno script Python riconosce gli archivi, estrae anche quelli annidati, normalizza colonna per colonna,
+          porta i codici POD a 14 caratteri e unisce i tre insiemi con un merge outer, così nessun punto di
+          prelievo va perso. Il risultato viene caricato nel database e alimenta tutto il resto.</p>
+          <ul class="mini-list">
+            <li>Da una-due ore di lavoro manuale a circa cinque minuti automatici</li>
+            <li>Avvio con un doppio click, messaggi di avanzamento e istruzioni passo-passo</li>
+          </ul>
+        </div>
+        <div class="shot-frame art">
+          <img src="../../assets/tesi/etl.svg" alt="Illustrazione schematica dell'ETL: tre archivi ZIP estratti, normalizzati e uniti, poi caricati nel database" loading="lazy">
+          <span class="didascalia">illustrazione · ETL</span>
+        </div>
+      </div>
+
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">02</div>
+          <span class="kicker">// database</span>
+          <h2>SQL Server come unica fonte di verità</h2>
+          <p>Consumi, anagrafiche, dati di mercato, meteo e previsioni confluiscono in un solo database.
+          La migrazione è stata graduale per non fermare l'operatività: prima i consumi storici, poi le
+          anagrafiche, poi i dati di mercato, con un periodo in cui vecchio e nuovo sistema convivevano e
+          script automatici ne confrontavano i risultati.</p>
+          <p>Attorno al database c'è un modulo di orchestrazione: uno script Python per ogni fonte, che sa
+          come leggerla, controllarla e caricarla. Ogni esecuzione viene registrata con orario, fonte, numero
+          di record, eventuali errori e durata, e le previsioni sono salvate per versione.</p>
+          <ul class="mini-list">
+            <li>Tutti lavorano sulla stessa versione aggiornata del dato</li>
+            <li>Storico tracciabile di ogni previsione e di ogni correzione manuale</li>
+            <li>Struttura pensata per reggere i volumi del quarto d'ora</li>
+          </ul>
+        </div>
+        <div class="shot-frame art">
+          <img src="../../assets/tesi/hub.svg" alt="Illustrazione schematica del database al centro: uno script per fonte lo alimenta, modelli, dashboard e ordini lo leggono, ogni esecuzione è registrata" loading="lazy">
+          <span class="didascalia">illustrazione · hub</span>
+        </div>
+      </div>
+
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">03</div>
+          <span class="kicker">// meteo ponderato</span>
+          <h2>Il meteo pesato sui consumi reali</h2>
+          <p>Una media semplice delle temperature tratta allo stesso modo una grande città e un piccolo comune.
+          Per le previsioni conta invece dove si trovano i consumi: ogni punto di prelievo viene abbinato al
+          suo comune e alla zona di mercato, e ogni comune pesa in proporzione ai consumi del portafoglio.
+          I pesi si ricalcolano ogni mese, così seguono da soli i clienti che entrano ed escono.</p>
+          <p>I dati arrivano dalle API di Open-Meteo e sono tenuti in tre tabelle distinte: previsioni dei
+          prossimi sette giorni, osservato e storico delle previsioni con la loro data di emissione. L'ultima
+          serve ad addestrare i modelli solo con ciò che si sapeva davvero in quel momento.</p>
+        </div>
+        <div class="shot-frame art">
+          <img src="../../assets/tesi/meteo.svg" alt="Illustrazione schematica della media ponderata: i comuni pesano in proporzione ai consumi, il meteo è diviso in previsioni, osservato e storico delle previsioni" loading="lazy">
+          <span class="didascalia">illustrazione · meteo</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ===== FORECASTING (sintesi + rimando) ===== -->
+    <section class="block reveal" id="forecasting">
+      <div class="section-intro">
+        <span class="kicker">// previsioni</span>
+        <h2>Machine learning, con l'operatore al centro</h2>
+        <p>I modelli non sostituiscono il forecast tradizionale: lo affiancano. Sono in fase di test e servono
+        a validare le scelte di chi prepara ogni giorno le allocazioni.</p>
+      </div>
+      <div class="trio">
+        <article class="trio-card">
+          <span class="tag">Due livelli</span>
+          <h3>Prima l'errore, poi il meteo</h3>
+          <p>Il primo livello impara l'errore sistematico del forecast tradizionale da calendario e festività
+          (LightGBM, iperparametri con Optuna, ritardo minimo di 48 ore per evitare leakage). Il secondo affina
+          con le variabili meteo ponderate.</p>
+        </article>
+        <article class="trio-card">
+          <span class="tag">Excel → SQL</span>
+          <h3>Le correzioni diventano dati</h3>
+          <p>Un pulsante nel file di lavoro manda le correzioni manuali al database: la dashboard le mostra
+          subito accanto al consuntivo, al forecast tradizionale e ai due modelli.</p>
+        </article>
+        <article class="trio-card">
+          <span class="tag">Curva suggerita</span>
+          <h3>Un riferimento, non un ordine</h3>
+          <p>Un algoritmo cerca negli ultimi due mesi giorni con meteo e calendario simili e propone una curva
+          oraria. La decisione resta umana, ma ogni scostamento diventa visibile.</p>
+        </article>
+      </div>
+      <div class="link-box">
+        <p>Dashboard per zona, correzione con machine learning, elaborazione massiva e mappa delle temperature
+        sono raccontate nel case study dedicato agli strumenti di forecasting.</p>
+        <a class="btn btn-ghost" href="simecom.html">Forecasting energetico →</a>
+      </div>
+    </section>
+
+    <!-- ===== VERIFICA ORDINI ===== -->
+    <div class="chapters" id="ordini">
+      <div class="chapter reveal">
+        <div class="chapter-copy">
+          <div class="chapter-num">04</div>
+          <span class="kicker">// chiusura del ciclo</span>
+          <h2>Ordini verificati in pochi secondi</h2>
+          <p>Un ordine mancante o con quantità sbagliate sul mercato elettrico significa pagare l'energia al
+          prezzo di sbilanciamento. Il vecchio controllo era una macro VBA che, oltre il centinaio di righe,
+          impiegava dieci-quindici minuti: proprio nei giorni con ordini su più giorni diventava un collo di
+          bottiglia.</p>
+          <p>La nuova verifica, riscritta in Python e distribuita come eseguibile, confronta i file di
+          controllo generati insieme agli ordini con i riscontri scaricati dal portale del mercato (MGP e PCE).
+          Il merge outer per data, ora e zona trova sia le quantità diverse sia gli ordini mancanti o in più;
+          il report mostra solo le differenze.</p>
+          <ul class="mini-list">
+            <li>Da dieci-quindici minuti a pochi secondi, anche con il quarto d'ora</li>
+            <li>Confronto numerico tollerante agli arrotondamenti (<code>np.isclose</code>)</li>
+            <li>Si inserisce la data, il resto lo trova da solo</li>
+          </ul>
+        </div>
+        <div class="shot-frame art">
+          <img src="../../assets/tesi/verifica.svg" alt="Illustrazione schematica della verifica: inviato e registrato uniti per data, ora e zona, con un report delle sole differenze" loading="lazy">
+          <span class="didascalia">illustrazione · verifica</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== FILOSOFIA ===== -->
+    <section class="block reveal">
+      <div class="section-intro">
+        <span class="kicker">// per chi non programma</span>
+        <h2>Strumenti che sopravvivono a chi li ha scritti</h2>
+        <p>Il principio della tesi: lo strumento deve essere usabile anche da chi non ha mai visto una riga di
+        Python e non ha intenzione di impararla.</p>
+      </div>
+      <div class="trio">
+        <article class="trio-card">
+          <span class="tag">Doppio click</span>
+          <h3>Niente terminale</h3>
+          <p>File batch ed eseguibili autonomi: si avviano come un qualsiasi programma, senza installare
+          Python né conoscere percorsi e comandi.</p>
+        </article>
+        <article class="trio-card">
+          <span class="tag">Documentazione</span>
+          <h3>Istruzioni scritte per i colleghi</h3>
+          <p>Guide passo-passo senza gergo, messaggi di avanzamento in italiano ed errori in rosso che spiegano
+          cosa è successo e cosa fare.</p>
+        </article>
+        <article class="trio-card">
+          <span class="tag">VBA → Python</span>
+          <h3>Un pannello al posto di dieci file</h3>
+          <p>Le macro sparse in oltre dieci file Excel sono state tradotte in Python con l'aiuto dell'AI
+          generativa e riunite in un pannello di controllo unico, già pronto per il quarto d'ora.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- ===== STACK ===== -->
+    <section class="stack-section reveal">
+      <span class="kicker">// architettura</span>
+      <h2>Com'è costruito</h2>
+      <p>Librerie open source attorno a un database SQL Server: niente soluzioni commerciali preconfezionate,
+      competenze costruite in casa.</p>
+      <div class="pipeline">
+        <div class="pipe-node"><span class="t">Fonti</span><span class="s">ZIP · Excel · CSV · API</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">ETL</span><span class="s">Python · pandas</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Hub</span><span class="s">SQL Server</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Modelli</span><span class="s">LightGBM · Optuna</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Interfacce</span><span class="s">Dash · Plotly</span></div>
+        <span class="pipe-arrow">→</span>
+        <div class="pipe-node"><span class="t">Controlli</span><span class="s">eseguibili PyInstaller</span></div>
+      </div>
+    </section>
+
+    <!-- ===== STATO E SVILUPPI ===== -->
+    <div class="notice-box reveal">
+      <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></span>
+      <div>
+        <h2>A che punto era il progetto</h2>
+        <p>Infrastruttura dati, automazioni, dashboard e verifica degli ordini erano operative. I modelli di
+        machine learning erano in fase di test: le previsioni venivano generate e salvate ogni giorno, ma non
+        usate direttamente per gli ordini.</p>
+        <ul>
+          <li>accumulare almeno due anni di previsioni meteo storiche per riaddestrare il secondo livello;</li>
+          <li>continuare la migrazione dai sistemi precedenti, un processo alla volta;</li>
+          <li>passare dalle previsioni del forecast tradizionale a quelle dei modelli cambiando solo la sorgente dei dati.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="notice-box reveal">
+      <span class="ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 018 0v4"/></svg></span>
+      <div>
+        <h3>Tesi su strumenti interni</h3>
+        <p>Gli strumenti sono nati per uso interno: codice e dati non sono pubblici e in questa pagina non ci
+        sono nomi, dati aziendali né cifre economiche. I numeri di processo vengono dalla tesi; schemi e
+        tabelle sono illustrazioni schematiche.</p>
+      </div>
+    </div>
+
+    <!-- ===== CTA ===== -->
+    <section class="show-cta reveal" style="margin-top: var(--space-4);">
+      <h2>Prima il processo, <span class="grad-text">poi il codice</span></h2>
+      <p>Ogni automazione è nata dopo aver capito e svolto a mano il processo: è il metodo che porto anche nel
+      lavoro di oggi.</p>
+      <div class="row">
+        <a class="btn btn-primary" href="../index.html#esperienza">Il mio percorso</a>
+        <a class="btn btn-ghost" href="simecom.html">Forecasting energetico</a>
+        <a class="btn btn-ghost" href="../index.html#progetti">← Torna ai progetti</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span>© 2026 Alessandro Barresi.</span>
+    <span><a href="../index.html">Portfolio 2026</a> · <a href="../../index.html">Pagina iniziale</a></span>
+  </div>
+</footer>
+
+<script src="../js/analytics.js" defer></script>
+<script src="../js/main.js"></script>
+</body>
+</html>

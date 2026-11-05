@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" role="img" aria-labelledby="t">
+  <title id="t">Illustrazione schematica dell'architettura della tesi: file e API in ingresso, un database SQL Server al centro, modelli, dashboard e verifica degli ordini in uscita</title>
+  <style>
+    text { font-family: system-ui, -apple-system, "Segoe UI", sans-serif; }
+    .h { font-size: 11px; font-weight: 700; fill: #14201b; }
+    .s { font-size: 9px; fill: #56645d; }
+    .m { font-family: ui-monospace, Menlo, monospace; font-size: 8.5px; fill: #56645d; }
+  </style>
+  <defs>
+    <marker id="a" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0L10 5L0 10z" fill="#7d8c84"/></marker>
+  </defs>
+  <rect width="400" height="240" rx="18" fill="#fbfcfa"/>
+  <path d="M20 26 H380" stroke="#d9e0da"/>
+  <text x="20" y="18" class="m">fonti</text>
+  <text x="200" y="18" class="m" text-anchor="middle">hub dei dati</text>
+  <text x="380" y="18" class="m" text-anchor="end">strumenti</text>
+
+  <g transform="translate(20 44)">
+    <rect width="96" height="40" rx="8" fill="#ffffff" stroke="#c9d3cb"/>
+    <text x="10" y="17" class="h">Archivi ZIP</text><text x="10" y="31" class="s">consumi mensili</text>
+  </g>
+  <g transform="translate(20 100)">
+    <rect width="96" height="40" rx="8" fill="#ffffff" stroke="#c9d3cb"/>
+    <text x="10" y="17" class="h">Excel · CSV</text><text x="10" y="31" class="s">file di mercato</text>
+  </g>
+  <g transform="translate(20 156)">
+    <rect width="96" height="40" rx="8" fill="#ffffff" stroke="#c9d3cb"/>
+    <text x="10" y="17" class="h">API meteo</text><text x="10" y="31" class="s">osservato e previsto</text>
+  </g>
+
+  <g stroke="#7d8c84" stroke-width="1.5" fill="none">
+    <path d="M116 64 C 140 64, 140 112, 154 116" marker-end="url(#a)"/>
+    <path d="M116 120 H154" marker-end="url(#a)"/>
+    <path d="M116 176 C 140 176, 140 128, 154 124" marker-end="url(#a)"/>
+  </g>
+
+  <g transform="translate(158 74)">
+    <ellipse cx="42" cy="10" rx="42" ry="10" fill="#d6e8de"/>
+    <path d="M0 10 V82 A42 10 0 0 0 84 82 V10" fill="#e9f3ed"/>
+    <ellipse cx="42" cy="10" rx="42" ry="10" fill="none" stroke="#1d6a4c" stroke-width="1.5"/>
+    <path d="M0 10 V82 A42 10 0 0 0 84 82 V10" fill="none" stroke="#1d6a4c" stroke-width="1.5"/>
+    <text x="42" y="46" class="h" text-anchor="middle">SQL Server</text>
+    <text x="42" y="60" class="s" text-anchor="middle">un'unica fonte</text>
+    <text x="42" y="71" class="s" text-anchor="middle">di verità</text>
+  </g>
+
+  <g stroke="#7d8c84" stroke-width="1.5" fill="none">
+    <path d="M242 116 C 258 112, 258 64, 280 64" marker-end="url(#a)"/>
+    <path d="M242 120 H280" marker-end="url(#a)"/>
+    <path d="M242 124 C 258 128, 258 176, 280 176" marker-end="url(#a)"/>
+  </g>
+
+  <g transform="translate(284 44)">
+    <rect width="96" height="40" rx="8" fill="#ffffff" stroke="#c9d3cb"/>
+    <text x="10" y="17" class="h">Modelli ML</text><text x="10" y="31" class="s">due livelli</text>
+  </g>
+  <g transform="translate(284 100)">
+    <rect width="96" height="40" rx="8" fill="#ffffff" stroke="#c9d3cb"/>
+    <text x="10" y="17" class="h">Dashboard</text><text x="10" y="31" class="s">confronto forecast</text>
+  </g>
+  <g transform="translate(284 156)">
+    <rect width="96" height="40" rx="8" fill="#ffffff" stroke="#1d6a4c"/>
+    <text x="10" y="17" class="h">Ordini</text><text x="10" y="31" class="s">generati e verificati</text>
+  </g>
+
+  <rect x="20" y="210" width="360" height="16" rx="4" fill="#f1e6d3"/>
+  <text x="200" y="221.5" class="m" text-anchor="middle" style="fill:#7a4700">Excel · Access · VBA → Python · SQL Server</text>
+</svg>
