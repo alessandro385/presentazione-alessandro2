@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Forecasting energetico e temperature — Alessandro Barresi</title>
-<meta name="description" content="Strumenti di dati per il settore energetico: dashboard forecast vs consuntivo per zona elettrica, correzione del forecast con machine learning, elaborazione massiva con generazione dei file XML e mappa delle temperature. Python, Streamlit, scikit-learn, Flask.">
+<meta name="description" content="Strumenti di dati per il settore energetico: dashboard forecast vs consuntivo per zona elettrica, correzione del forecast con machine learning, elaborazione massiva con generazione dei file XML e mappa delle temperature. Con due demo da provare: ritocco del forecast su dati simulati e temperature dei capoluoghi dal vivo. Python, Streamlit, scikit-learn, Flask.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../css/main.css">
 <link rel="stylesheet" href="../css/showcase.css">
 <link rel="stylesheet" href="../css/progetti.css">
+<link rel="preconnect" href="https://api.open-meteo.com" crossorigin>
 </head>
 <body>
 
@@ -44,8 +45,8 @@
           <span class="chip">Leaflet</span>
         </div>
         <div class="hero-actions">
-          <a class="btn btn-primary" href="#forecast">Il forecast ↓</a>
-          <a class="btn btn-ghost" href="#temperature">La mappa delle temperature</a>
+          <a class="btn btn-primary" href="#demo-forecast" data-track="cta/demo-forecast">Prova la demo ↓</a>
+          <a class="btn btn-ghost" href="#demo-temperature" data-track="cta/demo-temperature">Le temperature dal vivo</a>
         </div>
       </div>
       <div class="device reveal">
@@ -74,7 +75,7 @@
     <!-- ===== CAPITOLI ===== -->
     <div class="chapters" id="forecast">
 
-      <div class="chapter reveal">
+      <div class="chapter chapter-demo reveal">
         <div class="chapter-copy">
           <div class="chapter-num">01</div>
           <span class="kicker">// dashboard</span>
@@ -87,11 +88,76 @@
             <li>Copia delle modifiche tra zone e ripristino selettivo</li>
             <li>Confronto visivo tra forecast originale e modificato, esportazione delle tabelle</li>
           </ul>
+          <p class="demo-lead">Qui sotto una versione ridotta da provare: stessa logica di ritocco per fascia,
+          ma su curve generate nel browser.</p>
         </div>
-        <div class="shot-frame art">
-          <img src="../../assets/simecom/forecast.svg" alt="Illustrazione schematica: forecast originale, forecast corretto e consuntivo su una giornata, con i controlli di modifica percentuale" loading="lazy">
-          <span class="didascalia">illustrazione · forecast</span>
-        </div>
+
+        <!-- Demo 1: forecast vs consuntivo su dati simulati (v2026/js/demo-energia.js) -->
+        <section class="demo demo-fc" id="demo-forecast" aria-labelledby="fc-title">
+          <header class="demo-head">
+            <div>
+              <span class="demo-label">// demo · forecast vs consuntivo</span>
+              <h3 id="fc-title">Ritocca il forecast e guarda l'errore</h3>
+            </div>
+            <span class="demo-flag">dati simulati — nessun dato aziendale</span>
+          </header>
+
+          <div class="demo-controls">
+            <label class="demo-field">
+              <span>Zona di mercato</span>
+              <select id="fc-zona">
+                <option value="NORD">NORD · Nord</option>
+                <option value="CNOR">CNOR · Centro-Nord</option>
+                <option value="CSUD">CSUD · Centro-Sud</option>
+                <option value="SUD">SUD · Sud</option>
+                <option value="CALA">CALA · Calabria</option>
+                <option value="SICI">SICI · Sicilia</option>
+                <option value="SARD">SARD · Sardegna</option>
+              </select>
+            </label>
+            <label class="demo-field">
+              <span>Giorno simulato</span>
+              <select id="fc-giorno">
+                <option value="0">Lunedì · feriale</option>
+                <option value="1">Martedì · feriale</option>
+                <option value="2">Mercoledì · feriale</option>
+                <option value="3">Giovedì · feriale</option>
+                <option value="4">Venerdì · feriale</option>
+                <option value="5">Sabato · prefestivo</option>
+                <option value="6">Domenica · festivo</option>
+              </select>
+            </label>
+          </div>
+
+          <dl class="demo-kpi" id="fc-kpi" aria-live="polite">
+            <div><dt>MAPE forecast</dt><dd id="fc-mape-orig">–</dd></div>
+            <div><dt>MAPE corretto</dt><dd id="fc-mape-corr">–</dd></div>
+            <div><dt>Differenza</dt><dd id="fc-mape-diff">–</dd></div>
+          </dl>
+
+          <div class="demo-body">
+            <figure class="fc-figure">
+              <ul class="fc-legend" aria-hidden="true">
+                <li><i class="sw sw-cons"></i>consuntivo</li>
+                <li><i class="sw sw-orig"></i>forecast</li>
+                <li><i class="sw sw-corr"></i>forecast corretto</li>
+              </ul>
+              <div class="fc-plot" id="fc-plot" tabindex="0" role="group"
+                   aria-label="Grafico della giornata a quarti d'ora. Usa le frecce sinistra e destra per leggere i valori.">
+                <noscript><img src="../../assets/simecom/forecast.svg" alt="Illustrazione schematica: forecast originale, forecast corretto e consuntivo su una giornata"></noscript>
+              </div>
+              <div class="fc-tip" id="fc-tip" aria-hidden="true"></div>
+              <p class="sr-only" id="fc-live" aria-live="polite"></p>
+              <figcaption class="demo-note">96 quarti d'ora · MW simulati · MAPE = errore percentuale assoluto medio rispetto al consuntivo</figcaption>
+            </figure>
+
+            <fieldset class="fc-fasce" id="fc-fasce">
+              <legend>Ritocchi per fascia</legend>
+              <!-- righe generate da demo-energia.js -->
+              <button type="button" class="btn-s line fc-reset" id="fc-reset">Ripristina</button>
+            </fieldset>
+          </div>
+        </section>
       </div>
 
       <div class="chapter reveal">
@@ -146,7 +212,7 @@
 
     <!-- ===== TEMPERATURE ===== -->
     <div class="chapters" id="temperature">
-      <div class="chapter reveal">
+      <div class="chapter chapter-demo reveal">
         <div class="chapter-copy">
           <div class="chapter-num">03</div>
           <span class="kicker">// temperature</span>
@@ -160,11 +226,64 @@
             <li>Dashboard con statistiche nazionali e regionali (Chart.js)</li>
             <li>Ricerca della singola città e aggiornamento dei dati dal database</li>
           </ul>
+          <p class="demo-lead">La demo rifà la stessa esperienza con dati meteo pubblici: un punto per
+          capoluogo di provincia, letto dal vivo da Open-Meteo.</p>
         </div>
-        <div class="shot-frame art">
-          <img src="../../assets/simecom/temperature.svg" alt="Illustrazione schematica della mappa: un punto per comune colorato dal freddo al caldo" loading="lazy">
-          <span class="didascalia">illustrazione · mappa</span>
-        </div>
+
+        <!-- Demo 2: temperature dei capoluoghi dal vivo (Open-Meteo + Leaflet, caricati quando la sezione è in vista) -->
+        <section class="demo demo-map" id="demo-temperature" aria-labelledby="tm-title">
+          <header class="demo-head">
+            <div>
+              <span class="demo-label">// demo · temperature dal vivo</span>
+              <h3 id="tm-title">Le temperature dei 107 capoluoghi</h3>
+            </div>
+            <span class="demo-flag" id="tm-status" role="status">la mappa si carica quando arrivi qui</span>
+          </header>
+
+          <div class="demo-controls">
+            <fieldset class="demo-field demo-seg">
+              <legend>Valore</legend>
+              <div class="seg">
+                <label><input type="radio" name="tm-metrica" value="t" checked><span>Adesso</span></label>
+                <label><input type="radio" name="tm-metrica" value="min"><span>Minima</span></label>
+                <label><input type="radio" name="tm-metrica" value="max"><span>Massima</span></label>
+              </div>
+            </fieldset>
+            <label class="demo-field">
+              <span>Schema colore</span>
+              <select id="tm-schema">
+                <option value="brand">Freddo–caldo</option>
+                <option value="termico">Termico</option>
+                <option value="viridis">Viridis (daltonici)</option>
+              </select>
+            </label>
+            <label class="demo-field">
+              <span>Vai a una città</span>
+              <select id="tm-citta" disabled>
+                <option value="">Scegli un capoluogo…</option>
+              </select>
+            </label>
+          </div>
+
+          <div class="tm-stage">
+            <div class="tm-map" id="tm-map" aria-label="Mappa delle temperature dei capoluoghi di provincia"></div>
+            <div class="tm-poster" id="tm-poster">
+              <img src="../../assets/simecom/temperature.svg" alt="" loading="lazy">
+              <p id="tm-poster-msg">Caricamento della mappa…</p>
+            </div>
+          </div>
+
+          <div class="tm-legend" id="tm-legend" aria-hidden="true"></div>
+
+          <dl class="demo-kpi" id="tm-kpi">
+            <div><dt>Media nazionale</dt><dd id="tm-media">–</dd></div>
+            <div><dt>Più calda</dt><dd id="tm-calda">–</dd></div>
+            <div><dt>Più fredda</dt><dd id="tm-fredda">–</dd></div>
+          </dl>
+          <p class="demo-note">Dati: <a href="https://open-meteo.com/" target="_blank" rel="noopener">Open-Meteo.com</a>
+          (CC BY 4.0) · coordinate: <a href="https://www.geonames.org/" target="_blank" rel="noopener">GeoNames</a>
+          · temperatura a 2 m, ora italiana<span class="tm-touch-hint"> · su touch usa due dita per spostare la mappa</span></p>
+        </section>
       </div>
     </div>
 
@@ -200,7 +319,8 @@
       <div>
         <h3>Strumenti interni, codice privato</h3>
         <p>Sono nati per uso interno in azienda: il codice non è pubblico e in questa pagina non ci sono
-        dati aziendali. Curve, barre e mappa sono illustrazioni schematiche.</p>
+        dati aziendali. Le illustrazioni sono schematiche; la demo del forecast genera curve simulate nel
+        browser e la mappa usa dati meteo pubblici di Open-Meteo.</p>
       </div>
     </div>
 
@@ -226,5 +346,6 @@
 
 <script src="../js/analytics.js" defer></script>
 <script src="../js/main.js"></script>
+<script src="../js/demo-energia.js" defer></script>
 </body>
 </html>
